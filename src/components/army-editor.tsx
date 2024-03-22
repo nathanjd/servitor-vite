@@ -60,7 +60,9 @@ export const ArmyEditor = (props: Props): JSX.Element => {
         <div className='army-editor'>
             <div className="army-card">
                 <div className="army-header">
-                    <h2 className="army-name">{name} ({id})</h2>
+                    <h2 className="army-name">
+                        {name}
+                    </h2>
                     <p className="army-points">{points} Points</p>
                 </div>
                 <textarea
@@ -69,6 +71,7 @@ export const ArmyEditor = (props: Props): JSX.Element => {
                     value={text}
                 />
                 <div className="army-footer">
+                    <span className="army-id">{id}</span>
                     <button
                         className="delete-army-button button"
                         onClick={handleDeleteArmy}

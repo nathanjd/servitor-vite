@@ -176,6 +176,10 @@ body {
     padding-top: 0.8rem;
 }
 
+.army-id {
+    color: GrayText;
+}
+
 .delete-army-button {
     float: right;
 }
