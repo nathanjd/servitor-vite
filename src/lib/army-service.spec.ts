@@ -10,7 +10,7 @@ import {
     resetArmyStoreToDefault,
     saveArmies,
     saveArmy,
-    saveArmyStore
+    saveArmyStore,
 } from './army-service.ts';
 import { parseDefaultRawArmies } from '../config/default-raw-armies.ts';
 import { Army } from './parse-army-text.ts';
@@ -32,14 +32,14 @@ describe('armyService', () => {
             key: () => '',
             length: 1,
             removeItem: () => {},
-            setItem: setItemMock
+            setItem: setItemMock,
         };
     });
 
     afterEach(() => {
         global.localStorage = oldLocalStorage;
-        getItemMock.mockReset()
-        setItemMock.mockReset()
+        getItemMock.mockReset();
+        setItemMock.mockReset();
     });
 
     describe('armiesToArmyStore(armies: Army[]): ArmyStore', () => {
@@ -51,15 +51,15 @@ describe('armyService', () => {
                     name: 'mock-army-name-1',
                     points: 0,
                     text: 'mock-army-name-1',
-                    units: []
+                    units: [],
                 },
                 {
                     id: 'mock-army-id-2',
                     name: 'mock-army-name-2',
                     points: 0,
                     text: 'mock-army-name-2',
-                    units: []
-                }
+                    units: [],
+                },
             ];
 
             // Act
@@ -68,7 +68,7 @@ describe('armyService', () => {
             // Assert
             expect(armyStore.orderedIds).to.deep.equal([
                 armies[0].id,
-                armies[1].id
+                armies[1].id,
             ]);
         });
 
@@ -80,15 +80,15 @@ describe('armyService', () => {
                     name: 'mock-army-name-1',
                     points: 0,
                     text: 'mock-army-name-1',
-                    units: []
+                    units: [],
                 },
                 {
                     id: 'mock-army-id-2',
                     name: 'mock-army-name-2',
                     points: 0,
                     text: 'mock-army-name-2',
-                    units: []
-                }
+                    units: [],
+                },
             ];
 
             // Act
@@ -109,7 +109,7 @@ describe('armyService', () => {
                 name: 'mock-army-name-2',
                 points: 0,
                 text: 'mock-army-name-2',
-                units: []
+                units: [],
             };
             const armies: Army[] = [
                 {
@@ -117,9 +117,9 @@ describe('armyService', () => {
                     name: 'mock-army-name-1',
                     points: 0,
                     text: 'mock-army-name-1',
-                    units: []
+                    units: [],
                 },
-                otherArmy
+                otherArmy,
             ];
             const armyStore = armiesToArmyStore(armies);
             const rawArmyStore = stringify(armyStore);
@@ -198,14 +198,14 @@ describe('armyService', () => {
                     name: 'mock-army-name-1',
                     points: 0,
                     text: 'mock-army-name-1',
-                    units: []
+                    units: [],
                 },
                 {
                     id: 'mock-army-id-2',
                     name: 'mock-army-name-2',
                     points: 0,
                     text: 'mock-army-name-2',
-                    units: []
+                    units: [],
                 },
             ];
             const expectedArmyStore = armiesToArmyStore(armies);
@@ -247,14 +247,14 @@ describe('armyService', () => {
                     name: 'mock-army-name-1',
                     points: 0,
                     text: 'mock-army-name-1',
-                    units: []
+                    units: [],
                 },
                 {
                     id: 'mock-army-id-2',
                     name: 'mock-army-name-2',
                     points: 0,
                     text: 'mock-army-name-2',
-                    units: []
+                    units: [],
                 },
             ];
             const armyStore = armiesToArmyStore(armies);
@@ -278,14 +278,14 @@ describe('armyService', () => {
                     name: 'mock-army-name-1',
                     points: 0,
                     text: 'mock-army-name-1',
-                    units: []
+                    units: [],
                 },
                 {
                     id: 'mock-army-id-2',
                     name: 'mock-army-name-2',
                     points: 0,
                     text: 'mock-army-name-2',
-                    units: []
+                    units: [],
                 },
             ];
             const expectedArmyStore = armiesToArmyStore(armies);
@@ -309,7 +309,7 @@ describe('armyService', () => {
                     name: 'mock-army-name-1',
                     points: 0,
                     text: 'mock-army-name-1',
-                    units: []
+                    units: [],
                 },
             ];
             const armyStore = armiesToArmyStore(armies);
@@ -321,7 +321,7 @@ describe('armyService', () => {
                 name: 'mock-army-name-2',
                 points: 0,
                 text: 'mock-army-name-2',
-                units: []
+                units: [],
             };
             const expectedArmyStore = armiesToArmyStore([newArmy, armies[0]]);
             const expectedRawArmyStore = stringify(expectedArmyStore);
@@ -343,14 +343,14 @@ describe('armyService', () => {
                     name: 'mock-army-name-1',
                     points: 0,
                     text: 'mock-army-name-1',
-                    units: []
+                    units: [],
                 },
                 {
                     id,
                     name: 'mock-army-name-2',
                     points: 0,
                     text: 'mock-army-name-2',
-                    units: []
+                    units: [],
                 },
             ];
             const armyStore = armiesToArmyStore(armies);
@@ -362,7 +362,7 @@ describe('armyService', () => {
                 name: 'mock-army-name-2-changed',
                 points: 0,
                 text: 'mock-army-name-2-changed',
-                units: []
+                units: [],
             };
             const expectedArmyStore = armiesToArmyStore([updatedArmy, armies[0]]);
             const expectedRawArmyStore = stringify(expectedArmyStore);

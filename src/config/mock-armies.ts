@@ -25,7 +25,7 @@ export const defaultArmy: Army = {
         {
             name: 'Chaos Lord (Warlord) (Undivided)',
             models: [
-                {wargear: []}
+                {wargear: []},
             ],
             points: 95,
             text: 'Chaos Lord (Warlord) (Undivided) - 95',
@@ -124,7 +124,7 @@ export const defaultArmy: Army = {
                         'lascannon',
                         'havoc launcher',
                         'combi-weapon',
-                    ]
+                    ],
                 },
             ],
             points: 130,
@@ -140,13 +140,13 @@ export const defaultArmy: Army = {
                         'heavy bolter',
                         'havoc launcher',
                         'combi-weapon',
-                    ]
+                    ],
                 },
             ],
             points: 130,
             text: 'Predator Destructor (Tzeench): predator autocannon, 2 heavy bolters, havoc launcher, combi-bolter - 130',
-        }
-    ]
+        },
+    ],
 };
 
 
@@ -163,8 +163,8 @@ export const oneUnit: Army = {
             ],
             points: 100,
             text: 'Unit Name - 100',
-        }
-    ]
+        },
+    ],
 };
 
 export const oneUnitWithOneWargear: Army = {
@@ -179,9 +179,9 @@ export const oneUnitWithOneWargear: Army = {
                 { wargear: ['wargear name'] },
             ],
             points: 100,
-            text: 'Unit Name: wargear name - 100'
-        }
-    ]
+            text: 'Unit Name: wargear name - 100',
+        },
+    ],
 };
 
 export const oneUnitWithWargear: Army = {
@@ -196,7 +196,7 @@ export const oneUnitWithWargear: Army = {
                 { wargear: ['wargear 1', 'wargear 2'] },
             ],
             points: 100,
-            text: 'Unit Name: wargear 1, wargear 2 - 100'
-        }
-    ]
+            text: 'Unit Name: wargear 1, wargear 2 - 100',
+        },
+    ],
 };

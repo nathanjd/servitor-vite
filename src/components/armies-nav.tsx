@@ -18,7 +18,7 @@ export const ArmiesNav = (props: Props): JSX.Element => {
         onCreateArmy,
         onResetArmies,
         onSelectArmy,
-        orderedIds
+        orderedIds,
     } = props;
 
     const items = orderedIds.map((id) => (

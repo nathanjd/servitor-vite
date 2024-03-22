@@ -1,4 +1,4 @@
-import { sumArmyPoints } from './army.ts'
+import { sumUnitsPoints } from './army.ts';
 
 export interface Model {
     wargear: string[];
@@ -80,7 +80,7 @@ export const distributeWargearToModels =
             // Assume that any per-model wargear is exhaustive so do not
             // distribute any additional wargear to those models.
             const startingIndex = perModelWargear.length === 0 ? i :
-                Math.min(perModelWargear.length + i, models.length - 1)
+                Math.min(perModelWargear.length + i, models.length - 1);
 
             for (let j = 0; j < wargearToDistribute.length; j++) {
                 // Distribute all the excess wargear to the last model.
@@ -109,7 +109,7 @@ export const parseCountFromName = (name: string): number => {
 
 type DepluralizationMap = {
     [key: string]: string;
-}
+};
 
 const depluralizationExceptions: DepluralizationMap = {
     'Legionaries': 'Legionaries',
@@ -171,7 +171,7 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
 
         const modelCount = parseCountFromName(name);
         const models = Array.from(Array(modelCount)).map(() => ({
-            wargear: []
+            wargear: [],
         }));
 
         // Distribute wargear to models.
@@ -190,7 +190,7 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
             `\n\tname: ${name}` +
             `\n\tpoints: ${points}` +
             (wargearText.length ? `\n\twargear: ${wargearText}` : '') +
-            `\n\tarmy points total: ${sumArmyPoints({ units })}`
+            `\n\tarmy points total: ${sumUnitsPoints(units)}`,
         );
 
         name = '';
@@ -324,7 +324,7 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
                 state = ParseState.Initial;
             }
 
-            continue
+            continue;
         }
     }
 
@@ -332,7 +332,7 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
         id,
         name: armyText.split('\n')[0].replace(/^#+ /, ''),
         parseLog,
-        points: sumArmyPoints({ units }),
+        points: sumUnitsPoints(units),
         text: armyText,
         units,
     };
@@ -340,4 +340,4 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
     // console.log('parseArmyText result', armyProps);
 
     return armyProps;
-}
+};

@@ -12,7 +12,7 @@ export interface ArmyStore {
 export const EmptyArmyStore: ArmyStore = {
     byId: {},
     orderedIds: [],
-}
+};
 
 export interface ArmyService {
     armyStore: ArmyStore;
@@ -40,9 +40,9 @@ export const armiesToArmyStore = (armies: Army[]): ArmyStore => {
 
     return {
         byId,
-        orderedIds
+        orderedIds,
     };
-}
+};
 
 /**
  * Delete an army by ID from local storage.
@@ -68,7 +68,7 @@ export const deleteArmy = (id: string): ArmyStore => {
 
     saveArmyStore(armyStore);
     return armyStore;
-}
+};
 
 /**
  * Load all armies from local storage.

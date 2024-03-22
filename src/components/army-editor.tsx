@@ -2,7 +2,7 @@ import {
     ChangeEvent,
     useCallback,
     useMemo,
-    useState
+    useState,
 } from 'react';
 import { debounce } from 'lodash-es';
 import { useArmy } from '../hooks/use-army';
@@ -46,14 +46,14 @@ export const ArmyEditor = (props: Props): JSX.Element => {
             setPoints(army.points);
             setText(army.text);
             handleSaveArmy(army);
-        }, 200), [handleSaveArmy, id]
+        }, 200), [handleSaveArmy, id],
     );
 
     const handleTextChange = useCallback(
         (event: ChangeEvent<HTMLTextAreaElement>) => {
             setText(event.target.value);
             handleParseArmyText(event.target.value);
-        }, [handleParseArmyText]
+        }, [handleParseArmyText],
     );
 
     return (

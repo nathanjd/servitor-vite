@@ -63,7 +63,7 @@ describe('parseArmyText(text)', () => {
                 { wargear: ['wargear name'] },
             ],
             points: 100,
-            text: 'Unit Name: wargear name - 100'
+            text: 'Unit Name: wargear name - 100',
         };
 
         // Act
@@ -82,7 +82,7 @@ describe('parseArmyText(text)', () => {
                 { wargear: ['wargear 1', 'wargear 2'] },
             ],
             points: 100,
-            text: 'Unit Name: wargear 1, wargear 2 - 100'
+            text: 'Unit Name: wargear 1, wargear 2 - 100',
         };
 
         // Act
@@ -101,7 +101,7 @@ describe('parseArmyText(text)', () => {
                 { wargear: ['twin-lascannon', 'lascannon', 'lascannon'] },
             ],
             points: 100,
-            text: 'Predator: twin-lascannon, 2 lascannons - 100'
+            text: 'Predator: twin-lascannon, 2 lascannons - 100',
         };
 
         // Act
@@ -129,7 +129,7 @@ describe('parseArmyText(text)', () => {
                 { wargear: ['firearm'] },
             ],
             points: 55,
-            text: '10 Cultist Mob: flamer, 9 firearms - 55'
+            text: '10 Cultist Mob: flamer, 9 firearms - 55',
         };
 
         // Act
@@ -152,7 +152,7 @@ describe('parseArmyText(text)', () => {
                 { wargear: [] },
             ],
             points: 130,
-            text: '5 Chosen: (plasma pistol, power fist), (plasma pistol, pair of accursed weapons), 2 combi-weapons - 130'
+            text: '5 Chosen: (plasma pistol, power fist), (plasma pistol, pair of accursed weapons), 2 combi-weapons - 130',
         };
 
         // Act
@@ -175,7 +175,7 @@ describe('parseArmyText(text)', () => {
                 { wargear: ['bolter', 'bolter'] },
             ],
             points: 90,
-            text: '5 Legionaries: 6 bolters - 90'
+            text: '5 Legionaries: 6 bolters - 90',
         };
 
         // Act

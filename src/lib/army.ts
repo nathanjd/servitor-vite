@@ -1,36 +1,52 @@
-export const sumArmyPoints = ({units}) =>
+import { Army, Unit } from './parse-army-text';
+
+export const sumUnitsPoints = (units: Unit[]): number =>
     units.reduce((totalPoints, unit) => {
-        return totalPoints + parseInt(unit.points, 10);
+        return totalPoints + unit.points;
     }, 0);
 
-export const armyToBBCode = (army) => {
+export const armyToBBCode = (army: Army): string => {
     let str = '';
 
-    this.units.forEach((unit) => {
+    army.units.forEach((unit) => {
         str += '[b]' + unit.name + '[/b]';
 
-        if (unit.wargear && unit.wargear.length) {
-            str += ': ' + unit.wargear.join(', ');
+        const wargear = unit.models.reduce<string[]>((gear, model) => {
+            if (model.wargear.length) {
+                gear.push(...model.wargear);
+            }
+            return gear;
+        }, []);
+
+        if (wargear.length) {
+            str += ': ' + wargear.join(', ');
         }
 
         str += ' - ' + unit.points + '\n';
     });
 
     return str;
-}
+};
 
-export const armyToString = (army) => {
+export const armyToString = (army: Army): string => {
     let str = '';
 
     army.units.forEach((unit) => {
         str += unit.name;
 
-        if (unit.wargear && unit.wargear.length) {
-            str += ': ' + unit.wargear.join(', ');
+        const wargear = unit.models.reduce<string[]>((gear, model) => {
+            if (model.wargear.length) {
+                gear.push(...model.wargear);
+            }
+            return gear;
+        }, []);
+
+        if (wargear.length) {
+            str += ': ' + wargear.join(', ');
         }
 
         str += ' - ' + unit.points + '\n';
     });
 
     return str;
-}
+};

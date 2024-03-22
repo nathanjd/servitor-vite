@@ -15,7 +15,7 @@ export const ArmiesNavItem = (props: Props): JSX.Element => {
         onSelectArmy(id);
     }, [id, onSelectArmy]);
 
-    const className = `armies-nav-item ${isActive ? ' active' : ''}`
+    const className = `armies-nav-item ${isActive ? ' active' : ''}`;
 
     return (
         <li className={className} key={id}>

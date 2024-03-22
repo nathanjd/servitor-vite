@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Army, parseArmyText } from '../lib/parse-army-text';
-import { ArmyStore } from '../lib/army-service'
+import { ArmyStore } from '../lib/army-service';
 import { ArmyServiceContext } from '../contexts/army-service-context';
 
 export const useArmy = (
@@ -9,7 +9,7 @@ export const useArmy = (
     const {
         armyStore,
         saveArmy,
-        saveArmyStore
+        saveArmyStore,
     } = useContext(ArmyServiceContext);
 
     // Create army if it doesn't exist in the armyStore.

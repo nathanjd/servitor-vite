@@ -1,5 +1,3 @@
-const stylisticJs = require('@stylistic/eslint-plugin');
-
 module.exports = {
     root: true,
     env: { browser: true, es2020: true },
@@ -19,7 +17,9 @@ module.exports = {
             'warn',
             { allowConstantExport: true },
         ],
-        "@stylistic/ts/indent": ['error', 4],
-        "@stylistic/ts/quotes": ['error', 'single'],
+        '@stylistic/ts/comma-dangle': ['error', 'always-multiline'],
+        '@stylistic/ts/indent': ['error', 4],
+        '@stylistic/ts/quotes': ['error', 'single'],
+        '@stylistic/ts/semi': ['error', 'always'],
     },
 }

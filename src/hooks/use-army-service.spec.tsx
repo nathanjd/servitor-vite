@@ -9,7 +9,7 @@ import { useArmyService } from './use-army-service';
 describe('useArmyService(armyService: ArmyService', () => {
     const mockDeleteArmy: Mock<[id: string], ArmyStore> = vi.fn();
     const mockLoadArmyStore: Mock<[], ArmyStore> = vi.fn();
-    const mockResetArmyStoreToDefault: Mock<[], ArmyStore> = vi.fn()
+    const mockResetArmyStoreToDefault: Mock<[], ArmyStore> = vi.fn();
     const mockSaveArmy: Mock<[army: Army], ArmyStore> = vi.fn();
     const mockSaveArmyStore: Mock<[armyStore: ArmyStore], ArmyStore> = vi.fn();
     const mockArmyService: ArmyService = {
@@ -26,15 +26,15 @@ describe('useArmyService(armyService: ArmyService', () => {
             name: 'mock-army-name-1',
             points: 0,
             text: 'mock-army-name-1',
-            units: []
+            units: [],
         },
         {
             id: 'mock-army-id-2',
             name: 'mock-army-name-2',
             points: 0,
             text: 'mock-army-name-2',
-            units: []
-        }
+            units: [],
+        },
     ];
     const mockDefaultArmyStore = armiesToArmyStore(mockDefaultArmies);
     let mockArmyStore: ArmyStore;
@@ -57,7 +57,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should return the current ArmyStore', () => {
         // Act
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
 
         // Assert
@@ -67,7 +67,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should return functions with reference equality across renders', async () => {
         // Arrange
         const { result, rerender } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
 
         const {
@@ -88,7 +88,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should return armyStore with reference equality across renders', async () => {
         // Arrange
         const { result, rerender } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { armyStore } = result.current;
 
@@ -102,7 +102,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should call deleteArmy()', () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { deleteArmy } = result.current;
         const { id } = mockDefaultArmies[0];
@@ -118,7 +118,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should rerender with a new ArmyStore after calling deleteArmy()', async () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { armyStore, deleteArmy } = result.current;
         const { id } = mockDefaultArmies[0];
@@ -135,7 +135,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should call loadArmyStore()', () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { loadArmyStore } = result.current;
 
@@ -151,7 +151,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should rerender with a new ArmyStore after calling loadArmyStore()', async () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { armyStore, loadArmyStore } = result.current;
 
@@ -167,7 +167,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should call resetArmyStoreToDefault()', () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { resetArmyStoreToDefault } = result.current;
 
@@ -181,7 +181,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should rerender with a new ArmyStore after calling resetArmyStoreToDefault()', async () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { armyStore, resetArmyStoreToDefault } = result.current;
 
@@ -197,7 +197,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should call saveArmy()', () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { saveArmy } = result.current;
         const army = mockDefaultArmies[0];
@@ -213,7 +213,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should rerender with a new ArmyStore after calling saveArmy()', async () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { armyStore, saveArmy } = result.current;
         const army = mockDefaultArmies[0];
@@ -230,7 +230,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should call saveArmyStore()', () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { saveArmyStore } = result.current;
 
@@ -245,7 +245,7 @@ describe('useArmyService(armyService: ArmyService', () => {
     it('should rerender with a new ArmyStore after calling saveArmyStore()', async () => {
         // Arrange
         const { result } = renderHook(
-            () => useArmyService(mockArmyService)
+            () => useArmyService(mockArmyService),
         );
         const { armyStore, saveArmyStore } = result.current;
 

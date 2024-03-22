@@ -68,7 +68,7 @@ function App(): JSX.Element {
                 </div>
             </ArmyServiceContext.Provider>
         </>
-    )
+    );
 }
 
-export default App
+export default App;
