@@ -104,7 +104,7 @@ export const parseCountFromName = (name: string): number => {
         return 1;
     }
 
-      return parseInt(firstWord, 10);
+    return parseInt(firstWord, 10);
 };
 
 type DepluralizationMap = {
@@ -219,17 +219,17 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
     }
 
     function recordUnitName() {
-         let start = i;
+        let start = i;
 
-         // Go back to the last '\n'.
-         while (start > 0 && armyText[start] !== '\n') {
+        // Go back to the last '\n'.
+        while (start > 0 && armyText[start] !== '\n') {
             start--;
-         }
+        }
 
-         // Record name.
-         name = armyText.substring(start, i).trim();
+        // Record name.
+        name = armyText.substring(start, i).trim();
 
-         log(`Recorded name: ${name}`);
+        log(`Recorded name: ${name}`);
     }
 
     function recordWargear() {

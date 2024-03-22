@@ -1,72 +1,61 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 import './App.css';
-import { parseArmyText, Army } from './lib/parse-army-text';
-// import * as armyService from './lib/army-service';
-import {debounce} from 'lodash-es';
+import { armyService as defaultArmyService } from './lib/army-service';
+import { useArmyService } from './hooks/use-army-service';
+import { useEditingArmyId } from './hooks/use-editing-army-id';
+import { ArmyEditor } from './components/army-editor';
+import { ArmyServiceContext } from './contexts/army-service-context';
+import { ArmiesNav } from './components/armies-nav';
+import { parseArmyText } from './lib/parse-army-text';
 
-function App() {
-  // const initalArmyId = localStorage.getItem('armyId') || crypto.randomUUID();
-  // const [id, setId] = useState(initalArmyId);
-  const [points, setPoints] = useState(0);
-  const [name, setName] = useState('');
+function App(): JSX.Element {
+    const armyService = useArmyService(defaultArmyService);
+    const {
+        armyStore,
+        resetArmyStoreToDefault,
+        saveArmy,
+    } = armyService;
+    const [editingArmyId, setEditingArmyId] = useEditingArmyId();
 
-  const initialArmyText = localStorage.getItem('armyText') || '';
+    const handleCreateArmy = useCallback(() => {
+        const army = parseArmyText('New Army', crypto.randomUUID())
+        saveArmy(army);
+        setEditingArmyId(army.id);
+    }, [saveArmy, setEditingArmyId]);
 
-  // Parse the initial army text.
-  useEffect(() => {
-    handleParseArmyText(initialArmyText);
-  }, []);
+    const handleSelectArmy = useCallback((armyId: string) => {
+        setEditingArmyId(armyId);
+    }, [setEditingArmyId]);
 
-  // Saving armies is much more expensive than parsing them so use a longer
-  // debounce for saving.
-  const handleSaveArmy = useCallback(debounce((army: Army) => {
-    // armyService.saveArmy(army);
-    localStorage.setItem('armyText', army.text);
-  }, 500), []);
+    const handleResetArmyStore = useCallback(() => {
+        const savedArmyStore = resetArmyStoreToDefault();
+        setEditingArmyId(savedArmyStore.orderedIds[0]);
+    }, [resetArmyStoreToDefault, setEditingArmyId]);
 
-  const handleParseArmyText = useCallback(debounce((armyText: string) => {
-    const army = parseArmyText(armyText);
-    setName(army.name);
-    setPoints(army.points);
-    handleSaveArmy(army);
-  }, 200), []);
+    return (
+        <>
+            <ArmyServiceContext.Provider value={armyService}>
+                <div className="app-header">
+                    <h1 className="app-title">Servitor - Army Editor</h1>
+                </div>
 
-  const handleTextChange = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
-    handleParseArmyText(event.target.value);
-  }, []);
+                <div className="app-body">
+                    <ArmiesNav
+                        activeId={editingArmyId}
+                        byId={armyStore.byId}
+                        onCreateArmy={handleCreateArmy}
+                        onResetArmies={handleResetArmyStore}
+                        onSelectArmy={handleSelectArmy}
+                        orderedIds={armyStore.orderedIds}
+                    />
 
-  return (
-    <>
-      <div className="app-header">
-        <h1>Servitor</h1>
-      </div>
-
-      <div className="app-body">
-        <nav className="armies-nav">
-          <ol>
-            <li>Army 1</li>
-            <li>Army 2</li>
-          </ol>
-        </nav>
-
-        <div className='army-editor'>
-          <div className="army-card">
-            <div className="army-header">
-              <p className="army-name">{name}</p>
-              <p className="army-points">{points} Points</p>
-            </div>
-            <textarea
-              className="army-input"
-              defaultValue={initialArmyText}
-              onChange={handleTextChange}
-            />
-          </div>
-        </div>
-      </div>
-    </>
-  )
+                    <ArmyEditor id={editingArmyId} />
+                </div>
+            </ArmyServiceContext.Provider>
+        </>
+    )
 }
 
 export default App
