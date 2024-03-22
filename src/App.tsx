@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 import './App.css';
@@ -10,7 +11,7 @@ import { ArmyServiceContext } from './contexts/army-service-context';
 import { ArmiesNav } from './components/armies-nav';
 import { parseArmyText } from './lib/parse-army-text';
 
-function App(): JSX.Element {
+const App = (): JSX.Element => {
     const armyService = useArmyService(defaultArmyService);
     const {
         armyStore,
@@ -69,6 +70,6 @@ function App(): JSX.Element {
             </ArmyServiceContext.Provider>
         </>
     );
-}
+};
 
 export default App;

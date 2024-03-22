@@ -3,7 +3,7 @@ import { Army } from '../lib/parse-army-text';
 import { ArmiesNavItem } from './armies-nav-item';
 
 interface Props {
-    activeId     : string,
+    activeId     : string;
     byId         : { [id: string]: Army };
     onCreateArmy : () => void;
     onResetArmies: () => void;
@@ -21,7 +21,7 @@ export const ArmiesNav = (props: Props): JSX.Element => {
         orderedIds,
     } = props;
 
-    const items = orderedIds.map((id) => (
+    const items = orderedIds.map((id) => 
         <ArmiesNavItem
             id={id}
             isActive={activeId === id}
@@ -29,8 +29,8 @@ export const ArmiesNav = (props: Props): JSX.Element => {
             name={byId[id].name}
             points={byId[id].points}
             onSelectArmy={onSelectArmy}
-        />
-    ));
+        />,
+    );
 
     return (
         <div className="armies-listing">

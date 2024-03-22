@@ -30,13 +30,13 @@ export const armiesToArmyStore = (armies: Army[]): ArmyStore => {
     const byId = armies.reduce<{ [id: string]: Army }>((byId, army) => {
         byId[army.id] = army;
         return byId;
-    }, ({}));
+    }, {});
 
 
     const orderedIds = armies.reduce<string[]>((ids, army) => {
         ids.push(army.id);
         return ids;
-    }, ([]));
+    }, []);
 
     return {
         byId,
@@ -81,6 +81,7 @@ export const loadArmyStore = (): ArmyStore => {
         armyStore = JSON.parse(armiesJson);
     } catch (error) {
         console.error('Error parsing armies JSON:', error);
+
         // Load the default armies if store cannot be parsed.
         const defaultArmies = parseDefaultRawArmies();
         return armiesToArmyStore(defaultArmies);

@@ -112,7 +112,7 @@ type DepluralizationMap = {
 };
 
 const depluralizationExceptions: DepluralizationMap = {
-    'Legionaries': 'Legionaries',
+    Legionaries: 'Legionaries',
 };
 
 /**
@@ -157,17 +157,18 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
 
     const units: Unit[] = [];
     const log = (message: string) => {
-        parseLog.push(message); 
+        parseLog.push(message);
     };
     let i = 0;
     let name = '';
     let pointsText = '';
     let state: ParseState = ParseState.Initial;
     let unitText = '';
+
     // let wargear = [];
     let wargearText = '';
 
-    function addUnit() {
+    const addUnit = () => {
         // Coerce points to a number.
         const points = parseInt(pointsText, 10);
 
@@ -198,29 +199,30 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
         name = '';
         pointsText = '';
         unitText = '';
+
         // wargear = [];
-    }
+    };
 
-    function atEndOfLine() {
+    const atEndOfLine = (): boolean => {
         return armyText[i] === '\n';
-    }
+    };
 
-    function atEndOfText() {
+    const atEndOfText = (): boolean => {
         return i === armyText.length - 1;
-    }
+    };
 
-    function inComment() {
+    const inComment = (): boolean => {
         return state == ParseState.InComment;
-    }
+    };
 
-    function buildPoints() {
+    const buildPoints = () => {
         // Build points string.
         pointsText += armyText[i];
 
         log(`Built points: ${pointsText}`);
-    }
+    };
 
-    function recordUnitName() {
+    const recordUnitName = () => {
         let start = i;
 
         // Go back to the last '\n'.
@@ -232,9 +234,9 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
         name = armyText.substring(start, i).trim();
 
         log(`Recorded name: ${name}`);
-    }
+    };
 
-    function recordWargear() {
+    const recordWargear = () => {
         let start = i;
 
         // wargear = [];
@@ -256,7 +258,7 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
         //     });
 
         log(`Recorded wargear: ${wargearText}`);
-    }
+    };
 
     for (i = 0; i < armyText.length; i++) {
         unitText += armyText[i];
