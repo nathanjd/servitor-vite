@@ -3,6 +3,7 @@ import stringify from "json-stable-stringify";
 import {
     armyStoreKey,
     armiesToArmyStore,
+    deleteArmy,
     // loadArmyById,
     // loadArmyByName,
     loadArmyStore,
@@ -96,6 +97,44 @@ describe("armyService", () => {
             // Assert
             expect(armyStore.byId[armies[0].id]).to.equal(armies[0]);
             expect(armyStore.byId[armies[1].id]).to.equal(armies[1]);
+        });
+    });
+
+    describe("deleteArmy(id: string)", () => {
+        it("should delete an existing Army from local storage", () => {
+            // Arrange
+            const armyId = "mock-army-id-1";
+            const otherArmy: Army = {
+                id: "mock-army-id-2",
+                name: "mock-army-name-2",
+                points: 0,
+                text: "mock-army-name-2",
+                units: []
+            };
+            const armies: Army[] = [
+                {
+                    id: armyId,
+                    name: "mock-army-name-1",
+                    points: 0,
+                    text: "mock-army-name-1",
+                    units: []
+                },
+                otherArmy
+            ];
+            const armyStore = armiesToArmyStore(armies);
+            const rawArmyStore = stringify(armyStore);
+            getItemMock.mockReturnValue(rawArmyStore);
+
+            const expectedArmies = [otherArmy];
+            const expectedArmyStore = armiesToArmyStore(expectedArmies);
+            const expectedRawArmyStore = stringify(expectedArmyStore);
+
+            // Act
+            deleteArmy(armyId);
+
+            // Assert
+            expect(setItemMock)
+                .toHaveBeenCalledWith(armyStoreKey, expectedRawArmyStore);
         });
     });
 
@@ -284,7 +323,7 @@ describe("armyService", () => {
                 text: "mock-army-name-2",
                 units: []
             };
-            const expectedArmyStore = armiesToArmyStore([armies[0], newArmy]);
+            const expectedArmyStore = armiesToArmyStore([newArmy, armies[0]]);
             const expectedRawArmyStore = stringify(expectedArmyStore);
 
             // Act

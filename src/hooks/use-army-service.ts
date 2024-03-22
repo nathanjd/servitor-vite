@@ -6,6 +6,12 @@ export const useArmyService = (armyService: ArmyService): ArmyService => {
     const initialArmyStore = armyService.loadArmyStore();
     const [armyStore, setArmyStore] = useState(initialArmyStore);
 
+    const deleteArmy = useCallback((id: string): ArmyStore => {
+        const loadedArmyStore = armyService.deleteArmy(id);
+        setArmyStore(loadedArmyStore);
+        return loadedArmyStore;
+    }, [armyService]);
+
     const loadArmyStore = useCallback((): ArmyStore => {
         const loadedArmyStore = armyService.loadArmyStore();
         setArmyStore(loadedArmyStore);
@@ -32,6 +38,7 @@ export const useArmyService = (armyService: ArmyService): ArmyService => {
 
     return {
         armyStore,
+        deleteArmy,
         loadArmyStore,
         resetArmyStoreToDefault,
         saveArmy,

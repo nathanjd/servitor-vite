@@ -10,10 +10,11 @@ import { Army, parseArmyText } from '../lib/parse-army-text';
 
 interface Props {
     id: string;
+    onDeleteArmy: (id: string) => void;
 }
 
 export const ArmyEditor = (props: Props): JSX.Element => {
-    const { id } = props;
+    const { id, onDeleteArmy } = props;
     const [savedArmy, saveArmy] = useArmy(id);
     const [name, setName] = useState(savedArmy.name);
     const [points, setPoints] = useState(savedArmy.points);
@@ -29,8 +30,8 @@ export const ArmyEditor = (props: Props): JSX.Element => {
     }
 
     const handleDeleteArmy = useCallback(() => {
-
-    }, [id]);
+        onDeleteArmy(id);
+    }, [id, onDeleteArmy]);
 
     // Saving armies is much more expensive than parsing them so use a longer
     // debounce for saving.

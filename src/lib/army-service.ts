@@ -16,6 +16,7 @@ export const EmptyArmyStore: ArmyStore = {
 
 export interface ArmyService {
     armyStore: ArmyStore;
+    deleteArmy: (id: string) => ArmyStore;
     loadArmyStore: () => ArmyStore;
     resetArmyStoreToDefault: () => ArmyStore;
     saveArmy: (army: Army) => ArmyStore;
@@ -41,6 +42,32 @@ export const armiesToArmyStore = (armies: Army[]): ArmyStore => {
         byId,
         orderedIds
     };
+}
+
+/**
+ * Delete an army by ID from local storage.
+ */
+export const deleteArmy = (id: string): ArmyStore => {
+    const armyStore = loadArmyStore();
+
+    if (armyStore.byId[id]) {
+        delete armyStore.byId[id];
+    }
+
+    // Now is a good time to do some cleanup. Ensure ids are unique while
+    // filtering out the deleted id;
+    const seenById: { [id: string]: boolean } = {};
+    armyStore.orderedIds = armyStore.orderedIds
+        .reduce<string[]>((ids, potentialId) => {
+            if (!seenById[potentialId] && potentialId !== id) {
+                ids.push(potentialId);
+                seenById[potentialId] = true;
+            }
+            return ids;
+        }, []);
+
+    saveArmyStore(armyStore);
+    return armyStore;
 }
 
 /**
@@ -155,6 +182,7 @@ export const saveArmyStore = (armyStore: ArmyStore): ArmyStore => {
 
 export const armyService: ArmyService = {
     armyStore: Object.assign({}, EmptyArmyStore),
+    deleteArmy,
     loadArmyStore,
     resetArmyStoreToDefault,
     saveArmy,

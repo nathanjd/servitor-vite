@@ -7,12 +7,14 @@ import { ArmyStore, ArmyService, armiesToArmyStore } from "../lib/army-service";
 import { useArmyService } from './use-army-service';
 
 describe("useArmyService(armyService: ArmyService", () => {
+    const mockDeleteArmy: Mock<[id: string], ArmyStore> = vi.fn();
     const mockLoadArmyStore: Mock<[], ArmyStore> = vi.fn();
     const mockResetArmyStoreToDefault: Mock<[], ArmyStore> = vi.fn()
     const mockSaveArmy: Mock<[army: Army], ArmyStore> = vi.fn();
     const mockSaveArmyStore: Mock<[armyStore: ArmyStore], ArmyStore> = vi.fn();
     const mockArmyService: ArmyService = {
         armyStore: { byId: {}, orderedIds: [] },
+        deleteArmy: mockDeleteArmy,
         loadArmyStore: mockLoadArmyStore,
         resetArmyStoreToDefault: mockResetArmyStoreToDefault,
         saveArmy: mockSaveArmy,
@@ -95,6 +97,39 @@ describe("useArmyService(armyService: ArmyService", () => {
 
         // Assert
         expect(result.current.armyStore).to.equal(armyStore);
+    });
+
+    it("should call deleteArmy()", () => {
+        // Arrange
+        const { result } = renderHook(
+            () => useArmyService(mockArmyService)
+        );
+        const { deleteArmy } = result.current;
+        const { id } = mockDefaultArmies[0];
+
+        // Act
+        deleteArmy(id);
+
+        // Assert
+        expect(mockDeleteArmy).toHaveBeenCalledOnce();
+        expect(mockDeleteArmy).toHaveBeenCalledWith(id);
+    });
+
+    it("should rerender with a new ArmyStore after calling deleteArmy()", async () => {
+        // Arrange
+        const { result } = renderHook(
+            () => useArmyService(mockArmyService)
+        );
+        const { armyStore, deleteArmy } = result.current;
+        const { id } = mockDefaultArmies[0];
+
+        // Act
+        act(() => {
+            deleteArmy(id);
+        });
+
+        // Assert
+        expect(armyStore).not.to.equal(result.current.armyStore);
     });
 
     it("should call loadArmyStore()", () => {
