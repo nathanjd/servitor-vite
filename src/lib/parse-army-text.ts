@@ -156,7 +156,9 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
     const parseLog: string[] = [];
 
     const units: Unit[] = [];
-    const log = (message: string) => { parseLog.push(message); };
+    const log = (message: string) => {
+        parseLog.push(message); 
+    };
     let i = 0;
     let name = '';
     let pointsText = '';

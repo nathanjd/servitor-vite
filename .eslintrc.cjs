@@ -17,6 +17,10 @@ module.exports = {
             'warn',
             { allowConstantExport: true },
         ],
+        '@stylistic/ts/block-spacing': ['error', 'always'],
+        '@stylistic/ts/brace-style': [
+            'error', '1tbs', { "allowSingleLine": false },
+        ],
         '@stylistic/ts/comma-dangle': ['error', 'always-multiline'],
         '@stylistic/ts/indent': ['error', 4],
         '@stylistic/ts/quotes': ['error', 'single'],
