@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
-import { Army } from "../lib/parse-army-text";
-import { ArmyStore, ArmyService } from "../lib/army-service";
+import { useCallback, useState } from 'react';
+import { Army } from '../lib/parse-army-text';
+import { ArmyStore, ArmyService } from '../lib/army-service';
 
 export const useArmyService = (armyService: ArmyService): ArmyService => {
     const initialArmyStore = armyService.loadArmyStore();

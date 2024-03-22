@@ -1,6 +1,6 @@
-import { Army } from "../lib/parse-army-text";
+import { Army } from '../lib/parse-army-text';
 
-import { ArmiesNavItem } from "./armies-nav-item";
+import { ArmiesNavItem } from './armies-nav-item';
 
 interface Props {
     activeId: string,

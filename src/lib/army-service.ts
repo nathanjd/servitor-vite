@@ -1,8 +1,8 @@
-import { Army } from "./parse-army-text.ts";
-import { parseDefaultRawArmies } from "../config/default-raw-armies.ts";
-import stringify from "json-stable-stringify";
+import { Army } from './parse-army-text.ts';
+import { parseDefaultRawArmies } from '../config/default-raw-armies.ts';
+import stringify from 'json-stable-stringify';
 
-export const armyStoreKey = "armyStore";
+export const armyStoreKey = 'armyStore';
 
 export interface ArmyStore {
     byId: { [id: string]: Army };
@@ -59,12 +59,12 @@ export const deleteArmy = (id: string): ArmyStore => {
     const seenById: { [id: string]: boolean } = {};
     armyStore.orderedIds = armyStore.orderedIds
         .reduce<string[]>((ids, potentialId) => {
-            if (!seenById[potentialId] && potentialId !== id) {
-                ids.push(potentialId);
-                seenById[potentialId] = true;
-            }
-            return ids;
-        }, []);
+        if (!seenById[potentialId] && potentialId !== id) {
+            ids.push(potentialId);
+            seenById[potentialId] = true;
+        }
+        return ids;
+    }, []);
 
     saveArmyStore(armyStore);
     return armyStore;
@@ -74,13 +74,13 @@ export const deleteArmy = (id: string): ArmyStore => {
  * Load all armies from local storage.
  */
 export const loadArmyStore = (): ArmyStore => {
-    const armiesJson = localStorage.getItem(armyStoreKey) || "{}";
+    const armiesJson = localStorage.getItem(armyStoreKey) || '{}';
     let armyStore: ArmyStore;
 
     try {
         armyStore = JSON.parse(armiesJson);
     } catch (error) {
-        console.error("Error parsing armies JSON:", error);
+        console.error('Error parsing armies JSON:', error);
         // Load the default armies if store cannot be parsed.
         const defaultArmies = parseDefaultRawArmies();
         return armiesToArmyStore(defaultArmies);
@@ -98,13 +98,13 @@ export const loadArmyStore = (): ArmyStore => {
  *
  */
 export const loadArmyById = (id: string): Army | null => {
-    const armiesJson = localStorage.getItem(armyStoreKey) || "{}";
+    const armiesJson = localStorage.getItem(armyStoreKey) || '{}';
     let armyStore: ArmyStore;
 
     try {
         armyStore = JSON.parse(armiesJson);
     } catch (error) {
-        console.error("Error parsing armies JSON:", error);
+        console.error('Error parsing armies JSON:', error);
         return null;
     }
 
@@ -119,13 +119,13 @@ export const loadArmyById = (id: string): Army | null => {
  *
  */
 export const loadArmyByName = (name: string): Army | null => {
-    const armiesJson = localStorage.getItem(armyStoreKey) || "{}";
+    const armiesJson = localStorage.getItem(armyStoreKey) || '{}';
     let armyStore: ArmyStore;
 
     try {
         armyStore = JSON.parse(armiesJson);
     } catch (error) {
-        console.error("Error parsing armies JSON:", error);
+        console.error('Error parsing armies JSON:', error);
         return null;
     }
 

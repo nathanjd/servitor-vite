@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
 export const useEditingArmyId = (): [string, (id: string) => void] => {
     // Generate editing army ID if one is not set.

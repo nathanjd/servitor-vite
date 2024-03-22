@@ -4,10 +4,10 @@ import '@testing-library/jest-dom'
 
 import { ModelCard } from './model-card';
 
-describe("<ModelCard />", () => {
-    it("should render name in a heading", async () => {
+describe('<ModelCard />', () => {
+    it('should render name in a heading', async () => {
         // Arrange
-        const name = "Foo";
+        const name = 'Foo';
 
         // Act
         render(<ModelCard name={name} />);
@@ -17,9 +17,9 @@ describe("<ModelCard />", () => {
         expect(screen.getByRole('heading')).toHaveTextContent(name);
     });
 
-    it("should render name in a heading sync", () => {
+    it('should render name in a heading sync', () => {
         // Arrange
-        const name = "Foo";
+        const name = 'Foo';
 
         // Act
         render(<ModelCard name={name} />);

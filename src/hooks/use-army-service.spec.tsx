@@ -1,12 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-import { act, renderHook } from "@testing-library/react";
+import { act, renderHook } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { Army } from "../lib/parse-army-text";
-import { ArmyStore, ArmyService, armiesToArmyStore } from "../lib/army-service";
+import { Army } from '../lib/parse-army-text';
+import { ArmyStore, ArmyService, armiesToArmyStore } from '../lib/army-service';
 import { useArmyService } from './use-army-service';
 
-describe("useArmyService(armyService: ArmyService", () => {
+describe('useArmyService(armyService: ArmyService', () => {
     const mockDeleteArmy: Mock<[id: string], ArmyStore> = vi.fn();
     const mockLoadArmyStore: Mock<[], ArmyStore> = vi.fn();
     const mockResetArmyStoreToDefault: Mock<[], ArmyStore> = vi.fn()
@@ -22,17 +22,17 @@ describe("useArmyService(armyService: ArmyService", () => {
     };
     const mockDefaultArmies: Army[] = [
         {
-            id: "mock-army-id-1",
-            name: "mock-army-name-1",
+            id: 'mock-army-id-1',
+            name: 'mock-army-name-1',
             points: 0,
-            text: "mock-army-name-1",
+            text: 'mock-army-name-1',
             units: []
         },
         {
-            id: "mock-army-id-2",
-            name: "mock-army-name-2",
+            id: 'mock-army-id-2',
+            name: 'mock-army-name-2',
             points: 0,
-            text: "mock-army-name-2",
+            text: 'mock-army-name-2',
             units: []
         }
     ];
@@ -54,7 +54,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         mockSaveArmyStore.mockReset();
     });
 
-    it("should return the current ArmyStore", () => {
+    it('should return the current ArmyStore', () => {
         // Act
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -64,7 +64,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(result.current.armyStore).to.equal(mockArmyStore);
     });
 
-    it("should return functions with reference equality across renders", async () => {
+    it('should return functions with reference equality across renders', async () => {
         // Arrange
         const { result, rerender } = renderHook(
             () => useArmyService(mockArmyService)
@@ -85,7 +85,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(result.current.saveArmyStore).to.equal(saveArmyStore);
     });
 
-    it("should return armyStore with reference equality across renders", async () => {
+    it('should return armyStore with reference equality across renders', async () => {
         // Arrange
         const { result, rerender } = renderHook(
             () => useArmyService(mockArmyService)
@@ -99,7 +99,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(result.current.armyStore).to.equal(armyStore);
     });
 
-    it("should call deleteArmy()", () => {
+    it('should call deleteArmy()', () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -115,7 +115,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(mockDeleteArmy).toHaveBeenCalledWith(id);
     });
 
-    it("should rerender with a new ArmyStore after calling deleteArmy()", async () => {
+    it('should rerender with a new ArmyStore after calling deleteArmy()', async () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -132,7 +132,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(armyStore).not.to.equal(result.current.armyStore);
     });
 
-    it("should call loadArmyStore()", () => {
+    it('should call loadArmyStore()', () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -148,7 +148,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(mockLoadArmyStore).toHaveBeenCalledTimes(2);
     });
 
-    it("should rerender with a new ArmyStore after calling loadArmyStore()", async () => {
+    it('should rerender with a new ArmyStore after calling loadArmyStore()', async () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -164,7 +164,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(armyStore).not.to.equal(result.current.armyStore);
     });
 
-    it("should call resetArmyStoreToDefault()", () => {
+    it('should call resetArmyStoreToDefault()', () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -178,7 +178,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(mockResetArmyStoreToDefault).toHaveBeenCalledOnce();
     });
 
-    it("should rerender with a new ArmyStore after calling resetArmyStoreToDefault()", async () => {
+    it('should rerender with a new ArmyStore after calling resetArmyStoreToDefault()', async () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -194,7 +194,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(armyStore).not.to.equal(result.current.armyStore);
     });
 
-    it("should call saveArmy()", () => {
+    it('should call saveArmy()', () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -210,7 +210,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(mockSaveArmy).toHaveBeenCalledWith(army);
     });
 
-    it("should rerender with a new ArmyStore after calling saveArmy()", async () => {
+    it('should rerender with a new ArmyStore after calling saveArmy()', async () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -227,7 +227,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(armyStore).not.to.equal(result.current.armyStore);
     });
 
-    it("should call saveArmyStore()", () => {
+    it('should call saveArmyStore()', () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)
@@ -242,7 +242,7 @@ describe("useArmyService(armyService: ArmyService", () => {
         expect(mockSaveArmyStore).toHaveBeenCalledWith(mockDefaultArmyStore);
     });
 
-    it("should rerender with a new ArmyStore after calling saveArmyStore()", async () => {
+    it('should rerender with a new ArmyStore after calling saveArmyStore()', async () => {
         // Arrange
         const { result } = renderHook(
             () => useArmyService(mockArmyService)

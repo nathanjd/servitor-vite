@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^1.7.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.2",
     "@types/imurmurhash": "^0.1.4",
@@ -35,6 +36,7 @@
     "happy-dom": "^14.3.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.6",
+    "vite-plugin-pwa": "^0.19.6",
     "vitest": "^1.4.0"
   }
 }

@@ -5,7 +5,7 @@ import {
     useState
 } from 'react';
 import { debounce } from 'lodash-es';
-import { useArmy } from "../hooks/use-army";
+import { useArmy } from '../hooks/use-army';
 import { Army, parseArmyText } from '../lib/parse-army-text';
 
 interface Props {

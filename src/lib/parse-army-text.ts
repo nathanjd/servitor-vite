@@ -1,4 +1,4 @@
-import { sumArmyPoints } from "./army.ts"
+import { sumArmyPoints } from './army.ts'
 
 export interface Model {
     wargear: string[];
@@ -21,10 +21,10 @@ export interface Army {
 }
 
 enum ParseState {
-    InComment = "IN_COMMENT",
-    Initial = "INITIAL",
-    InPoints = "IN_POINTS",
-    InWargear = "IN_WARGEAR",
+    InComment = 'IN_COMMENT',
+    Initial = 'INITIAL',
+    InPoints = 'IN_POINTS',
+    InWargear = 'IN_WARGEAR',
 }
 
 /**
@@ -64,7 +64,7 @@ export const distributeWargearToModels =
         }
 
         // Remove per-unit wargear from text as they have already been added.
-        const remainingWargearText = wargearText.replace(/\([^)]+\),?/g, "");
+        const remainingWargearText = wargearText.replace(/\([^)]+\),?/g, '');
         const remainingWargear = remainingWargearText.split(',')
             .map((name) => name.trim())
             .filter(name => name.length > 0);
@@ -98,7 +98,7 @@ export const distributeWargearToModels =
  * models in a unit. Otherwise, assume the number of models 1.
  */
 export const parseCountFromName = (name: string): number => {
-    const firstWord = name.split(" ")[0];
+    const firstWord = name.split(' ')[0];
 
     if (!isTextInteger(firstWord)) {
         return 1;
@@ -112,14 +112,14 @@ type DepluralizationMap = {
 }
 
 const depluralizationExceptions: DepluralizationMap = {
-    "Legionaries": "Legionaries",
+    'Legionaries': 'Legionaries',
 };
 
 /**
  * If the first word in the name is a number, remove it.
  */
 export const removeCountFromName = (name: string): string => {
-    const words  = name.split(" ") || [];
+    const words  = name.split(' ') || [];
     const firstWord = words[0];
 
     // First word is not a number so there is no count to remove.
@@ -129,7 +129,7 @@ export const removeCountFromName = (name: string): string => {
 
     // Remove first word as it's the count.
     words.shift();
-    const nameWithountCount = words.join(" ");
+    const nameWithountCount = words.join(' ');
 
     // Depluralize if count is more than 1.
     if (nameWithountCount.length > 1) {
@@ -138,7 +138,7 @@ export const removeCountFromName = (name: string): string => {
         }
 
         // If name ends in 's', remove the 's'.
-        if (nameWithountCount[nameWithountCount.length - 1] === "s") {
+        if (nameWithountCount[nameWithountCount.length - 1] === 's') {
             return nameWithountCount.substring(0, nameWithountCount.length - 1);
         }
 
@@ -158,12 +158,12 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
     const units: Unit[] = [];
     const log = (message: string) => { parseLog.push(message); };
     let i = 0;
-    let name = "";
-    let pointsText = "";
+    let name = '';
+    let pointsText = '';
     let state: ParseState = ParseState.Initial;
-    let unitText = "";
+    let unitText = '';
     // let wargear = [];
-    let wargearText = "";
+    let wargearText = '';
 
     function addUnit() {
         // Coerce points to a number.
@@ -186,16 +186,16 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
         });
 
         log(
-            "Added unit:" +
+            'Added unit:' +
             `\n\tname: ${name}` +
             `\n\tpoints: ${points}` +
-            (wargearText.length ? `\n\twargear: ${wargearText}` : "") +
+            (wargearText.length ? `\n\twargear: ${wargearText}` : '') +
             `\n\tarmy points total: ${sumArmyPoints({ units })}`
         );
 
-        name = "";
-        pointsText = "";
-        unitText = "";
+        name = '';
+        pointsText = '';
+        unitText = '';
         // wargear = [];
     }
 
@@ -289,7 +289,7 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
                 state = ParseState.InPoints;
 
                 // Prepare string for digit concatenation.
-                pointsText = "";
+                pointsText = '';
             }
 
             continue;
@@ -330,7 +330,7 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
 
     const armyProps = {
         id,
-        name: armyText.split('\n')[0].replace(/^#+ /, ""),
+        name: armyText.split('\n')[0].replace(/^#+ /, ''),
         parseLog,
         points: sumArmyPoints({ units }),
         text: armyText,
