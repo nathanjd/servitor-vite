@@ -13,27 +13,27 @@ describe('useArmyService(armyService: ArmyService', () => {
     const mockSaveArmy: Mock<[army: Army], ArmyStore> = vi.fn();
     const mockSaveArmyStore: Mock<[armyStore: ArmyStore], ArmyStore> = vi.fn();
     const mockArmyService: ArmyService = {
-        armyStore: { byId: {}, orderedIds: [] },
-        deleteArmy: mockDeleteArmy,
-        loadArmyStore: mockLoadArmyStore,
+        armyStore              : { byId: {}, orderedIds: [] },
+        deleteArmy             : mockDeleteArmy,
+        loadArmyStore          : mockLoadArmyStore,
         resetArmyStoreToDefault: mockResetArmyStoreToDefault,
-        saveArmy: mockSaveArmy,
-        saveArmyStore: mockSaveArmyStore,
+        saveArmy               : mockSaveArmy,
+        saveArmyStore          : mockSaveArmyStore,
     };
     const mockDefaultArmies: Army[] = [
         {
-            id: 'mock-army-id-1',
-            name: 'mock-army-name-1',
+            id    : 'mock-army-id-1',
+            name  : 'mock-army-name-1',
             points: 0,
-            text: 'mock-army-name-1',
-            units: [],
+            text  : 'mock-army-name-1',
+            units : [],
         },
         {
-            id: 'mock-army-id-2',
-            name: 'mock-army-name-2',
+            id    : 'mock-army-id-2',
+            name  : 'mock-army-name-2',
             points: 0,
-            text: 'mock-army-name-2',
-            units: [],
+            text  : 'mock-army-name-2',
+            units : [],
         },
     ];
     const mockDefaultArmyStore = armiesToArmyStore(mockDefaultArmies);

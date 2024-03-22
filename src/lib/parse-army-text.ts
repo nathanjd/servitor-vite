@@ -6,18 +6,18 @@ export interface Model {
 
 export interface Unit {
     models: Model[];
-    name: string;
+    name  : string;
     points: number;
-    text: string;
+    text  : string;
 }
 
 export interface Army {
-    id: string;
-    name: string;
+    id       : string;
+    name     : string;
     parseLog?: string[];
-    points: number;
-    text: string;
-    units: Unit[];
+    points   : number;
+    text     : string;
+    units    : Unit[];
 }
 
 enum ParseState {
@@ -332,10 +332,10 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
 
     const armyProps = {
         id,
-        name: armyText.split('\n')[0].replace(/^#+ /, ''),
+        name  : armyText.split('\n')[0].replace(/^#+ /, ''),
         parseLog,
         points: sumUnitsPoints(units),
-        text: armyText,
+        text  : armyText,
         units,
     };
 

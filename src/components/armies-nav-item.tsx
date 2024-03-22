@@ -1,10 +1,10 @@
 import { useCallback } from 'react';
 
 interface Props {
-    id: string;
-    isActive: boolean;
-    name: string;
-    points: number;
+    id          : string;
+    isActive    : boolean;
+    name        : string;
+    points      : number;
     onSelectArmy: (id: string) => void;
 }
 

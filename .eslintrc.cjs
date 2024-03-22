@@ -22,7 +22,15 @@ module.exports = {
             'error', '1tbs', { "allowSingleLine": false },
         ],
         '@stylistic/ts/comma-dangle': ['error', 'always-multiline'],
+        '@stylistic/ts/comma-spacing': [
+            'error', { 'before': false, 'after': true },
+        ],
+        '@stylistic/ts/function-call-spacing': ['error', 'never'],
         '@stylistic/ts/indent': ['error', 4],
+        '@stylistic/ts/key-spacing': [
+            'error',
+            { 'beforeColon': false, 'afterColon': true, 'align': 'colon' },
+        ],
         '@stylistic/ts/quotes': ['error', 'single'],
         '@stylistic/ts/semi': ['error', 'always'],
     },

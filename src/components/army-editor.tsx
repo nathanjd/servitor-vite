@@ -9,7 +9,7 @@ import { useArmy } from '../hooks/use-army';
 import { Army, parseArmyText } from '../lib/parse-army-text';
 
 interface Props {
-    id: string;
+    id          : string;
     onDeleteArmy: (id: string) => void;
 }
 

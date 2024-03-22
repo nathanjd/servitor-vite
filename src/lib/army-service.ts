@@ -5,22 +5,22 @@ import stringify from 'json-stable-stringify';
 export const armyStoreKey = 'armyStore';
 
 export interface ArmyStore {
-    byId: { [id: string]: Army };
+    byId      : { [id: string]: Army };
     orderedIds: string[];
 }
 
 export const EmptyArmyStore: ArmyStore = {
-    byId: {},
+    byId      : {},
     orderedIds: [],
 };
 
 export interface ArmyService {
-    armyStore: ArmyStore;
-    deleteArmy: (id: string) => ArmyStore;
-    loadArmyStore: () => ArmyStore;
+    armyStore              : ArmyStore;
+    deleteArmy             : (id: string) => ArmyStore;
+    loadArmyStore          : () => ArmyStore;
     resetArmyStoreToDefault: () => ArmyStore;
-    saveArmy: (army: Army) => ArmyStore;
-    saveArmyStore: (armyStore: ArmyStore) => ArmyStore;
+    saveArmy               : (army: Army) => ArmyStore;
+    saveArmyStore          : (armyStore: ArmyStore) => ArmyStore;
 }
 
 /**

@@ -27,12 +27,12 @@ describe('armyService', () => {
     beforeEach(() => {
         oldLocalStorage = global.localStorage;
         global.localStorage = {
-            clear: () => {},
-            getItem: getItemMock,
-            key: () => '',
-            length: 1,
+            clear     : () => {},
+            getItem   : getItemMock,
+            key       : () => '',
+            length    : 1,
             removeItem: () => {},
-            setItem: setItemMock,
+            setItem   : setItemMock,
         };
     });
 
@@ -47,18 +47,18 @@ describe('armyService', () => {
             // Arrange
             const armies: Army[] = [
                 {
-                    id: 'mock-army-id-1',
-                    name: 'mock-army-name-1',
+                    id    : 'mock-army-id-1',
+                    name  : 'mock-army-name-1',
                     points: 0,
-                    text: 'mock-army-name-1',
-                    units: [],
+                    text  : 'mock-army-name-1',
+                    units : [],
                 },
                 {
-                    id: 'mock-army-id-2',
-                    name: 'mock-army-name-2',
+                    id    : 'mock-army-id-2',
+                    name  : 'mock-army-name-2',
                     points: 0,
-                    text: 'mock-army-name-2',
-                    units: [],
+                    text  : 'mock-army-name-2',
+                    units : [],
                 },
             ];
 
@@ -76,18 +76,18 @@ describe('armyService', () => {
             // Arrange
             const armies: Army[] = [
                 {
-                    id: 'mock-army-id-1',
-                    name: 'mock-army-name-1',
+                    id    : 'mock-army-id-1',
+                    name  : 'mock-army-name-1',
                     points: 0,
-                    text: 'mock-army-name-1',
-                    units: [],
+                    text  : 'mock-army-name-1',
+                    units : [],
                 },
                 {
-                    id: 'mock-army-id-2',
-                    name: 'mock-army-name-2',
+                    id    : 'mock-army-id-2',
+                    name  : 'mock-army-name-2',
                     points: 0,
-                    text: 'mock-army-name-2',
-                    units: [],
+                    text  : 'mock-army-name-2',
+                    units : [],
                 },
             ];
 
@@ -105,19 +105,19 @@ describe('armyService', () => {
             // Arrange
             const armyId = 'mock-army-id-1';
             const otherArmy: Army = {
-                id: 'mock-army-id-2',
-                name: 'mock-army-name-2',
+                id    : 'mock-army-id-2',
+                name  : 'mock-army-name-2',
                 points: 0,
-                text: 'mock-army-name-2',
-                units: [],
+                text  : 'mock-army-name-2',
+                units : [],
             };
             const armies: Army[] = [
                 {
-                    id: armyId,
-                    name: 'mock-army-name-1',
+                    id    : armyId,
+                    name  : 'mock-army-name-1',
                     points: 0,
-                    text: 'mock-army-name-1',
-                    units: [],
+                    text  : 'mock-army-name-1',
+                    units : [],
                 },
                 otherArmy,
             ];
@@ -194,18 +194,18 @@ describe('armyService', () => {
             // Arrange
             const armies: Army[] = [
                 {
-                    id: 'mock-army-id-1',
-                    name: 'mock-army-name-1',
+                    id    : 'mock-army-id-1',
+                    name  : 'mock-army-name-1',
                     points: 0,
-                    text: 'mock-army-name-1',
-                    units: [],
+                    text  : 'mock-army-name-1',
+                    units : [],
                 },
                 {
-                    id: 'mock-army-id-2',
-                    name: 'mock-army-name-2',
+                    id    : 'mock-army-id-2',
+                    name  : 'mock-army-name-2',
                     points: 0,
-                    text: 'mock-army-name-2',
-                    units: [],
+                    text  : 'mock-army-name-2',
+                    units : [],
                 },
             ];
             const expectedArmyStore = armiesToArmyStore(armies);
@@ -243,18 +243,18 @@ describe('armyService', () => {
             // Arrange
             const armies: Army[] = [
                 {
-                    id: 'mock-army-id-1',
-                    name: 'mock-army-name-1',
+                    id    : 'mock-army-id-1',
+                    name  : 'mock-army-name-1',
                     points: 0,
-                    text: 'mock-army-name-1',
-                    units: [],
+                    text  : 'mock-army-name-1',
+                    units : [],
                 },
                 {
-                    id: 'mock-army-id-2',
-                    name: 'mock-army-name-2',
+                    id    : 'mock-army-id-2',
+                    name  : 'mock-army-name-2',
                     points: 0,
-                    text: 'mock-army-name-2',
-                    units: [],
+                    text  : 'mock-army-name-2',
+                    units : [],
                 },
             ];
             const armyStore = armiesToArmyStore(armies);
@@ -274,18 +274,18 @@ describe('armyService', () => {
             // Arrange
             const armies: Army[] = [
                 {
-                    id: 'mock-army-id-1',
-                    name: 'mock-army-name-1',
+                    id    : 'mock-army-id-1',
+                    name  : 'mock-army-name-1',
                     points: 0,
-                    text: 'mock-army-name-1',
-                    units: [],
+                    text  : 'mock-army-name-1',
+                    units : [],
                 },
                 {
-                    id: 'mock-army-id-2',
-                    name: 'mock-army-name-2',
+                    id    : 'mock-army-id-2',
+                    name  : 'mock-army-name-2',
                     points: 0,
-                    text: 'mock-army-name-2',
-                    units: [],
+                    text  : 'mock-army-name-2',
+                    units : [],
                 },
             ];
             const expectedArmyStore = armiesToArmyStore(armies);
@@ -305,11 +305,11 @@ describe('armyService', () => {
             // Arrange
             const armies: Army[] = [
                 {
-                    id: 'mock-army-id-1',
-                    name: 'mock-army-name-1',
+                    id    : 'mock-army-id-1',
+                    name  : 'mock-army-name-1',
                     points: 0,
-                    text: 'mock-army-name-1',
-                    units: [],
+                    text  : 'mock-army-name-1',
+                    units : [],
                 },
             ];
             const armyStore = armiesToArmyStore(armies);
@@ -317,11 +317,11 @@ describe('armyService', () => {
             getItemMock.mockReturnValue(rawArmyStore);
 
             const newArmy: Army = {
-                id: 'mock-army-id-2',
-                name: 'mock-army-name-2',
+                id    : 'mock-army-id-2',
+                name  : 'mock-army-name-2',
                 points: 0,
-                text: 'mock-army-name-2',
-                units: [],
+                text  : 'mock-army-name-2',
+                units : [],
             };
             const expectedArmyStore = armiesToArmyStore([newArmy, armies[0]]);
             const expectedRawArmyStore = stringify(expectedArmyStore);
@@ -339,18 +339,18 @@ describe('armyService', () => {
             const id = 'mock-army-id-2';
             const armies: Army[] = [
                 {
-                    id: 'mock-army-id-1',
-                    name: 'mock-army-name-1',
+                    id    : 'mock-army-id-1',
+                    name  : 'mock-army-name-1',
                     points: 0,
-                    text: 'mock-army-name-1',
-                    units: [],
+                    text  : 'mock-army-name-1',
+                    units : [],
                 },
                 {
                     id,
-                    name: 'mock-army-name-2',
+                    name  : 'mock-army-name-2',
                     points: 0,
-                    text: 'mock-army-name-2',
-                    units: [],
+                    text  : 'mock-army-name-2',
+                    units : [],
                 },
             ];
             const armyStore = armiesToArmyStore(armies);
@@ -358,11 +358,11 @@ describe('armyService', () => {
             getItemMock.mockReturnValue(rawArmyStore);
 
             const updatedArmy: Army = {
-                id: 'mock-army-id-2',
-                name: 'mock-army-name-2-changed',
+                id    : 'mock-army-id-2',
+                name  : 'mock-army-name-2-changed',
                 points: 0,
-                text: 'mock-army-name-2-changed',
-                units: [],
+                text  : 'mock-army-name-2-changed',
+                units : [],
             };
             const expectedArmyStore = armiesToArmyStore([updatedArmy, armies[0]]);
             const expectedRawArmyStore = stringify(expectedArmyStore);

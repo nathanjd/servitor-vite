@@ -3,12 +3,12 @@ import { Army } from '../lib/parse-army-text';
 import { ArmiesNavItem } from './armies-nav-item';
 
 interface Props {
-    activeId: string,
-    byId: { [id: string]: Army };
-    onCreateArmy: () => void;
+    activeId     : string,
+    byId         : { [id: string]: Army };
+    onCreateArmy : () => void;
     onResetArmies: () => void;
-    onSelectArmy: (id: string) => void;
-    orderedIds: string[];
+    onSelectArmy : (id: string) => void;
+    orderedIds   : string[];
 }
 
 export const ArmiesNav = (props: Props): JSX.Element => {
