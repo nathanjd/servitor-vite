@@ -147,7 +147,7 @@ export const resetArmyStoreToDefault = (): ArmyStore => {
 };
 
 /**
- *
+ * Saves an army to local storage and moves it to the front of orderedIds,
  */
 export const saveArmy = (army: Army): ArmyStore => {
     const armyStore = loadArmyStore();
@@ -155,6 +155,13 @@ export const saveArmy = (army: Army): ArmyStore => {
     // If army is not present in byId, assume it is also not in orderedIds and
     // prepend it.
     if (!armyStore.byId[army.id]) {
+        armyStore.orderedIds.unshift(army.id);
+    }
+
+    // Move id to the front of orderedIds if it's not there already.
+    if (armyStore.orderedIds[0] != army.id) {
+        armyStore.orderedIds = armyStore.orderedIds
+            .filter((id) => id !== army.id);
         armyStore.orderedIds.unshift(army.id);
     }
 

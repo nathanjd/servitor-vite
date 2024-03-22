@@ -336,6 +336,7 @@ describe("armyService", () => {
 
         it("should update an existing Army in local storage", () => {
             // Arrange
+            const id = "mock-army-id-2";
             const armies: Army[] = [
                 {
                     id: "mock-army-id-1",
@@ -345,7 +346,7 @@ describe("armyService", () => {
                     units: []
                 },
                 {
-                    id: "mock-army-id-2",
+                    id,
                     name: "mock-army-name-2",
                     points: 0,
                     text: "mock-army-name-2",
@@ -357,13 +358,13 @@ describe("armyService", () => {
             getItemMock.mockReturnValue(rawArmyStore);
 
             const updatedArmy: Army = {
-                id: "mock-army-id-1",
-                name: "mock-army-name-1-changed",
+                id: "mock-army-id-2",
+                name: "mock-army-name-2-changed",
                 points: 0,
-                text: "mock-army-name-1-changed",
+                text: "mock-army-name-2-changed",
                 units: []
             };
-            const expectedArmyStore = armiesToArmyStore([updatedArmy, armies[1]]);
+            const expectedArmyStore = armiesToArmyStore([updatedArmy, armies[0]]);
             const expectedRawArmyStore = stringify(expectedArmyStore);
 
             // Act
