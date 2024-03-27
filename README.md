@@ -35,3 +35,21 @@ export default {
 - https://github.com/pmndrs/zustand
 - https://github.com/tanstack/query
 - https://github.com/vitejs/vite
+
+## DNS Routing Debug
+
+```sh
+dig +short _820de6e96d1ba42e61766be7b4dd5392.servitor-pwa.com
+
+dig +short _e17d27e16429e8b76166fa126250b8fe.www.servitor-pwa.com
+
+dig +short _820de6e96d1ba42e61766be7b4dd5392.servitor-pwa.com.servitor-pwa.com
+```
+
+_820de6e96d1ba42e61766be7b4dd5392.
+
+_ad183a4c29ad2760bc873962339e4a2b.mhbtsbpdnt.acm-validations.aws.
+
+_e17d27e16429e8b76166fa126250b8fe.www.
+
+_e9ca9e06f07226966376bc59dd2d6718.mhbtsbpdnt.acm-validations.aws.
