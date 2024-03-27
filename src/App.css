@@ -41,11 +41,21 @@ body {
 
 .app-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0.8rem;
+}
+
+.header-title {
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
 }
 
 .app-title {
     font-size: 1.2rem;
+    margin: 0;
+    flex: 1;
+    text-align: center;
 }
 
 .app-body {
@@ -55,9 +65,12 @@ body {
 }
 
 .armies-listing {
+    display: none;
     width: 16rem;
-    display: flex;
     flex-direction: column;
+}
+.armies-listing.open {
+    display: flex;
 }
 
 .create-new-armies-button {
@@ -65,9 +78,9 @@ body {
 }
 
 .armies-nav {
-  flex: 1;
-  overflow-y: auto;
-  min-height: 20rem;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 20rem;
 }
 
 .armies-header {

@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
@@ -6,6 +6,7 @@ import './App.css';
 import { armyService as defaultArmyService } from './lib/army-service';
 import { useArmyService } from './hooks/use-army-service';
 import { useEditingArmyId } from './hooks/use-editing-army-id';
+import { AppHeader } from './components/app-header';
 import { ArmyEditor } from './components/army-editor';
 import { ArmyServiceContext } from './contexts/army-service-context';
 import { ArmiesNav } from './components/armies-nav';
@@ -20,6 +21,7 @@ const App = (): JSX.Element => {
         saveArmy,
     } = armyService;
     const [editingArmyId, setEditingArmyId] = useEditingArmyId();
+    const [isArmiesNavOpen, setIsArmiesNavOpen] = useState(true);
 
     const handleCreateArmy = useCallback(() => {
         const army = parseArmyText('New Army', crypto.randomUUID());
@@ -48,14 +50,16 @@ const App = (): JSX.Element => {
     return (
         <>
             <ArmyServiceContext.Provider value={armyService}>
-                <div className="app-header">
-                    <h1 className="app-title">Servitor - Army Editor</h1>
-                </div>
+                <AppHeader
+                    isNavOpen={isArmiesNavOpen}
+                    setIsNavOpen={setIsArmiesNavOpen}
+                />
 
                 <div className="app-body">
                     <ArmiesNav
                         activeId={editingArmyId}
                         byId={armyStore.byId}
+                        isOpen={isArmiesNavOpen}
                         onCreateArmy={handleCreateArmy}
                         onResetArmies={handleResetArmyStore}
                         onSelectArmy={handleSelectArmy}

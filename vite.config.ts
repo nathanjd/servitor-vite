@@ -16,6 +16,7 @@ export default defineConfig({
                     { src: '/icon-192x192.png', type: 'image/png', sizes: '192x192' },
                     { src: '/icon-512x512.png', type: 'image/png', sizes: '512x512' },
                 ],
+                theme_color: '#de6910',
             },
             registerType: 'autoUpdate',
         }),
