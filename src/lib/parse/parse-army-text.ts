@@ -1,4 +1,7 @@
-import { sumUnitsPoints } from './army.ts';
+import { sumUnitsPoints } from '../army.ts';
+import { parseCountFromName } from './parse-count-from-name.ts';
+import { removeCountFromName } from './remove-count-from-name.ts';
+import { distributeWargearToModels } from './distribute-wargear-to-models.ts';
 
 export interface Model {
     wargear: string[];
@@ -26,127 +29,6 @@ enum ParseState {
     InPoints = 'IN_POINTS',
     InWargear = 'IN_WARGEAR',
 }
-
-/**
- * Returns true when all characters in text are numeric and represent a whole
- * positive integer.
- */
-const isTextInteger = (text: string): boolean =>
-    /^(0|[1-9][0-9]*)$/.test(text);
-
-/**
- *
- * @param {string} wargearText
- * @param {Model[]} models
- * @returns {Model[]}
- */
-export const distributeWargearToModels =
-    (wargearText: string, models: Model[]): Model[] => {
-        // Find any instances of per-model wargear which is a list of wargear
-        // surrounded by parentheses.
-        const perModelRegExp = /\(([^)]+)\)/g;
-        const perModelWargear: string[] = [];
-        let matchArray: string[] | null;
-        while ((matchArray = perModelRegExp.exec(wargearText)) !== null) {
-            perModelWargear.push(matchArray[1]);
-        }
-
-        // TODO: Distributing now means assuming all per-model lists come first.
-        // fix this to allow for interspersing. Ex: (a, b), c, (a, d)
-        for (let i = 0; i < perModelWargear.length; i++) {
-            // If there are more per unit wargear lists than models in the unit,
-            // put all excess wargear in the last model.
-            const modelIndex = i >= models.length ? models.length : i;
-            const wargear = perModelWargear[i].split(',')
-                .map((name) => name.trim())
-                .filter(name => name.length > 0);
-            models[modelIndex].wargear.push(...wargear);
-        }
-
-        // Remove per-unit wargear from text as they have already been added.
-        const remainingWargearText = wargearText.replace(/\([^)]+\),?/g, '');
-        const remainingWargear = remainingWargearText.split(',')
-            .map((name) => name.trim())
-            .filter(name => name.length > 0);
-
-        remainingWargear.forEach((wargear, i) => {
-            const wargearCount = parseCountFromName(wargear);
-
-            // Duplicate the wargear if it includes a count.
-            const wargearName = removeCountFromName(wargear);
-            const wargearToDistribute =
-                Array.from(Array(wargearCount)).map(() => wargearName);
-
-            // Assume that any per-model wargear is exhaustive so do not
-            // distribute any additional wargear to those models.
-            const startingIndex = perModelWargear.length === 0 ? i :
-                Math.min(perModelWargear.length + i, models.length - 1);
-
-            for (let j = 0; j < wargearToDistribute.length; j++) {
-                // Distribute all the excess wargear to the last model.
-                const modelIndex = Math.min(
-                    models.length - 1, startingIndex + j);
-                models[modelIndex].wargear.push(wargearToDistribute[j]);
-            }
-        });
-
-        return models;
-    };
-
-/**
- * If the first word in the name is a number, assume it is the number of
- * models in a unit. Otherwise, assume the number of models 1.
- */
-export const parseCountFromName = (name: string): number => {
-    const firstWord = name.split(' ')[0];
-
-    if (!isTextInteger(firstWord)) {
-        return 1;
-    }
-
-    return parseInt(firstWord, 10);
-};
-
-type DepluralizationMap = {
-    [key: string]: string;
-};
-
-const depluralizationExceptions: DepluralizationMap = {
-    Legionaries: 'Legionaries',
-};
-
-/**
- * If the first word in the name is a number, remove it.
- */
-export const removeCountFromName = (name: string): string => {
-    const words  = name.split(' ') || [];
-    const firstWord = words[0];
-
-    // First word is not a number so there is no count to remove.
-    if (!isTextInteger(firstWord)) {
-        return name;
-    }
-
-    // Remove first word as it's the count.
-    words.shift();
-    const nameWithountCount = words.join(' ');
-
-    // Depluralize if count is more than 1.
-    if (nameWithountCount.length > 1) {
-        if (depluralizationExceptions[nameWithountCount]) {
-            return depluralizationExceptions[nameWithountCount];
-        }
-
-        // If name ends in 's', remove the 's'.
-        if (nameWithountCount[nameWithountCount.length - 1] === 's') {
-            return nameWithountCount.substring(0, nameWithountCount.length - 1);
-        }
-
-        // Leave name as-is.
-    }
-
-    return nameWithountCount;
-};
 
 /**
  * Parses a string to return an Army.
@@ -183,7 +65,7 @@ export const parseArmyText = (armyText: string = '', id: string = ''): Army => {
         // Add unit to army.
         units.push({
             models,
-            name: removeCountFromName(name),
+            name: removeCountFromName(name, false),
             points,
             text: unitText,
         });

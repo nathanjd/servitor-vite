@@ -140,6 +140,29 @@ describe('parseArmyText(text)', () => {
         expect(unit).to.deep.equal(expectedUnit);
     });
 
+    it('should parse a multi-model unit and per-model wargear', () => {
+        // Arrange
+        const expectedUnit: Unit = {
+            name  : 'Terminators',
+            models: [
+                { wargear: ['combi', 'fist'] },
+                { wargear: ['reaper autocannon', 'chainfist'] },
+                { wargear: ['combi', 'fist'] },
+                { wargear: ['combi', 'fist'] },
+                { wargear: ['paired accursed weapons'] },
+            ],
+            points: 185,
+            text  : '5 Terminators: (combi, fist), (reaper autocannon, chainfist), (combi, fist), (combi, fist) paired accursed weapons - 185',
+        };
+
+        // Act
+        const army = parseArmyText(expectedUnit.text);
+
+        // Assert
+        const unit = army.units[0];
+        expect(unit).to.deep.equal(expectedUnit);
+    });
+
     it('should parse a multi-model unit with duplicate and per-model wargear', () => {
         // Arrange
         const expectedUnit: Unit = {
