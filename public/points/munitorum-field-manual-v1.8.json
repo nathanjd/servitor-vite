@@ -1,0 +1,171 @@
+{
+    "Heretic Astartes": {
+        "enhancements": {
+            "Eye of Tzeench": 40,
+            "Intoxicating Elixir": 15,
+            "Liber Hereticus": 40,
+            "Orbs of Unlife": 25,
+            "Talisman of Burning Blood": 20
+        },
+        "units": {
+            "Abaddon the Despoiler": {
+                "1": 310
+            },
+            "Accursed Cultists": {
+                "8": 95,
+                "16": 190
+            },
+            "Chaos Bikers": {
+                "3": 75,
+                "6": 150
+            },
+            "Chaos Land Raider": {
+                "1": 240
+            },
+            "Chaos Lord": {
+                "1": 95
+            },
+            "Chaos Lord in Terminator Armour": {
+                "1": 95
+            },
+            "Chaos Predator Annihilator": {
+                "1": 130
+            },
+            "Chaos Predator Destructor": {
+                "1": 130
+            },
+            "Chaos Rhino": {
+                "1": 75
+            },
+            "Chaos Spawn": {
+                "2": 70
+            },
+            "Chaos Terminator Squad": {
+                "5": 185,
+                "10": 370
+            },
+            "Chaos Vindicator": {
+                "1": 175
+            },
+            "Chosen": {
+                "5": 130,
+                "10": 260
+            },
+            "Cultist Mob": {
+                "10": 50,
+                "20": 100
+            },
+            "Cypher": {
+                "1": 90
+            },
+            "Dark Apostle": {
+                "3": 75
+            },
+            "Dark Commune": {
+                "5": 65
+            },
+            "Defiler": {
+                "1": 190
+            },
+            "Exalted Champion": {
+                "1": 70
+            },
+            "Fabius Bile": {
+                "2": 85
+            },
+            "Fellgor Beastmen": {
+                "10": 95
+            },
+            "Forgefiend": {
+                "1": 200
+            },
+            "Haarken Worldclaimer": {
+                "1": 90
+            },
+            "Havocs": {
+                "1": 120
+            },
+            "Helbrute": {
+                "1": 130
+            },
+            "Heldrake": {
+                "1": 205
+            },
+            "Heretic Astartes Daemon Prince": {
+                "1": 165
+            },
+            "Heretic Astartes Daemon Prince with Wings": {
+                "1": 180
+            },
+            "Huron Blackheart": {
+                "1": 80
+            },
+            "Khorne Lord of Skulls": {
+                "1": 450
+            },
+            "Legionaries": {
+                "5": 80,
+                "10": 160
+            },
+            "Lord Discordant on Helstalker": {
+                "1": 190
+            },
+            "Lucius the Eternal": {
+                "1": 95
+            },
+            "Master of Executions": {
+                "1": 80
+            },
+            "Master of Possession": {
+                "1": 80
+            },
+            "Maulerfiend": {
+                "1": 140
+            },
+            "Noctilith Crown": {
+                "1": 125
+            },
+            "Noise Marines": {
+                "5": 85,
+                "10": 170
+            },
+            "Obliterators": {
+                "2": 180,
+                "4": 360
+            },
+            "Posessed": {
+                "5": 130,
+                "10": 260
+            },
+            "Raptors": {
+                "5": 85,
+                "10": 170
+            },
+            "Sorcerer": {
+                "1": 60
+            },
+            "Sorcerer in Terminator Armour": {
+                "1": 90
+            },
+            "Traitor Enforcer": {
+                "2": 65
+            },
+            "Traitor Guardsmen Squad": {
+                "10": 70
+            },
+            "Vashtorr the Arkifane": {
+                "1": 190
+            },
+            "Venomcrawler": {
+                "1": 110
+            },
+            "Warp Talons": {
+                "5": 110,
+                "10": 220
+            },
+            "Warpsmith": {
+                "1": 70
+            }
+        }
+    }
+}

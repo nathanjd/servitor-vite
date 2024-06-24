@@ -1,0 +1,95 @@
+{
+    "Heretic Astartes": {
+        "enhancements": {},
+        "units": {
+            "Blood Slaughterer": {
+                "1": 160
+            },
+            "Chaos Deimos Predator": {
+                "1": 115
+            },
+            "Chaos Lord on Bike": {
+                "1": 95
+            },
+            "Chaos Lord on Disc of Tzeench": {
+                "1": 100
+            },
+            "Chaos Lord on Juggernaut": {
+                "1": 115
+            },
+            "Chaos Lord on Palanquin of Nurgle": {
+                "1": 90
+            },
+            "Chaos Lord on Steed of Slaanesh": {
+                "1": 100
+            },
+            "Decimator": {
+                "1": 170
+            },
+            "Dreadclaw Drop Pod": {
+                "1": 115
+            },
+            "Gellerpox Infected": {
+                "7": 125
+            },
+            "Greater Blight Drone": {
+                "1": 150
+            },
+            "Greater Brass Scorpion": {
+                "1": 560
+            },
+            "Hell Blade": {
+                "1": 110
+            },
+            "Hell Talon": {
+                "1": 140
+            },
+            "Kharybdis Assault Claw": {
+                "1": 325
+            },
+            "Kytan Ravager": {
+                "1": 425
+            },
+            "Mutilators": {
+                "1": 185
+            },
+            "Mutoid Vermin": {
+                "16": 85
+            },
+            "Negavolt Cultists": {
+                "4": 55
+            },
+            "Renegade Enforcer": {
+                "1": 65
+            },
+            "Renegade Heavy Weapons Squad": {
+                "3": 75
+            },
+            "Renegade Ogryn Beast Handler": {
+                "4": 40,
+                "7": 70
+            },
+            "Renegade Ogryn Brutes": {
+                "3": 95
+            },
+            "Renegade Plague Ogryn": {
+                "3": 95
+            },
+            "Rogue Psyker": {
+                "1": 60
+            },
+            "Sorcerer on Bike": {
+                "1": 75
+            },
+            "Sorcerer on Disc of Tzeench": {
+                "1": 80
+            },
+            "Sorcerer on Palanquin of Nurgle": {
+                "1": 80
+            },
+            "Sorcerer on Steed of Slaanesh": {
+                "1": 85
+            }
+        }
+    }
+}
