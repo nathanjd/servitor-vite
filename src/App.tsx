@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
@@ -10,7 +10,8 @@ import { AppHeader } from './components/app-header';
 import { ArmyEditor } from './components/army-editor';
 import { ArmyServiceContext } from './contexts/army-service-context';
 import { ArmiesNav } from './components/armies-nav';
-import { parseArmyText } from './lib/parse-army-text';
+import { parseArmyText } from './lib/parse/parse-army-text';
+import { PointsValues } from './lib/suggest/suggest-unit';
 
 const App = (): JSX.Element => {
     const armyService = useArmyService(defaultArmyService);
@@ -22,6 +23,21 @@ const App = (): JSX.Element => {
     } = armyService;
     const [editingArmyId, setEditingArmyId] = useEditingArmyId();
     const [isArmiesNavOpen, setIsArmiesNavOpen] = useState(true);
+    const [pointsValues, setPointsValues] = useState<PointsValues[]>([]);
+
+    // Fetch points and unit name autocomplete values.
+    useEffect(() => {
+        const urlsToFetch = [
+            '/points/munitorum-field-manual-v1.11.json',
+            '/points/legends-field-manual-1.0.json',
+        ];
+        const fetchAndDecode = async (url: string) => {
+            const response = await fetch(url);
+            return await response.json();
+        };
+        const requests = urlsToFetch.map(url => fetchAndDecode(url));
+        Promise.all(requests).then(json => setPointsValues(json));
+    }, []);
 
     const handleCreateArmy = useCallback(() => {
         const army = parseArmyText('New Army', crypto.randomUUID());
@@ -69,6 +85,7 @@ const App = (): JSX.Element => {
                     <ArmyEditor
                         id={editingArmyId}
                         onDeleteArmy={handleDeleteArmy}
+                        orderedPointsValues={pointsValues}
                     />
                 </div>
             </ArmyServiceContext.Provider>

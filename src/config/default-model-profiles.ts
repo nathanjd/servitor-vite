@@ -1,4 +1,4 @@
-import { ModelProfile } from '../lib/average-weapon-damage';
+import { ModelProfile } from '../lib/stats/mean-weapon-roll';
 
 export const lightInfantry: ModelProfile = {
     move            : 6,

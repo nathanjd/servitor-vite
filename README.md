@@ -53,3 +53,17 @@ _ad183a4c29ad2760bc873962339e4a2b.mhbtsbpdnt.acm-validations.aws.
 _e17d27e16429e8b76166fa126250b8fe.www.
 
 _e9ca9e06f07226966376bc59dd2d6718.mhbtsbpdnt.acm-validations.aws.
+
+## Dice Roll Text
+
+https://anydice.com/
+
+## TODO
+
+- https://phuoc.ng/collection/mirror-a-text-area/add-autocomplete-to-your-text-area/
+- https://github.com/ianstormtaylor/slate for autocomplete and WYSIWYG?
+
+## Similar Apps
+
+- https://www.newrecruit.eu/app/MyLists
+- https://www.unitcrunch.com/

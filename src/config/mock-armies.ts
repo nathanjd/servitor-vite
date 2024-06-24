@@ -1,4 +1,4 @@
-import { Army } from '../lib/parse-army-text';
+import { Army } from '../lib/parse/parse-army-text';
 
 export const defaultArmy: Army = {
     id  : 'default-army-id',

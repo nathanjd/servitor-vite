@@ -1,4 +1,4 @@
-import { parseArmyText } from '../lib/parse-army-text.js';
+import { parseArmyText } from '../lib/parse/parse-army-text.js';
 
 export const defaultRawArmies = [
     {

@@ -14,7 +14,7 @@ import {
     saveArmyStore,
 } from './army-service.ts';
 import { parseDefaultRawArmies } from '../config/default-raw-armies.ts';
-import { Army } from './parse-army-text.ts';
+import { Army } from './parse/parse-army-text.ts';
 
 declare const global: {
     localStorage: Storage;

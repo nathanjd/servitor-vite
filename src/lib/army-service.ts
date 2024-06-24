@@ -1,4 +1,4 @@
-import { Army } from './parse-army-text.ts';
+import { Army } from './parse/parse-army-text.ts';
 import { parseDefaultRawArmies } from '../config/default-raw-armies.ts';
 import stringify from 'json-stable-stringify';
 

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { Army, parseArmyText } from '../lib/parse-army-text';
+import { Army, parseArmyText } from '../lib/parse/parse-army-text';
 import { ArmyStore } from '../lib/army-service';
 import { ArmyServiceContext } from '../contexts/army-service-context';
 

@@ -1,4 +1,4 @@
-import { Army, Unit } from './parse-army-text';
+import { Army, Unit } from './parse/parse-army-text';
 
 export const sumUnitsPoints = (units: Unit[]): number =>
     units.reduce((totalPoints, unit) => {

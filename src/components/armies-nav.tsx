@@ -1,4 +1,4 @@
-import { Army } from '../lib/parse-army-text';
+import { Army } from '../lib/parse/parse-army-text';
 
 import { ArmiesNavItem } from './armies-nav-item';
 

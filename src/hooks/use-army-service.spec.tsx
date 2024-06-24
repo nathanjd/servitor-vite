@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { Army } from '../lib/parse-army-text';
+import { Army } from '../lib/parse/parse-army-text';
 import { ArmyStore, ArmyService, armiesToArmyStore } from '../lib/army-service';
 import { useArmyService } from './use-army-service';
 

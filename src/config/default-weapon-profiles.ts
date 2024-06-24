@@ -1,4 +1,4 @@
-import { WeaponProfile } from '../lib/average-weapon-damage';
+import { WeaponProfile } from '../lib/stats/mean-weapon-roll';
 
 export const lightPistol: WeaponProfile = {
     range           : 12,
@@ -57,7 +57,7 @@ export const antiInfantryRifle: WeaponProfile = {
 export const flamethrower: WeaponProfile = {
     range           : 12,
     attacks         : 'd6',
-    hitSkill        : 3,
+    hitSkill        : 7,
     strength        : 4,
     armorPenetration: 0,
     damage          : '1',
