@@ -51,6 +51,10 @@ body {
     justify-content:space-around;
 }
 
+.header-toolbar {
+    display:flex;
+}
+
 .app-title {
     font-size: 1.2rem;
     margin: 0;
@@ -183,6 +187,14 @@ body {
   margin: 0;
   background-color: Field;
   color: FieldText;
+}
+
+.unit-search {
+    display: flex;
+}
+
+#unit-search-box {
+    flex-grow: 2;
 }
 
 .army-footer {

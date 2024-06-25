@@ -7,7 +7,12 @@ import {
 import { debounce } from 'lodash-es';
 import { useArmy } from '../hooks/use-army';
 import { Army, parseArmyText } from '../lib/parse/parse-army-text';
-import { PointsValues, suggestUnit } from '../lib/suggest/suggest-unit';
+import {
+    PointsValues,
+
+    // suggestUnit
+} from '../lib/suggest/suggest-unit';
+import { UnitSearch } from './unit-search';
 
 interface Props {
     id                 : string;
@@ -21,7 +26,9 @@ export const ArmyEditor = (props: Props): JSX.Element => {
     const [name, setName] = useState(savedArmy.name);
     const [points, setPoints] = useState(savedArmy.points);
     const [text, setText] = useState(savedArmy.text);
-    const [suggestion, setSuggestion] = useState('');
+
+    // const [suggestion, setSuggestion] = useState('');
+
 
     // Make sure we change the textarea value when changing armies.
     const [lastId, setLastId] = useState(id);
@@ -31,6 +38,10 @@ export const ArmyEditor = (props: Props): JSX.Element => {
         setText(savedArmy.text);
         setLastId(id);
     }
+
+    const handleAddSuggestion = useCallback((suggestion: string) => {
+        setText(text + '\n' + suggestion);
+    }, [text, setText]);
 
     const handleDeleteArmy = useCallback(() => {
         onDeleteArmy(id);
@@ -56,49 +67,49 @@ export const ArmyEditor = (props: Props): JSX.Element => {
         }, 200), [handleSaveArmy, id],
     );
 
-    const findCurrentUnitName = (
-        armyText: string,
-        selectionStart: number,
-    ): string => {
-        // Iterate backwards through characters until we find a newline
-        // character or the beginning of input.
-        let startIndex = Math.max(selectionStart - 1, 0);
-        while (startIndex > 0 && armyText[startIndex] !== '\n') {
-            startIndex--;
-        }
+    // const findCurrentUnitName = (
+    //     armyText: string,
+    //     selectionStart: number,
+    // ): string => {
+    //     // Iterate backwards through characters until we find a newline
+    //     // character or the beginning of input.
+    //     let startIndex = Math.max(selectionStart - 1, 0);
+    //     while (startIndex > 0 && armyText[startIndex] !== '\n') {
+    //         startIndex--;
+    //     }
 
-        if (armyText[startIndex] === '\n') {
-            startIndex++;
-        }
+    //     if (armyText[startIndex] === '\n') {
+    //         startIndex++;
+    //     }
 
-        // Iterate forwards through characters until we find a semicolon,
-        // hyphen, newline character, open parenthesis or end of input.
-        let endIndex = selectionStart;
-        const stopCharacters = [':', '-', '(', '\n'];
-        while (
-            endIndex < armyText.length &&
-            !stopCharacters.includes(armyText[endIndex])
-        ) {
-            endIndex--;
-        }
+    //     // Iterate forwards through characters until we find a semicolon,
+    //     // hyphen, newline character, open parenthesis or end of input.
+    //     let endIndex = selectionStart;
+    //     const stopCharacters = [':', '-', '(', '\n'];
+    //     while (
+    //         endIndex < armyText.length &&
+    //         !stopCharacters.includes(armyText[endIndex])
+    //     ) {
+    //         endIndex--;
+    //     }
 
-        // Find the unit name
-        return armyText.slice(startIndex, endIndex);
-    };
+    //     // Find the unit name
+    //     return armyText.slice(startIndex, endIndex);
+    // };
 
-    const handleGenerateSuggestion  = useMemo(() =>
-        debounce((armyText: string, selectionStart: number) => {
-            if (!orderedPointsValues) {
-                return;
-            }
+    // const handleGenerateSuggestion  = useMemo(() =>
+    //     debounce((armyText: string, selectionStart: number) => {
+    //         if (!orderedPointsValues) {
+    //             return;
+    //         }
 
-            const text = findCurrentUnitName(armyText, selectionStart);
-            const factionName = 'Heretic Astartes';
-            const suggestion = suggestUnit(
-                text, factionName, orderedPointsValues);
-            setSuggestion(suggestion);
-        }, 50), [orderedPointsValues],
-    );
+    //         const text = findCurrentUnitName(armyText, selectionStart);
+    //         const factionName = 'Heretic Astartes';
+    //         const suggestion = suggestUnit(
+    //             text, factionName, orderedPointsValues);
+    //         setSuggestion(suggestion);
+    //     }, 50), [orderedPointsValues],
+    // );
 
     const handleTextChange = useCallback(
         (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -107,11 +118,14 @@ export const ArmyEditor = (props: Props): JSX.Element => {
             handleParseArmyText(armyText);
 
             try {
-                handleGenerateSuggestion(armyText, event.target.selectionStart);
+                // handleGenerateSuggestion(armyText, event.target.selectionStart);
             } catch (error) {
                 console.log('autocomplete error:', error);
             }
-        }, [handleGenerateSuggestion, handleParseArmyText],
+        }, [
+            // handleGenerateSuggestion,
+            handleParseArmyText,
+        ],
     );
 
     return (
@@ -128,9 +142,13 @@ export const ArmyEditor = (props: Props): JSX.Element => {
                     onChange={handleTextChange}
                     value={text}
                 />
-                <div className="army-editor-autocomplete">
+                <UnitSearch
+                    orderedPointsValues={orderedPointsValues}
+                    onAddSuggestion={handleAddSuggestion}
+                />
+                {/* <div className="army-editor-autocomplete">
                     <span>{suggestion}</span>
-                </div>
+                </div> */}
                 <div className="army-footer">
                     <span className="army-id">{id}</span>
                     <button
