@@ -191,6 +191,7 @@ body {
 
 .unit-search {
     display: flex;
+    padding-top: 0.8rem;
 }
 
 #unit-search-box {

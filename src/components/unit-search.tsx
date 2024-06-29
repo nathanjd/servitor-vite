@@ -6,6 +6,7 @@ import {
 } from 'react';
 import { debounce } from 'lodash-es';
 import { PointsValues, suggestUnits } from '../lib/suggest/suggest-unit';
+import { favoriteUnits } from '../config/favorite-units';
 
 interface Props {
     orderedPointsValues: PointsValues[];
@@ -30,6 +31,9 @@ export const UnitSearch = (props: Props): JSX.Element => {
             const factionName = 'Heretic Astartes';
             const suggestions = suggestUnits(
                 text, factionName, orderedPointsValues);
+
+            // Always include favorite units in searchable datalist.
+            suggestions.push(...favoriteUnits);
             setSuggestions(suggestions);
         }, 50), [orderedPointsValues],
     );
