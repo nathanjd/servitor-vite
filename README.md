@@ -68,3 +68,6 @@ https://anydice.com/
 - https://www.newrecruit.eu/app/MyLists
 - https://www.unitcrunch.com/
 - https://warptracker.com
+- https://game-datacards.eu/viewer/chaos-space-marines
+- https://armylists.rmz.gs/
+
