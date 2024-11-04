@@ -1,4 +1,39 @@
 {
+    "Chaos Knights": {
+        "enhancements": {},
+        "units": {
+            "Knight Abominant": {
+                "1": 365
+            },
+            "Knight Desecrator": {
+                "1": 410
+            },
+            "Knight Despoiler": {
+                "1": 415
+            },
+            "Knight Rampager": {
+                "1": 380
+            },
+            "Knight Tyrant": {
+                "1": 510
+            },
+            "War Dog Brigand": {
+                "1": 165
+            },
+            "War Dog Executioner": {
+                "1": 140
+            },
+            "War Dog Huntsman": {
+                "1": 145
+            },
+            "War Dog Karnivore": {
+                "1": 140
+            },
+            "War Dog Stalker": {
+                "1": 145
+            }
+        }
+    },
     "Heretic Astartes": {
         "enhancements": {
             "Chaos Cult": {
@@ -52,11 +87,11 @@
         },
         "units": {
             "Abaddon the Despoiler": {
-                "1": 295
+                "1": 280
             },
             "Accursed Cultists": {
                 "8": 90,
-                "16": 180
+                "16": 195
             },
             "Chaos Bikers": {
                 "3": 70,
@@ -75,7 +110,7 @@
                 "1": 90
             },
             "Chaos Predator Annihilator": {
-                "1": 140
+                "1": 130
             },
             "Chaos Predator Destructor": {
                 "1": 140
@@ -87,8 +122,8 @@
                 "2": 70
             },
             "Chaos Terminator Squad": {
-                "5": 185,
-                "10": 370
+                "5": 180,
+                "10": 360
             },
             "Chaos Vindicator": {
                 "1": 185
@@ -111,7 +146,7 @@
                 "3": 75
             },
             "Dark Commune": {
-                "5": 65
+                "5": 80
             },
             "Defiler": {
                 "1": 190
@@ -129,7 +164,7 @@
                 "1": 90
             },
             "Havocs": {
-                "1": 135
+                "1": 125
             },
             "Helbrute": {
                 "1": 130
@@ -151,10 +186,10 @@
             },
             "Legionaries": {
                 "5": 90,
-                "10": 180
+                "10":170
             },
             "Lord Discordant on Helstalker": {
-                "1": 190
+                "1": 175
             },
             "Lucius the Eternal": {
                 "1": 95
@@ -176,21 +211,21 @@
                 "10": 170
             },
             "Obliterators": {
-                "2": 170
+                "2": 160
             },
             "Possessed": {
-                "5": 125,
-                "10": 250
+                "5": 120,
+                "10": 240
             },
             "Raptors": {
                 "5": 90,
-                "10": 180
+                "10": 170
             },
             "Sorcerer": {
                 "1": 60
             },
             "Sorcerer in Terminator Armour": {
-                "1": 90
+                "1": 80
             },
             "Traitor Enforcer": {
                 "2": 65
@@ -199,13 +234,13 @@
                 "10": 70
             },
             "Vashtorr the Arkifane": {
-                "1": 190
+                "1": 175
             },
             "Venomcrawler": {
                 "1": 120
             },
             "Warp Talons": {
-                "5": 135,
+                "5": 125,
                 "10": 270
             },
             "Warpsmith": {

@@ -28,7 +28,7 @@ const App = (): JSX.Element => {
     // Fetch points and unit name autocomplete values.
     useEffect(() => {
         const urlsToFetch = [
-            '/points/munitorum-field-manual-v1.11.json',
+            '/points/munitorum-field-manual-v1.13.json',
             '/points/legends-field-manual-1.0.json',
         ];
         const fetchAndDecode = async (url: string) => {
