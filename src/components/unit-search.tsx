@@ -32,6 +32,11 @@ export const UnitSearch = (props: Props): JSX.Element => {
             const suggestions = suggestUnits(
                 text, factionName, orderedPointsValues);
 
+            // Also add Chaos Knights
+            const additionalSuggestions = suggestUnits(
+                text, 'Chaos Knights', orderedPointsValues);
+            suggestions.push(...additionalSuggestions);
+
             // Always include favorite units in searchable datalist.
             suggestions.push(...favoriteUnits);
             setSuggestions(suggestions);

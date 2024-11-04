@@ -57,7 +57,14 @@ const combineFactionPoints = (
     );
 };
 
-const combineFactionPointsMemoized = memoize(combineFactionPoints);
+const combineFactionKeyForCache = (
+    orderedPointsValues: PointsValues[],
+    factionName: string,
+) => {
+    return orderedPointsValues + '_' + factionName;
+};
+const combineFactionPointsMemoized = memoize(
+    combineFactionPoints, combineFactionKeyForCache);
 
 const formatUnitSuggestion = (
     unitName: string,
