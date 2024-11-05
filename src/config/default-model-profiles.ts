@@ -1,6 +1,6 @@
 import { ModelProfile } from '../lib/stats/mean-weapon-roll';
 
-export const lightInfantry: ModelProfile = {
+export const guardsmen: ModelProfile = {
     move            : 6,
     toughness       : 3,
     armorSave       : 5,
@@ -11,7 +11,7 @@ export const lightInfantry: ModelProfile = {
     keywords        : ['infantry'],
 };
 
-export const heavyInfantry: ModelProfile = {
+export const spaceMarine: ModelProfile = {
     move            : 6,
     toughness       : 4,
     armorSave       : 3,
@@ -22,7 +22,7 @@ export const heavyInfantry: ModelProfile = {
     keywords        : ['infantry'],
 };
 
-export const eliteInfantry: ModelProfile = {
+export const terminator: ModelProfile = {
     move            : 5,
     toughness       : 5,
     armorSave       : 2,
@@ -33,7 +33,7 @@ export const eliteInfantry: ModelProfile = {
     keywords        : ['infantry'],
 };
 
-export const lightWalker: ModelProfile = {
+export const sentinel: ModelProfile = {
     move            : 10,
     toughness       : 7,
     armorSave       : 3,
@@ -44,7 +44,7 @@ export const lightWalker: ModelProfile = {
     keywords        : ['vehicle', 'walker', 'smoke'],
 };
 
-export const heavyWalker: ModelProfile = {
+export const dreadnaught: ModelProfile = {
     move            : 6,
     toughness       : 9,
     armorSave       : 2,
@@ -55,7 +55,7 @@ export const heavyWalker: ModelProfile = {
     keywords        : ['vehicle', 'walker', 'smoke'],
 };
 
-export const lightTransport: ModelProfile = {
+export const trukk: ModelProfile = {
     move            : 12,
     toughness       : 8,
     armorSave       : 4,
@@ -66,7 +66,7 @@ export const lightTransport: ModelProfile = {
     keywords        : ['vehicle', 'smoke'],
 };
 
-export const heavyTransport: ModelProfile = {
+export const rhino: ModelProfile = {
     move            : 12,
     toughness       : 9,
     armorSave       : 3,
@@ -77,7 +77,7 @@ export const heavyTransport: ModelProfile = {
     keywords        : ['vehicle', 'smoke'],
 };
 
-export const lightTank: ModelProfile = {
+export const predator: ModelProfile = {
     move            : 10,
     toughness       : 10,
     armorSave       : 3,
@@ -88,7 +88,7 @@ export const lightTank: ModelProfile = {
     keywords        : ['vehicle', 'smoke'],
 };
 
-export const heavyTank: ModelProfile = {
+export const landRaider: ModelProfile = {
     move            : 10,
     toughness       : 12,
     armorSave       : 2,
@@ -99,7 +99,7 @@ export const heavyTank: ModelProfile = {
     keywords        : ['vehicle', 'smoke'],
 };
 
-export const superHeavyWalker: ModelProfile = {
+export const knight: ModelProfile = {
     move            : 10,
     toughness       : 12,
     armorSave       : 3,

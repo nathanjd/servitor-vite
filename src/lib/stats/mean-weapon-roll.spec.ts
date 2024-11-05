@@ -8,16 +8,16 @@ import {
 } from './mean-weapon-roll.ts';
 
 import {
-    lightInfantry,
-    heavyInfantry,
-    eliteInfantry,
-    lightWalker,
-    heavyWalker,
-    lightTransport,
-    heavyTransport,
-    lightTank,
-    heavyTank,
-    superHeavyWalker,
+    guardsmen,
+    spaceMarine,
+    terminator,
+    sentinel,
+    dreadnaught,
+    trukk,
+    rhino,
+    predator,
+    landRaider,
+    knight,
 } from '../../config/default-model-profiles.ts';
 
 import {
@@ -48,161 +48,156 @@ describe('meanWeaponRoll(weapons, targetModel)', () => {
     ) =>
         round(meanWeaponRoll({ weapon, targetModel, modifiers }).damage);
 
-    it('should debug', () => {
-        expect(roundedDamage(plasmaPistol, eliteInfantry, [benefitOfCoverModifier]))
-            .to.equal(0.111); // vs 0.167 without cover
-    });
-
     it('should return the correct damage for weapons with no effective modifiers', () => {
-        expect(roundedDamage(laspistol, lightInfantry, [])).to.equal(0.167);
-        expect(roundedDamage(laspistol, heavyInfantry, [])).to.equal(0.056);
-        expect(roundedDamage(laspistol, eliteInfantry, [])).to.equal(0.028);
-        expect(roundedDamage(laspistol, lightWalker, [])).to.equal(0.028);
-        expect(roundedDamage(laspistol, heavyWalker, [])).to.equal(0.014);
-        expect(roundedDamage(laspistol, lightTransport, [])).to.equal(0.042);
-        expect(roundedDamage(laspistol, heavyTransport, [])).to.equal(0.028);
-        expect(roundedDamage(laspistol, lightTank, [])).to.equal(0.028);
-        expect(roundedDamage(laspistol, heavyTank, [])).to.equal(0.014);
-        expect(roundedDamage(laspistol, superHeavyWalker, []))
+        expect(roundedDamage(laspistol, guardsmen, [])).to.equal(0.167);
+        expect(roundedDamage(laspistol, spaceMarine, [])).to.equal(0.056);
+        expect(roundedDamage(laspistol, terminator, [])).to.equal(0.028);
+        expect(roundedDamage(laspistol, sentinel, [])).to.equal(0.028);
+        expect(roundedDamage(laspistol, dreadnaught, [])).to.equal(0.014);
+        expect(roundedDamage(laspistol, trukk, [])).to.equal(0.042);
+        expect(roundedDamage(laspistol, rhino, [])).to.equal(0.028);
+        expect(roundedDamage(laspistol, predator, [])).to.equal(0.028);
+        expect(roundedDamage(laspistol, landRaider, [])).to.equal(0.014);
+        expect(roundedDamage(laspistol, knight, []))
             .to.equal(0.028);
 
-        expect(roundedDamage(boltPistol, lightInfantry, [])).to.equal(0.296);
-        expect(roundedDamage(boltPistol, heavyInfantry, [])).to.equal(0.111);
-        expect(roundedDamage(boltPistol, eliteInfantry, [])).to.equal(0.037);
-        expect(roundedDamage(boltPistol, lightWalker, [])).to.equal(0.074);
-        expect(roundedDamage(boltPistol, heavyWalker, [])).to.equal(0.019);
-        expect(roundedDamage(boltPistol, lightTransport, [])).to.equal(0.056);
-        expect(roundedDamage(boltPistol, heavyTransport, [])).to.equal(0.037);
-        expect(roundedDamage(boltPistol, lightTank, [])).to.equal(0.037);
-        expect(roundedDamage(boltPistol, heavyTank, [])).to.equal(0.019);
-        expect(roundedDamage(boltPistol, superHeavyWalker, []))
+        expect(roundedDamage(boltPistol, guardsmen, [])).to.equal(0.296);
+        expect(roundedDamage(boltPistol, spaceMarine, [])).to.equal(0.111);
+        expect(roundedDamage(boltPistol, terminator, [])).to.equal(0.037);
+        expect(roundedDamage(boltPistol, sentinel, [])).to.equal(0.074);
+        expect(roundedDamage(boltPistol, dreadnaught, [])).to.equal(0.019);
+        expect(roundedDamage(boltPistol, trukk, [])).to.equal(0.056);
+        expect(roundedDamage(boltPistol, rhino, [])).to.equal(0.037);
+        expect(roundedDamage(boltPistol, predator, [])).to.equal(0.037);
+        expect(roundedDamage(boltPistol, landRaider, [])).to.equal(0.019);
+        expect(roundedDamage(boltPistol, knight, []))
             .to.equal(0.037);
 
-        expect(roundedDamage(boltgun, lightInfantry, [])).to.equal(0.593);
-        expect(roundedDamage(boltgun, heavyInfantry, [])).to.equal(0.222);
-        expect(roundedDamage(boltgun, eliteInfantry, [])).to.equal(0.074);
-        expect(roundedDamage(boltgun, lightWalker, [])).to.equal(0.148);
-        expect(roundedDamage(boltgun, heavyWalker, [])).to.equal(0.037);
-        expect(roundedDamage(boltgun, lightTransport, [])).to.equal(0.111);
-        expect(roundedDamage(boltgun, heavyTransport, [])).to.equal(0.074);
-        expect(roundedDamage(boltgun, lightTank, [])).to.equal(0.074);
-        expect(roundedDamage(boltgun, heavyTank, [])).to.equal(0.037);
-        expect(roundedDamage(boltgun, superHeavyWalker, [])).to.equal(0.074);
+        expect(roundedDamage(boltgun, guardsmen, [])).to.equal(0.593);
+        expect(roundedDamage(boltgun, spaceMarine, [])).to.equal(0.222);
+        expect(roundedDamage(boltgun, terminator, [])).to.equal(0.074);
+        expect(roundedDamage(boltgun, sentinel, [])).to.equal(0.148);
+        expect(roundedDamage(boltgun, dreadnaught, [])).to.equal(0.037);
+        expect(roundedDamage(boltgun, trukk, [])).to.equal(0.111);
+        expect(roundedDamage(boltgun, rhino, [])).to.equal(0.074);
+        expect(roundedDamage(boltgun, predator, [])).to.equal(0.074);
+        expect(roundedDamage(boltgun, landRaider, [])).to.equal(0.037);
+        expect(roundedDamage(boltgun, knight, [])).to.equal(0.074);
 
-        expect(roundedDamage(plasmaPistol, lightInfantry, [])).to.equal(0.556);
-        expect(roundedDamage(plasmaPistol, heavyInfantry, [])).to.equal(0.296);
-        expect(roundedDamage(plasmaPistol, eliteInfantry, [])).to.equal(0.222);
-        expect(roundedDamage(plasmaPistol, lightWalker, [])).to.equal(0.222);
-        expect(roundedDamage(plasmaPistol, heavyWalker, [])).to.equal(0.111);
-        expect(roundedDamage(plasmaPistol, lightTransport, [])).to.equal(0.185);
-        expect(roundedDamage(plasmaPistol, heavyTransport, [])).to.equal(0.148);
-        expect(roundedDamage(plasmaPistol, lightTank, [])).to.equal(0.148);
-        expect(roundedDamage(plasmaPistol, heavyTank, [])).to.equal(0.111);
-        expect(roundedDamage(plasmaPistol, superHeavyWalker, []))
+        expect(roundedDamage(plasmaPistol, guardsmen, [])).to.equal(0.556);
+        expect(roundedDamage(plasmaPistol, spaceMarine, [])).to.equal(0.296);
+        expect(roundedDamage(plasmaPistol, terminator, [])).to.equal(0.222);
+        expect(roundedDamage(plasmaPistol, sentinel, [])).to.equal(0.222);
+        expect(roundedDamage(plasmaPistol, dreadnaught, [])).to.equal(0.111);
+        expect(roundedDamage(plasmaPistol, trukk, [])).to.equal(0.185);
+        expect(roundedDamage(plasmaPistol, rhino, [])).to.equal(0.148);
+        expect(roundedDamage(plasmaPistol, predator, [])).to.equal(0.148);
+        expect(roundedDamage(plasmaPistol, landRaider, [])).to.equal(0.111);
+        expect(roundedDamage(plasmaPistol, knight, []))
             .to.equal(0.148);
 
-        expect(roundedDamage(plasmaPistolSupercharge, lightInfantry, []))
+        expect(roundedDamage(plasmaPistolSupercharge, guardsmen, []))
             .to.equal(0.556);
-        expect(roundedDamage(plasmaPistolSupercharge, heavyInfantry, []))
+        expect(roundedDamage(plasmaPistolSupercharge, spaceMarine, []))
             .to.equal(0.296);
-        expect(roundedDamage(plasmaPistolSupercharge, eliteInfantry, []))
+        expect(roundedDamage(plasmaPistolSupercharge, terminator, []))
             .to.equal(0.222);
-        expect(roundedDamage(plasmaPistolSupercharge, lightWalker, []))
+        expect(roundedDamage(plasmaPistolSupercharge, sentinel, []))
             .to.equal(0.222);
-        expect(roundedDamage(plasmaPistolSupercharge, heavyWalker, []))
+        expect(roundedDamage(plasmaPistolSupercharge, dreadnaught, []))
             .to.equal(0.111);
-        expect(roundedDamage(plasmaPistolSupercharge, lightTransport, []))
+        expect(roundedDamage(plasmaPistolSupercharge, trukk, []))
             .to.equal(0.185);
-        expect(roundedDamage(plasmaPistolSupercharge, heavyTransport, []))
+        expect(roundedDamage(plasmaPistolSupercharge, rhino, []))
             .to.equal(0.148);
-        expect(roundedDamage(plasmaPistolSupercharge, lightTank, []))
+        expect(roundedDamage(plasmaPistolSupercharge, predator, []))
             .to.equal(0.148);
-        expect(roundedDamage(plasmaPistolSupercharge, heavyTank, []))
+        expect(roundedDamage(plasmaPistolSupercharge, landRaider, []))
             .to.equal(0.111);
-        expect(roundedDamage(plasmaPistolSupercharge, superHeavyWalker, []))
+        expect(roundedDamage(plasmaPistolSupercharge, knight, []))
             .to.equal(0.148);
     });
 
     it('should return the correct damage for weapons againsts defenders with the benefit of cover', () => {
         const cover = benefitOfCoverModifier;
-        expect(roundedDamage(laspistol, lightInfantry, [cover]))
+        expect(roundedDamage(laspistol, guardsmen, [cover]))
             .to.equal(0.125); // vs 0.167 without cover
-        expect(roundedDamage(laspistol, heavyInfantry, [cover]))
+        expect(roundedDamage(laspistol, spaceMarine, [cover]))
             .to.equal(0.056); // AP 0 vs 3+ (no modifier effect)
-        expect(roundedDamage(laspistol, eliteInfantry, [cover]))
+        expect(roundedDamage(laspistol, terminator, [cover]))
             .to.equal(0.028); // AP 0 vs 2+ (no modifier effect)
-        expect(roundedDamage(laspistol, lightWalker, [cover]))
+        expect(roundedDamage(laspistol, sentinel, [cover]))
             .to.equal(0.028); // AP 0 vs 3+ (no modifier effect)
-        expect(roundedDamage(laspistol, heavyWalker, [cover]))
+        expect(roundedDamage(laspistol, dreadnaught, [cover]))
             .to.equal(0.014); // AP 0 vs 2+ (no modifier effect)
-        expect(roundedDamage(laspistol, lightTransport, [cover]))
+        expect(roundedDamage(laspistol, trukk, [cover]))
             .to.equal(0.028); // vs 0.042 without cover
-        expect(roundedDamage(laspistol, heavyTransport, [cover]))
+        expect(roundedDamage(laspistol, rhino, [cover]))
             .to.equal(0.028); // AP 0 vs 3+ (no modifier effect)
-        expect(roundedDamage(laspistol, lightTank, [cover]))
+        expect(roundedDamage(laspistol, predator, [cover]))
             .to.equal(0.028); // AP 0 vs 3+ (no modifier effect)
-        expect(roundedDamage(laspistol, heavyTank, [cover]))
+        expect(roundedDamage(laspistol, landRaider, [cover]))
             .to.equal(0.014); // AP 0 vs 2+ (no modifier effect)
-        expect(roundedDamage(laspistol, superHeavyWalker, [cover]))
+        expect(roundedDamage(laspistol, knight, [cover]))
             .to.equal(0.028); // AP 0 vs 3+ (no modifier effect)
 
-        expect(roundedDamage(plasmaPistol, lightInfantry, [cover]))
+        expect(roundedDamage(plasmaPistol, guardsmen, [cover]))
             .to.equal(0.37); // vs 0.556 without cover
-        expect(roundedDamage(plasmaPistol, heavyInfantry, [cover]))
+        expect(roundedDamage(plasmaPistol, spaceMarine, [cover]))
             .to.equal(0.222); // vs 0.296 without cover
-        expect(roundedDamage(plasmaPistol, eliteInfantry, [cover]))
+        expect(roundedDamage(plasmaPistol, terminator, [cover]))
             .to.equal(0.148); // vs 0.222 without cover
-        expect(roundedDamage(plasmaPistol, lightWalker, [cover]))
+        expect(roundedDamage(plasmaPistol, sentinel, [cover]))
             .to.equal(0.167); // vs 0.222 without cover
-        expect(roundedDamage(plasmaPistol, heavyWalker, [cover]))
+        expect(roundedDamage(plasmaPistol, dreadnaught, [cover]))
             .to.equal(0.074); // vs 0.111 without cover
-        expect(roundedDamage(plasmaPistol, lightTransport, [cover]))
+        expect(roundedDamage(plasmaPistol, trukk, [cover]))
             .to.equal(0.111); // vs 0.185 without cover
-        expect(roundedDamage(plasmaPistol, heavyTransport, [cover]))
+        expect(roundedDamage(plasmaPistol, rhino, [cover]))
             .to.equal(0.111); // vs 0.148 without cover
-        expect(roundedDamage(plasmaPistol, lightTank, [cover]))
+        expect(roundedDamage(plasmaPistol, predator, [cover]))
             .to.equal(0.111); // vs 0.148 without cover
-        expect(roundedDamage(plasmaPistol, heavyTank, [cover]))
+        expect(roundedDamage(plasmaPistol, landRaider, [cover]))
             .to.equal(0.074); // vs 0.111 without cover
-        expect(roundedDamage(plasmaPistol, superHeavyWalker, [cover]))
+        expect(roundedDamage(plasmaPistol, knight, [cover]))
             .to.equal(0.111); // vs 0.148 without cover
     });
 
     it('should return the correct damage for weapons with torrent', () => {
-        expect(roundedDamage(flamer, lightInfantry, [])).to.equal(1.556);
-        expect(roundedDamage(flamer, heavyInfantry, [])).to.equal(0.583);
-        expect(roundedDamage(flamer, eliteInfantry, [])).to.equal(0.194);
-        expect(roundedDamage(flamer, lightWalker, [])).to.equal(0.389);
-        expect(roundedDamage(flamer, heavyWalker, [])).to.equal(0.097);
-        expect(roundedDamage(flamer, lightTransport, [])).to.equal(0.292);
-        expect(roundedDamage(flamer, heavyTransport, [])).to.equal(0.194);
-        expect(roundedDamage(flamer, lightTank, [])).to.equal(0.194);
-        expect(roundedDamage(flamer, heavyTank, [])).to.equal(0.097);
-        expect(roundedDamage(flamer, superHeavyWalker, []))
+        expect(roundedDamage(flamer, guardsmen, [])).to.equal(1.556);
+        expect(roundedDamage(flamer, spaceMarine, [])).to.equal(0.583);
+        expect(roundedDamage(flamer, terminator, [])).to.equal(0.194);
+        expect(roundedDamage(flamer, sentinel, [])).to.equal(0.389);
+        expect(roundedDamage(flamer, dreadnaught, [])).to.equal(0.097);
+        expect(roundedDamage(flamer, trukk, [])).to.equal(0.292);
+        expect(roundedDamage(flamer, rhino, [])).to.equal(0.194);
+        expect(roundedDamage(flamer, predator, [])).to.equal(0.194);
+        expect(roundedDamage(flamer, landRaider, [])).to.equal(0.097);
+        expect(roundedDamage(flamer, knight, []))
             .to.equal(0.194);
     });
 
     it('should return the correct damage for weapons with heavy whose model did not move', () => {
         const heavy = heavyModifier;
-        expect(roundedDamage(autocannon, lightInfantry, [heavy]))
+        expect(roundedDamage(autocannon, guardsmen, [heavy]))
             .to.equal(0.926);
-        expect(roundedDamage(autocannon, heavyInfantry, [heavy]))
+        expect(roundedDamage(autocannon, spaceMarine, [heavy]))
             .to.equal(1.389);
-        expect(roundedDamage(autocannon, eliteInfantry, [heavy]))
+        expect(roundedDamage(autocannon, terminator, [heavy]))
             .to.equal(1.111);
-        expect(roundedDamage(autocannon, lightWalker, [heavy]))
+        expect(roundedDamage(autocannon, sentinel, [heavy]))
             .to.equal(1.667);
-        expect(roundedDamage(autocannon, heavyWalker, [heavy]))
+        expect(roundedDamage(autocannon, dreadnaught, [heavy]))
             .to.equal(0.833);
-        expect(roundedDamage(autocannon, lightTransport, [heavy]))
+        expect(roundedDamage(autocannon, trukk, [heavy]))
             .to.equal(2.222);
-        expect(roundedDamage(autocannon, heavyTransport, [heavy]))
+        expect(roundedDamage(autocannon, rhino, [heavy]))
             .to.equal(1.25);
-        expect(roundedDamage(autocannon, lightTank, [heavy]))
+        expect(roundedDamage(autocannon, predator, [heavy]))
             .to.equal(0.833);
-        expect(roundedDamage(autocannon, heavyTank, [heavy]))
+        expect(roundedDamage(autocannon, landRaider, [heavy]))
             .to.equal(0.556);
-        expect(roundedDamage(autocannon, superHeavyWalker, [heavy]))
+        expect(roundedDamage(autocannon, knight, [heavy]))
             .to.equal(0.833);
     });
 
@@ -210,50 +205,50 @@ describe('meanWeaponRoll(weapons, targetModel)', () => {
         const rapidFire = rapidFireModifier;
 
         // Outside half range.
-        expect(roundedDamage(lasgun, lightInfantry, []))
+        expect(roundedDamage(lasgun, guardsmen, []))
             .to.equal(0.167);
 
         // Within half range.
-        expect(roundedDamage(lasgun, lightInfantry, [rapidFire]))
+        expect(roundedDamage(lasgun, guardsmen, [rapidFire]))
             .to.equal(0.333);
-        expect(roundedDamage(lasgun, heavyInfantry, [rapidFire]))
+        expect(roundedDamage(lasgun, spaceMarine, [rapidFire]))
             .to.equal(0.167);
-        expect(roundedDamage(lasgun, eliteInfantry, [rapidFire]))
+        expect(roundedDamage(lasgun, terminator, [rapidFire]))
             .to.equal(0.111);
-        expect(roundedDamage(lasgun, lightWalker, [rapidFire]))
+        expect(roundedDamage(lasgun, sentinel, [rapidFire]))
             .to.equal(0.139);
-        expect(roundedDamage(lasgun, heavyWalker, [rapidFire]))
+        expect(roundedDamage(lasgun, dreadnaught, [rapidFire]))
             .to.equal(0.083);
-        expect(roundedDamage(lasgun, lightTransport, [rapidFire]))
+        expect(roundedDamage(lasgun, trukk, [rapidFire]))
             .to.equal(0.292);
-        expect(roundedDamage(lasgun, heavyTransport, [rapidFire]))
+        expect(roundedDamage(lasgun, rhino, [rapidFire]))
             .to.equal(0.222);
-        expect(roundedDamage(lasgun, lightTank, [rapidFire]))
+        expect(roundedDamage(lasgun, predator, [rapidFire]))
             .to.equal(0.25);
-        expect(roundedDamage(lasgun, heavyTank, [rapidFire]))
+        expect(roundedDamage(lasgun, landRaider, [rapidFire]))
             .to.equal(0.139);
-        expect(roundedDamage(lasgun, superHeavyWalker, [rapidFire]))
+        expect(roundedDamage(lasgun, knight, [rapidFire]))
             .to.equal(0.306);
 
         // Outside half range (rapid fire 2)
-        expect(roundedDamage(combiBolter, lightInfantry, []))
+        expect(roundedDamage(combiBolter, guardsmen, []))
             .to.equal(0.593);
 
         // Within half range (rapid fire 2)
-        expect(roundedDamage(combiBolter, lightInfantry, [rapidFire]))
+        expect(roundedDamage(combiBolter, guardsmen, [rapidFire]))
             .to.equal(1.185);
     });
 
     it('should return the correct damage for weapons with variable damage', () => {
-        expect(roundedDamage(lascannon, lightInfantry, [])).to.equal(0.417);
-        expect(roundedDamage(lascannon, heavyInfantry, [])).to.equal(0.694);
-        expect(roundedDamage(lascannon, eliteInfantry, [])).to.equal(0.625);
-        expect(roundedDamage(lascannon, lightWalker, [])).to.equal(1.25);
-        expect(roundedDamage(lascannon, heavyWalker, [])).to.equal(1);
-        expect(roundedDamage(lascannon, lightTransport, [])).to.equal(1.25);
-        expect(roundedDamage(lascannon, heavyTransport, [])).to.equal(1.25);
-        expect(roundedDamage(lascannon, lightTank, [])).to.equal(1.25);
-        expect(roundedDamage(lascannon, heavyTank, [])).to.equal(0.75);
-        expect(roundedDamage(lascannon, superHeavyWalker, [])).to.equal(0.75);
+        expect(roundedDamage(lascannon, guardsmen, [])).to.equal(0.417);
+        expect(roundedDamage(lascannon, spaceMarine, [])).to.equal(0.694);
+        expect(roundedDamage(lascannon, terminator, [])).to.equal(0.625);
+        expect(roundedDamage(lascannon, sentinel, [])).to.equal(1.25);
+        expect(roundedDamage(lascannon, dreadnaught, [])).to.equal(1);
+        expect(roundedDamage(lascannon, trukk, [])).to.equal(1.25);
+        expect(roundedDamage(lascannon, rhino, [])).to.equal(1.25);
+        expect(roundedDamage(lascannon, predator, [])).to.equal(1.25);
+        expect(roundedDamage(lascannon, landRaider, [])).to.equal(0.75);
+        expect(roundedDamage(lascannon, knight, [])).to.equal(0.75);
     });
 });

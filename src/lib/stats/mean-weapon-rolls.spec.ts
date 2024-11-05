@@ -9,7 +9,7 @@ import {
 
 import { meanWeaponRolls } from './mean-weapon-rolls.ts';
 
-import { heavyWalker } from '../../config/default-model-profiles.ts';
+import { dreadnaught } from '../../config/default-model-profiles.ts';
 import { laspistol, lascannon } from '../../config/default-weapon-profiles.ts';
 
 describe('meanWeaponRolls', () => {
@@ -29,7 +29,7 @@ describe('meanWeaponRolls', () => {
     };
 
     it('should return 0 for each mean when passed no weapons', () => {
-        const rolls = roundedRolls([], heavyWalker, []);
+        const rolls = roundedRolls([], dreadnaught, []);
         expect(rolls.hits).to.equal(0);
         expect(rolls.wounds).to.equal(0);
         expect(rolls.unsavedWounds).to.equal(0);
@@ -37,7 +37,7 @@ describe('meanWeaponRolls', () => {
     });
 
     it('should return the sum of each mean', () => {
-        const rolls = roundedRolls([laspistol, lascannon], heavyWalker, []);
+        const rolls = roundedRolls([laspistol, lascannon], dreadnaught, []);
         expect(rolls.hits).to.equal(0.833);
         expect(rolls.wounds).to.equal(0.389);
         expect(rolls.unsavedWounds).to.equal(0.231);
