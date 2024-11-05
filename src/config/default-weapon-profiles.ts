@@ -1,6 +1,6 @@
 import { WeaponProfile } from '../lib/stats/mean-weapon-roll';
 
-export const lightPistol: WeaponProfile = {
+export const laspistol: WeaponProfile = {
     range           : 12,
     attacks         : '1',
     hitSkill        : 4,
@@ -10,7 +10,7 @@ export const lightPistol: WeaponProfile = {
     keywords        : ['pistol'],
 };
 
-export const lightRifle: WeaponProfile = {
+export const lasgun: WeaponProfile = {
     range           : 24,
     attacks         : '1',
     hitSkill        : 4,
@@ -20,7 +20,7 @@ export const lightRifle: WeaponProfile = {
     keywords        : ['rapid fire 1'],
 };
 
-export const heavyPistol: WeaponProfile = {
+export const boltPistol: WeaponProfile = {
     range           : 12,
     attacks         : '1',
     hitSkill        : 3,
@@ -30,7 +30,7 @@ export const heavyPistol: WeaponProfile = {
     keywords        : ['pistol'],
 };
 
-export const heavyRifle: WeaponProfile = {
+export const boltgun: WeaponProfile = {
     range           : 24,
     attacks         : '2',
     hitSkill        : 3,
@@ -40,7 +40,17 @@ export const heavyRifle: WeaponProfile = {
     keywords        : [],
 };
 
-export const antiInfantryRifle: WeaponProfile = {
+export const combiBolter: WeaponProfile = {
+    range           : 24,
+    attacks         : '2',
+    hitSkill        : 3,
+    strength        : 4,
+    armorPenetration: 0,
+    damage          : '1',
+    keywords        : ['rapid fire 2'],
+};
+
+export const combiWeapon: WeaponProfile = {
     range           : 24,
     attacks         : '1',
     hitSkill        : 4,
@@ -54,7 +64,7 @@ export const antiInfantryRifle: WeaponProfile = {
     ],
 };
 
-export const flamethrower: WeaponProfile = {
+export const flamer: WeaponProfile = {
     range           : 12,
     attacks         : 'd6',
     hitSkill        : -Infinity,
@@ -64,7 +74,7 @@ export const flamethrower: WeaponProfile = {
     keywords        : ['ignores cover', 'torrent'],
 };
 
-export const elitePistol: WeaponProfile = {
+export const plasmaPistol: WeaponProfile = {
     range           : 12,
     attacks         : '1',
     hitSkill        : 3,
@@ -74,7 +84,7 @@ export const elitePistol: WeaponProfile = {
     keywords        : ['pistol'],
 };
 
-export const elitePistolOvercharge: WeaponProfile = {
+export const plasmaPistolSupercharge: WeaponProfile = {
     range           : 12,
     attacks         : '1',
     hitSkill        : 3,
@@ -84,7 +94,7 @@ export const elitePistolOvercharge: WeaponProfile = {
     keywords        : ['devastating wounds', 'hazardous', 'pistol'],
 };
 
-export const eliteRifle: WeaponProfile = {
+export const plasmaGun: WeaponProfile = {
     range           : 24,
     attacks         : '1',
     hitSkill        : 3,
@@ -94,7 +104,7 @@ export const eliteRifle: WeaponProfile = {
     keywords        : ['rapid fire 1'],
 };
 
-export const eliteRifleOvercharge: WeaponProfile = {
+export const plasmaGunSupercharge: WeaponProfile = {
     range           : 24,
     attacks         : '1',
     hitSkill        : 3,
@@ -104,7 +114,7 @@ export const eliteRifleOvercharge: WeaponProfile = {
     keywords        : ['devastating wounds', 'hazardous', 'rapid fire 1'],
 };
 
-export const antiMaterialRifle: WeaponProfile = {
+export const autocannon: WeaponProfile = {
     range           : 48,
     attacks         : '2',
     hitSkill        : 4,
@@ -114,7 +124,7 @@ export const antiMaterialRifle: WeaponProfile = {
     keywords        : ['heavy'],
 };
 
-export const beamRifle: WeaponProfile = {
+export const lascannon: WeaponProfile = {
     range           : 48,
     attacks         : '1',
     hitSkill        : 4,

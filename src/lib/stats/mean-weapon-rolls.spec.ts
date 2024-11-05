@@ -10,7 +10,7 @@ import {
 import { meanWeaponRolls } from './mean-weapon-rolls.ts';
 
 import { heavyWalker } from '../../config/default-model-profiles.ts';
-import { lightPistol, beamRifle } from '../../config/default-weapon-profiles.ts';
+import { laspistol, lascannon } from '../../config/default-weapon-profiles.ts';
 
 describe('meanWeaponRolls', () => {
     const round = (num: number): number => Math.round(num * 1000) / 1000;
@@ -37,7 +37,7 @@ describe('meanWeaponRolls', () => {
     });
 
     it('should return the sum of each mean', () => {
-        const rolls = roundedRolls([lightPistol, beamRifle], heavyWalker, []);
+        const rolls = roundedRolls([laspistol, lascannon], heavyWalker, []);
         expect(rolls.hits).to.equal(0.833);
         expect(rolls.wounds).to.equal(0.389);
         expect(rolls.unsavedWounds).to.equal(0.231);
