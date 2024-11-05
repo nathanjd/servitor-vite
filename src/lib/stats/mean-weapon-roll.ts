@@ -143,7 +143,6 @@ export const meanWeaponRoll = (context: AttackContext) => {
         attacks,
         damage,
         hitSkill,
-        keywords: weaponKeywords,
         strength,
     } = effectiveContext.weapon;
     const {
@@ -153,10 +152,7 @@ export const meanWeaponRoll = (context: AttackContext) => {
         wounds,
     } = effectiveContext.targetModel;
 
-    const hitChance = weaponKeywords.includes('torrent') ?
-        1 : getHitChance(hitSkill);
-
-    // TODO: Accept config for range for the purposes of Rapid fire.
+    const hitChance = getHitChance(hitSkill);
     const effectiveAttacks = averageForDiceExpression(attacks);
     const meanHits = effectiveAttacks * hitChance;
 

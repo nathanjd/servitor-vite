@@ -22,6 +22,7 @@ import {
 
 import {
     lightPistol,
+    lightRifle,
     heavyPistol,
     heavyRifle,
     elitePistol,
@@ -34,6 +35,7 @@ import {
 import {
     benefitOfCoverModifier,
     heavyModifier,
+    rapidFireModifier,
 } from '../../config/default-attack-modifiers.ts';
 
 describe('meanWeaponRoll(weapons, targetModel)', () => {
@@ -201,6 +203,32 @@ describe('meanWeaponRoll(weapons, targetModel)', () => {
             .to.equal(0.556);
         expect(roundedDamage(antiMaterialRifle, superHeavyWalker, [heavy]))
             .to.equal(0.833);
+    });
+
+    it('should return the correct damage for weapons with rapid fire in half range', () => {
+        const rapidFire = rapidFireModifier;
+        expect(roundedDamage(lightRifle, lightInfantry, []))
+            .to.equal(0.167);
+        expect(roundedDamage(lightRifle, lightInfantry, [rapidFire]))
+            .to.equal(0.333);
+        expect(roundedDamage(lightRifle, heavyInfantry, [rapidFire]))
+            .to.equal(0.167);
+        expect(roundedDamage(lightRifle, eliteInfantry, [rapidFire]))
+            .to.equal(0.111);
+        expect(roundedDamage(lightRifle, lightWalker, [rapidFire]))
+            .to.equal(0.139);
+        expect(roundedDamage(lightRifle, heavyWalker, [rapidFire]))
+            .to.equal(0.083);
+        expect(roundedDamage(lightRifle, lightTransport, [rapidFire]))
+            .to.equal(0.292);
+        expect(roundedDamage(lightRifle, heavyTransport, [rapidFire]))
+            .to.equal(0.222);
+        expect(roundedDamage(lightRifle, lightTank, [rapidFire]))
+            .to.equal(0.25);
+        expect(roundedDamage(lightRifle, heavyTank, [rapidFire]))
+            .to.equal(0.139);
+        expect(roundedDamage(lightRifle, superHeavyWalker, [rapidFire]))
+            .to.equal(0.306);
     });
 
     it('should return the correct damage for weapons with variable damage', () => {

@@ -2,6 +2,9 @@ import {
     AttackContext,
 } from '../lib/stats/mean-weapon-roll';
 
+/**
+ * Improves defender's armor save by 1 given it has the benefit of cover.
+ */
 export const benefitOfCoverModifier = (
     currentContext: AttackContext,
     originalContext: AttackContext,
@@ -26,14 +29,78 @@ export const benefitOfCoverModifier = (
     return currentContext;
 };
 
-// Improves hit skill of weapons with the heavy keyword by 1 given the model
-// bearing them has not moved.
+/**
+ * Improves hit skill of weapons with the heavy keyword by 1 given the model
+ * bearing them has not moved.
+ */
 export const heavyModifier = (
     currentContext: AttackContext,
 ): AttackContext => {
     if (currentContext.weapon.keywords.includes('heavy')) {
         const { hitSkill } = currentContext.weapon;
         currentContext.weapon.hitSkill = hitSkill - 1;
+    }
+
+    return currentContext;
+};
+
+/**
+ * Causes an automatic wound on a critical hit.
+ */
+export const lethalHitsModifier = (
+    currentContext: AttackContext,
+): AttackContext => {
+    if (currentContext.weapon.keywords.includes('lethal hits 1')) {
+
+        // This is wrong.
+        // TODO: Make lethal apply only to the individual attack, not every
+        // attack with the weapon.
+        currentContext.weapon.strength = Infinity;
+    }
+
+    return currentContext;
+};
+
+/**
+ * Adds bonus attack(s) given attacking model is within half range of defending
+ * model.
+ */
+export const rapidFireModifier = (
+    currentContext: AttackContext,
+): AttackContext => {
+    let numberOfExtraAttacks = 1;
+    const found = currentContext.weapon.keywords.find(keyword => {
+        const searchResult = /^rapid fire ?(\d+)/.exec(keyword);
+        if (searchResult === null) {
+            return false;
+        }
+
+        const stringAttacks = searchResult[1];
+        const numberAttacks = parseInt(stringAttacks, 10);
+        if (!isNaN(numberAttacks)) {
+            numberOfExtraAttacks = numberAttacks;
+        }
+        return true;
+    });
+
+    if (found) {
+        const attacks = parseInt(currentContext.weapon.attacks, 10);
+        currentContext.weapon.attacks = `${attacks + numberOfExtraAttacks}`;
+    }
+
+    return currentContext;
+};
+
+/**
+ * Adds a bonus attack on a critical hit.
+ */
+export const sustainedHitsModifier = (
+    currentContext: AttackContext,
+): AttackContext => {
+    if (currentContext.weapon.keywords.includes('sustained hits 1')) {
+        // This is wrong.
+        // TODO: Only apply this after a critical hit.
+        currentContext.weapon.attacks = currentContext.weapon.attacks + 1;
     }
 
     return currentContext;
