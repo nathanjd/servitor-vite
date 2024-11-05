@@ -25,3 +25,16 @@ export const benefitOfCoverModifier = (
 
     return currentContext;
 };
+
+// Improves hit skill of weapons with the heavy keyword by 1 given the model
+// bearing them has not moved.
+export const heavyModifier = (
+    currentContext: AttackContext,
+): AttackContext => {
+    if (currentContext.weapon.keywords.includes('heavy')) {
+        const { hitSkill } = currentContext.weapon;
+        currentContext.weapon.hitSkill = hitSkill - 1;
+    }
+
+    return currentContext;
+};

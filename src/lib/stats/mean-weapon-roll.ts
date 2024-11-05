@@ -47,18 +47,42 @@ export interface AttackContext {
 }
 
 /**
- * Takes a hit skill (ex: 3+) and returns the chance of passing it on a d6.
- * Range: 0-1.
+ * Takes a hit skill (ex: 3+) and returns the chance of passing it on a d6. A
+ * hit chance of Infinity will return an automatic hit. Range: 0-1.
  */
-const getHitChance = (hitSkill: number): number => (6 - hitSkill) / 6;
+export const getHitChance = (hitSkill: number): number => {
+    // A hit skill of negative Infinity will be considered an automatic hit. For
+    // example, weapons with the torrent keyword.
+    if (hitSkill === -Infinity) {
+        return 1;
+    }
+
+    // A roll of 1 always fails so a hit skill better than 2+ has no effect.
+    if (hitSkill > 6) {
+        return 1 / 6;
+    }
+
+    // A roll of 6 always succeeds so a hit skill worse than 6+ has no
+    // effect.
+    if (hitSkill < 2) {
+        return 5 / 6;
+    }
+
+    return (7 - hitSkill) / 6;
+};
 
 /**
  * Takes a save (ex: 3+) and returns the chance of failing it on a d6. Range:
  * 0-1.
  */
-const unsavedChance = (save: number): number => {
-    if (save >= 7) {
+export const getUnsavedChance = (save: number): number => {
+    if (save > 6) {
         return 1;
+    }
+
+    // A roll of 1 always fails so a save better than 2+ has no effect.
+    if (save < 2) {
+        return 1 / 6;
     }
 
     return 1 - (6 - save + 1) / 6;
@@ -68,12 +92,16 @@ const unsavedChance = (save: number): number => {
  * Takes the attacker's strength and defender's toughness and returns the
  * chance of passing the wound roll on a d6. Range: 0-1.
  */
-const woundChance = (strength: number, toughness: number): number => {
+export const getWoundChance = (strength: number, toughness: number): number => {
+    if (strength === Infinity) {
+        return 1;
+    }
+
     if (strength >= toughness * 2) {
         return 5 / 6;
     }
 
-    if (strength * 2 < toughness) {
+    if (strength * 2 <= toughness) {
         return 1 / 6;
     }
 
@@ -93,9 +121,21 @@ const woundChance = (strength: number, toughness: number): number => {
  * the target model.
  */
 export const meanWeaponRoll = (context: AttackContext) => {
+    // Process all modifiers successively.
     const effectiveContext = context.modifiers.reduce(
         (modifiedContext, modifier) => modifier(modifiedContext, context),
-        context,
+
+        // Clone context so that mutations don't affect the original context.
+        {
+            // This clone assumes weapon has no nested properties.
+            weapon: Object.assign(context.weapon),
+
+            // This clone assumes targetModel has no nested properties.
+            targetModel: Object.assign(context.targetModel),
+
+            // No reason to clone modifiers as these should not be mutated.
+            modifiers: context.modifiers,
+        },
     );
 
     const {
@@ -113,21 +153,17 @@ export const meanWeaponRoll = (context: AttackContext) => {
         wounds,
     } = effectiveContext.targetModel;
 
-    // TODO: Compute modifiers from more than just heavy.
-    // TODO: Accept config for whether unit moved or not.
-    const hitSkillModifier = weaponKeywords.includes('heavy') ? 1 : 0;
     const hitChance = weaponKeywords.includes('torrent') ?
-        1 : getHitChance(hitSkill - hitSkillModifier);
+        1 : getHitChance(hitSkill);
 
     // TODO: Accept config for range for the purposes of Rapid fire.
     const effectiveAttacks = averageForDiceExpression(attacks);
     const meanHits = effectiveAttacks * hitChance;
 
-    // Don't allow armor save to be better than a 2+.
-    const effectiveArmorSave = Math.max(armorSave + armorPenetration, 2);
+    const effectiveArmorSave = armorSave + armorPenetration;
     const save = Math.min(effectiveArmorSave, invulnerableSave);
-    const meanWounds = meanHits * woundChance(strength, toughness);
-    const meanUnsavedWounds = meanWounds * unsavedChance(save);
+    const meanWounds = meanHits * getWoundChance(strength, toughness);
+    const meanUnsavedWounds = meanWounds * getUnsavedChance(save);
 
     // Weakly ensure damage from a single attack does not spill over to
     // another model.

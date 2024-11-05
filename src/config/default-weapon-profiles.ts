@@ -57,7 +57,7 @@ export const antiInfantryRifle: WeaponProfile = {
 export const flamethrower: WeaponProfile = {
     range           : 12,
     attacks         : 'd6',
-    hitSkill        : 7,
+    hitSkill        : -Infinity,
     strength        : 4,
     armorPenetration: 0,
     damage          : '1',
