@@ -1,4 +1,5 @@
 import {
+    AttackModifierFunction,
     meanWeaponRoll,
     ModelProfile,
     WeaponProfile,
@@ -13,10 +14,11 @@ import {
 export const meanWeaponRolls = (
     weapons: WeaponProfile[],
     targetModel: ModelProfile,
+    modifiers: AttackModifierFunction[],
 ): WeaponRollResult => {
     // Assume all weapons can attack.
     const rollPerWeapon = weapons
-        .map((weapon) => meanWeaponRoll(weapon, targetModel));
+        .map((weapon) => meanWeaponRoll({ weapon, targetModel, modifiers }));
 
     const meanHits = rollPerWeapon
         .reduce((sum, roll) => sum + roll.hits, 0);

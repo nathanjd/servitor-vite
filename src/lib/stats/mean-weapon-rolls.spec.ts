@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+    AttackModifierFunction,
     ModelProfile,
     WeaponProfile,
     WeaponRollResult,
@@ -14,9 +15,11 @@ import { lightPistol, beamRifle } from '../../config/default-weapon-profiles.ts'
 describe('meanWeaponRolls', () => {
     const round = (num: number): number => Math.round(num * 1000) / 1000;
     const roundedRolls = (
-        weapons: WeaponProfile[], model: ModelProfile,
+        weapons: WeaponProfile[],
+        model: ModelProfile,
+        attackModifiers: AttackModifierFunction[],
     ): WeaponRollResult  => {
-        const roll = meanWeaponRolls(weapons, model);
+        const roll = meanWeaponRolls(weapons, model, attackModifiers);
         return {
             hits         : round(roll.hits),
             wounds       : round(roll.wounds),
@@ -26,7 +29,7 @@ describe('meanWeaponRolls', () => {
     };
 
     it('should return 0 for each mean when passed no weapons', () => {
-        const rolls = roundedRolls([], heavyWalker);
+        const rolls = roundedRolls([], heavyWalker, []);
         expect(rolls.hits).to.equal(0);
         expect(rolls.wounds).to.equal(0);
         expect(rolls.unsavedWounds).to.equal(0);
@@ -34,7 +37,7 @@ describe('meanWeaponRolls', () => {
     });
 
     it('should return the sum of each mean', () => {
-        const rolls = roundedRolls([lightPistol, beamRifle], heavyWalker);
+        const rolls = roundedRolls([lightPistol, beamRifle], heavyWalker, []);
         expect(rolls.hits).to.equal(0.833);
         expect(rolls.wounds).to.equal(0.389);
         expect(rolls.unsavedWounds).to.equal(0.231);

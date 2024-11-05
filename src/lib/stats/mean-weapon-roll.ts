@@ -28,6 +28,24 @@ export interface WeaponRollResult {
     damage       : number;
 }
 
+// Called when computing an attack roll's effective stats (such as strength or
+// armor save). Takes the attacking weapon, defending model and the current
+// modified context before running this modifier to return the modified conext.
+// Base stats can be looked up in originalContext. Never modify originalContext!
+export interface AttackModifierFunction {
+    (
+        currentContext: AttackContext,
+        originalContext: AttackContext,
+    ): AttackContext;
+}
+
+// All the context needed to compute a mean weapon roll.
+export interface AttackContext {
+    weapon     : WeaponProfile;
+    targetModel: ModelProfile;
+    modifiers  : AttackModifierFunction[];
+}
+
 /**
  * Takes a hit skill (ex: 3+) and returns the chance of passing it on a d6.
  * Range: 0-1.
@@ -74,10 +92,12 @@ const woundChance = (strength: number, toughness: number): number => {
  * Returns the mean result of an attack roll for the passed weapon if fired at
  * the target model.
  */
-export const meanWeaponRoll = (
-    weapon: WeaponProfile,
-    targetModel: ModelProfile,
-) => {
+export const meanWeaponRoll = (context: AttackContext) => {
+    const effectiveContext = context.modifiers.reduce(
+        (modifiedContext, modifier) => modifier(modifiedContext, context),
+        context,
+    );
+
     const {
         armorPenetration,
         attacks,
@@ -85,13 +105,13 @@ export const meanWeaponRoll = (
         hitSkill,
         keywords: weaponKeywords,
         strength,
-    } = weapon;
+    } = effectiveContext.weapon;
     const {
         armorSave,
         invulnerableSave,
         toughness,
         wounds,
-    } = targetModel;
+    } = effectiveContext.targetModel;
 
     // TODO: Compute modifiers from more than just heavy.
     // TODO: Accept config for whether unit moved or not.
@@ -103,8 +123,8 @@ export const meanWeaponRoll = (
     const effectiveAttacks = averageForDiceExpression(attacks);
     const meanHits = effectiveAttacks * hitChance;
 
-    // TODO: Accept config for whether target model is in cover.
-    const effectiveArmorSave = armorSave + armorPenetration;
+    // Don't allow armor save to be better than a 2+.
+    const effectiveArmorSave = Math.max(armorSave + armorPenetration, 2);
     const save = Math.min(effectiveArmorSave, invulnerableSave);
     const meanWounds = meanHits * woundChance(strength, toughness);
     const meanUnsavedWounds = meanWounds * unsavedChance(save);
