@@ -1,6 +1,4 @@
-import {
-    AttackContext,
-} from '../lib/stats/mean-weapon-roll';
+import { AttackContext } from '../lib/stats/context/attack-context';
 
 /**
  * Improves defender's armor save by 1 given it has the benefit of cover.

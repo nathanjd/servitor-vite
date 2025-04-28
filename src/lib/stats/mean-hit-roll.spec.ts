@@ -3,9 +3,10 @@ import { describe, expect, it } from 'vitest';
 import {
     AttackModifierFunction,
     HitModifierFunction,
-    ModelProfile,
-    WeaponProfile,
-} from './mean-weapon-roll';
+} from './context/attack-context.ts';
+
+import { WeaponProfile } from '../profiles/weapon-profile';
+import { ModelProfile } from '../profiles/model-profile';
 
 import { meanHitRoll, HitRollResult } from './mean-hit-roll';
 

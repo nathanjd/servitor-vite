@@ -1,9 +1,5 @@
-import {
-    AttackContext,
-    cloneHitContext,
-    getHitChance,
-    getHitContext,
-} from './mean-weapon-roll';
+import { getHitChance } from '../profiles/weapon-profile';
+import { AttackContext, cloneHitContext, getHitContext } from './context/attack-context';
 
 export interface HitRollResult {
     meanHits          : number;

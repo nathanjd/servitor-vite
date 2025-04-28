@@ -1,4 +1,4 @@
-import { ModelProfile } from '../lib/stats/mean-weapon-roll';
+import { ModelProfile } from '../lib/profiles/model-profile';
 
 export const guardsmen: ModelProfile = {
     name            : 'Guardsmen',

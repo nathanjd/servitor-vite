@@ -1,6 +1,4 @@
-import {
-    HitContext,
-} from '../lib/stats/mean-weapon-roll';
+import { HitContext } from '../lib/stats/context/attack-context';
 
 /**
  * Causes an automatic wound on a critical hit.
