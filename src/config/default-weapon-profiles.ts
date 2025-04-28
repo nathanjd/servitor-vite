@@ -1,6 +1,7 @@
 import { WeaponProfile } from '../lib/stats/mean-weapon-roll';
 
 export const laspistol: WeaponProfile = {
+    name            : 'Laspistol',
     range           : 12,
     attacks         : '1',
     hitSkill        : 4,
@@ -11,6 +12,7 @@ export const laspistol: WeaponProfile = {
 };
 
 export const lasgun: WeaponProfile = {
+    name            : 'Lasgun',
     range           : 24,
     attacks         : '1',
     hitSkill        : 4,
@@ -21,6 +23,7 @@ export const lasgun: WeaponProfile = {
 };
 
 export const boltPistol: WeaponProfile = {
+    name            : 'Bolt pistol',
     range           : 12,
     attacks         : '1',
     hitSkill        : 3,
@@ -31,6 +34,7 @@ export const boltPistol: WeaponProfile = {
 };
 
 export const boltgun: WeaponProfile = {
+    name            : 'Boltgun',
     range           : 24,
     attacks         : '2',
     hitSkill        : 3,
@@ -41,6 +45,7 @@ export const boltgun: WeaponProfile = {
 };
 
 export const combiBolter: WeaponProfile = {
+    name            : 'Combi-bolter',
     range           : 24,
     attacks         : '2',
     hitSkill        : 3,
@@ -51,6 +56,7 @@ export const combiBolter: WeaponProfile = {
 };
 
 export const combiWeapon: WeaponProfile = {
+    name            : 'Combi-weapon',
     range           : 24,
     attacks         : '1',
     hitSkill        : 4,
@@ -65,6 +71,7 @@ export const combiWeapon: WeaponProfile = {
 };
 
 export const flamer: WeaponProfile = {
+    name            : 'Flamer',
     range           : 12,
     attacks         : 'd6',
     hitSkill        : -Infinity,
@@ -75,6 +82,7 @@ export const flamer: WeaponProfile = {
 };
 
 export const plasmaPistol: WeaponProfile = {
+    name            : 'Plasma pistol - standard',
     range           : 12,
     attacks         : '1',
     hitSkill        : 3,
@@ -85,6 +93,7 @@ export const plasmaPistol: WeaponProfile = {
 };
 
 export const plasmaPistolSupercharge: WeaponProfile = {
+    name            : 'Plasma pistol - supercharge',
     range           : 12,
     attacks         : '1',
     hitSkill        : 3,
@@ -95,6 +104,7 @@ export const plasmaPistolSupercharge: WeaponProfile = {
 };
 
 export const plasmaGun: WeaponProfile = {
+    name            : 'Plasma gun - standard',
     range           : 24,
     attacks         : '1',
     hitSkill        : 3,
@@ -105,6 +115,7 @@ export const plasmaGun: WeaponProfile = {
 };
 
 export const plasmaGunSupercharge: WeaponProfile = {
+    name            : 'Plasma gun - supercharge',
     range           : 24,
     attacks         : '1',
     hitSkill        : 3,
@@ -114,7 +125,19 @@ export const plasmaGunSupercharge: WeaponProfile = {
     keywords        : ['devastating wounds', 'hazardous', 'rapid fire 1'],
 };
 
+export const heavyBolter: WeaponProfile = {
+    name            : 'Heavy bolter',
+    range           : 36,
+    attacks         : '3',
+    hitSkill        : 4,
+    strength        : 5,
+    armorPenetration: 1,
+    damage          : '2',
+    keywords        : ['heavy', 'sustained hits 1'],
+};
+
 export const autocannon: WeaponProfile = {
+    name            : 'Autocannon',
     range           : 48,
     attacks         : '2',
     hitSkill        : 4,
@@ -125,6 +148,7 @@ export const autocannon: WeaponProfile = {
 };
 
 export const lascannon: WeaponProfile = {
+    name            : 'Lascannon',
     range           : 48,
     attacks         : '1',
     hitSkill        : 4,

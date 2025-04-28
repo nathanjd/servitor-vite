@@ -1,6 +1,9 @@
 // Auth handlers and endpoints for pastebin.com. Ultimately, this isn't viable
 // for me as login only works with password auth. Cannot use google OAuth.
 
+// Official docs
+// https://pastebin.com/doc_api
+
 /**
  * Returns a valid user session key for a pastebin.com user if the passed
  * credentials match. Only one key can be active at the same time for the same

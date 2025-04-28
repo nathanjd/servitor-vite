@@ -1,16 +1,27 @@
 import { averageForDiceExpression } from './average-for-dice-expression';
 
 export interface WeaponProfile {
+    name: string;
+
     armorPenetration: number;
     attacks         : string;
     damage          : string;
-    hitSkill        : number;
-    range           : number;
-    strength        : number;
-    keywords        : string[];
+
+    // A 3 scores a Hit on a hit roll of 3+.
+    hitSkill: number;
+    range   : number;
+    strength: number;
+    keywords: string[];
+
+    // A 5 scores a Critical Hit on an unmodified hit roll of 5+.
+    criticalHitSkill?: number;
+
+    // A 6 scores a Critical Wound on an unmodified wound roll of 6.
+    criticalWoundSkill?: number;
 }
 
 export interface ModelProfile {
+    name            : string;
     leadership      : number;
     move            : number;
     objectiveControl: number;
@@ -39,12 +50,63 @@ export interface AttackModifierFunction {
     ): AttackContext;
 }
 
+export interface HitModifierFunction {
+    (
+        currentContext: HitContext,
+        originalContext: HitContext,
+    ): HitContext;
+}
+
 // All the context needed to compute a mean weapon roll.
 export interface AttackContext {
-    weapon     : WeaponProfile;
-    targetModel: ModelProfile;
-    modifiers  : AttackModifierFunction[];
+    weapon                : WeaponProfile;
+    targetModel           : ModelProfile;
+    modifiers             : AttackModifierFunction[];
+    criticalHitModifiers  : HitModifierFunction[];
+    criticalWoundModifiers: AttackModifierFunction[];
 }
+
+export interface HitContext {
+    attackContext   : AttackContext;
+    meanHits        : number;
+    meanCriticalHits: number;
+}
+
+export interface CriticalHitContext {
+    attackContext   : AttackContext;
+    meanCriticalHits: number;
+}
+
+// The result of a single attack roll.
+export interface AttackResult {
+    hits         : number;
+    wounds       : number;
+    unsavedWounds: number;
+    damage       : number;
+}
+
+// The result of a single attack roll with extra attacks. The extra attacks will
+// need to be rolled recursively until there are none left.
+export interface IntermediateAttackResult {
+    attackResult: AttackResult;
+    extraAttacks: number;
+}
+
+export const getHitContext = (attackContext: AttackContext): HitContext => {
+    return {
+        // Clone context so that mutations don't affect the original context.
+        attackContext: attackContext.modifiers.reduce(
+            (modifiedContext, modifier) =>
+                modifier(modifiedContext, attackContext),
+
+            // Clone context so that mutations don't affect the original
+            // context.
+            cloneContext(attackContext),
+        ),
+        meanHits        : 0,
+        meanCriticalHits: 0,
+    };
+};
 
 /**
  * Takes a hit skill (ex: 3+) and returns the chance of passing it on a d6. A
@@ -116,6 +178,110 @@ export const getWoundChance = (strength: number, toughness: number): number => {
     return 3 / 6;
 };
 
+export const cloneContext = (context: AttackContext): AttackContext => ({
+    // This clone assumes weapon has no nested properties.
+    weapon: Object.assign(context.weapon),
+
+    // This clone assumes targetModel has no nested properties.
+    targetModel: Object.assign(context.targetModel),
+
+    // No reason to clone modifiers as these should not be mutated.
+    modifiers             : context.modifiers,
+    criticalHitModifiers  : context.criticalHitModifiers,
+    criticalWoundModifiers: context.criticalWoundModifiers,
+});
+
+export const cloneHitContext = (hitContext: HitContext): HitContext => ({
+    attackContext: cloneContext(hitContext.attackContext),
+
+    // No need to clone primitives.
+    meanHits        : hitContext.meanHits,
+    meanCriticalHits: hitContext.meanCriticalHits,
+});
+
+/**
+ * Returns the mean result of single attack roll for the passed weapon against
+ * the target model.
+ */
+export const meanAttackRoll = (context: AttackContext): AttackResult => {
+    // Process all modifiers successively.
+    const effectiveContext = context.modifiers.reduce(
+        (modifiedContext, modifier) => modifier(modifiedContext, context),
+
+        // Clone context so that mutations don't affect the original context.
+        cloneContext(context),
+    );
+
+    const {
+        armorPenetration,
+
+        // attacks,
+        damage,
+        hitSkill,
+        strength,
+    } = effectiveContext.weapon;
+    const {
+        armorSave,
+        invulnerableSave,
+        toughness,
+        wounds,
+    } = effectiveContext.targetModel;
+
+    const hitChance = getHitChance(hitSkill);
+
+    // TODO: Modify crit chance with context.
+    const criticalHitChance = 1 / 6;
+    const noncriticalHitChance = criticalHitChance - hitChance;
+
+    // non-critical hit
+    const effectiveArmorSave = armorSave + armorPenetration;
+    const save = Math.min(effectiveArmorSave, invulnerableSave);
+    const meanWounds = noncriticalHitChance *
+        getWoundChance(strength, toughness);
+    const meanUnsavedWounds = meanWounds * getUnsavedChance(save);
+
+    // critical hit
+    const criticalHitContext = context.criticalHitModifiers.reduce(
+        (modifiedContext, modifier) => modifier(modifiedContext, context),
+
+        // Clone context so that mutations don't affect the original context.
+        cloneContext(context),
+    );
+
+    const criticalEffectiveArmorSave =
+        criticalHitContext.targetModel.armorSave +
+        criticalHitContext.weapon.armorPenetration;
+    const criticalSave = Math.min(effectiveArmorSave, invulnerableSave);
+    const meanCriticalWounds = 0;
+
+    // critical wound
+    const criticalWoundContext = context.criticalWoundModifiers.reduce(
+        (modifiedContext, modifier) => modifier(modifiedContext, context),
+
+        // Clone context so that mutations don't affect the original context.
+        cloneContext(context),
+    );
+
+
+    // Weakly ensure damage from a single attack does not spill over to
+    // another model.
+    // TODO: Account for consecutive hits. Ex: A 2 damage weapon against
+    // 3 wound models would only have effective damage 1 on every other
+    // unsaved wound.
+    // TODO: Account for feel no pain. Damage higher than the model's max
+    // wounds is still useful against feel no pain.
+    const effectiveDamage =
+        Math.min(averageForDiceExpression(damage), wounds);
+
+    const meanDamage = meanUnsavedWounds * effectiveDamage;
+    return {
+        hits         : meanHits,
+        wounds       : meanWounds,
+        unsavedWounds: meanUnsavedWounds,
+        damage       : meanDamage,
+    };
+};
+
 /**
  * Returns the mean result of an attack roll for the passed weapon if fired at
  * the target model.
@@ -126,16 +292,7 @@ export const meanWeaponRoll = (context: AttackContext) => {
         (modifiedContext, modifier) => modifier(modifiedContext, context),
 
         // Clone context so that mutations don't affect the original context.
-        {
-            // This clone assumes weapon has no nested properties.
-            weapon: Object.assign(context.weapon),
-
-            // This clone assumes targetModel has no nested properties.
-            targetModel: Object.assign(context.targetModel),
-
-            // No reason to clone modifiers as these should not be mutated.
-            modifiers: context.modifiers,
-        },
+        cloneContext(context),
     );
 
     const {
@@ -155,6 +312,26 @@ export const meanWeaponRoll = (context: AttackContext) => {
     const hitChance = getHitChance(hitSkill);
     const effectiveAttacks = averageForDiceExpression(attacks);
     const meanHits = effectiveAttacks * hitChance;
+
+    // TODO: add criticalHitModifiers?
+    // const meanCriticalHits = effectiveAttacks * (1 / 6);
+    // const meanNonCriticalHits = meanHits - meanCriticalHits;
+
+    // const criticalHitContext = context.modifiers.reduce(
+    //     (modifiedContext, modifier) => modifier(modifiedContext, context),
+
+    //     // Clone context so that mutations don't affect the original context.
+    //     {
+    //         // This clone assumes weapon has no nested properties.
+    //         weapon: Object.assign(context.weapon),
+
+    //         // This clone assumes targetModel has no nested properties.
+    //         targetModel: Object.assign(context.targetModel),
+
+    //         // No reason to clone modifiers as these should not be mutated.
+    //         modifiers: context.modifiers,
+    //     },
+    // );
 
     const effectiveArmorSave = armorSave + armorPenetration;
     const save = Math.min(effectiveArmorSave, invulnerableSave);

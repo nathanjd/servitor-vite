@@ -1,6 +1,7 @@
 import { ModelProfile } from '../lib/stats/mean-weapon-roll';
 
 export const guardsmen: ModelProfile = {
+    name            : 'Guardsmen',
     move            : 6,
     toughness       : 3,
     armorSave       : 5,
@@ -12,6 +13,7 @@ export const guardsmen: ModelProfile = {
 };
 
 export const spaceMarine: ModelProfile = {
+    name            : 'Space Marine',
     move            : 6,
     toughness       : 4,
     armorSave       : 3,
@@ -23,6 +25,7 @@ export const spaceMarine: ModelProfile = {
 };
 
 export const terminator: ModelProfile = {
+    name            : 'Terminator',
     move            : 5,
     toughness       : 5,
     armorSave       : 2,
@@ -34,6 +37,7 @@ export const terminator: ModelProfile = {
 };
 
 export const sentinel: ModelProfile = {
+    name            : 'Sentinel',
     move            : 10,
     toughness       : 7,
     armorSave       : 3,
@@ -45,6 +49,7 @@ export const sentinel: ModelProfile = {
 };
 
 export const dreadnaught: ModelProfile = {
+    name            : 'Dreadnaught',
     move            : 6,
     toughness       : 9,
     armorSave       : 2,
@@ -56,6 +61,7 @@ export const dreadnaught: ModelProfile = {
 };
 
 export const trukk: ModelProfile = {
+    name            : 'Trukk',
     move            : 12,
     toughness       : 8,
     armorSave       : 4,
@@ -67,6 +73,7 @@ export const trukk: ModelProfile = {
 };
 
 export const rhino: ModelProfile = {
+    name            : 'Rhino',
     move            : 12,
     toughness       : 9,
     armorSave       : 3,
@@ -78,6 +85,7 @@ export const rhino: ModelProfile = {
 };
 
 export const predator: ModelProfile = {
+    name            : 'Predator',
     move            : 10,
     toughness       : 10,
     armorSave       : 3,
@@ -89,6 +97,7 @@ export const predator: ModelProfile = {
 };
 
 export const landRaider: ModelProfile = {
+    name            : 'Land Raider',
     move            : 10,
     toughness       : 12,
     armorSave       : 2,
@@ -100,6 +109,7 @@ export const landRaider: ModelProfile = {
 };
 
 export const knight: ModelProfile = {
+    name            : 'Imperial Knight',
     move            : 10,
     toughness       : 12,
     armorSave       : 3,

@@ -45,23 +45,6 @@ export const heavyModifier = (
 };
 
 /**
- * Causes an automatic wound on a critical hit.
- */
-export const lethalHitsModifier = (
-    currentContext: AttackContext,
-): AttackContext => {
-    if (currentContext.weapon.keywords.includes('lethal hits 1')) {
-
-        // This is wrong.
-        // TODO: Make lethal apply only to the individual attack, not every
-        // attack with the weapon.
-        currentContext.weapon.strength = Infinity;
-    }
-
-    return currentContext;
-};
-
-/**
  * Adds bonus attack(s) given attacking model is within half range of defending
  * model.
  */
@@ -91,17 +74,8 @@ export const rapidFireModifier = (
     return currentContext;
 };
 
-/**
- * Adds a bonus attack on a critical hit.
- */
-export const sustainedHitsModifier = (
-    currentContext: AttackContext,
-): AttackContext => {
-    if (currentContext.weapon.keywords.includes('sustained hits 1')) {
-        // This is wrong.
-        // TODO: Only apply this after a critical hit.
-        currentContext.weapon.attacks = currentContext.weapon.attacks + 1;
-    }
-
-    return currentContext;
-};
+// export const marksOfChaos  = (
+//     currentContext: AttackContext,
+// ): AttackContext => {
+//     if hitRoll
+// }

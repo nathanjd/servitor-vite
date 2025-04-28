@@ -8,6 +8,10 @@ interface Props {
 export const AppHeader = (props: Props): JSX.Element => {
     const { isNavOpen, setIsNavOpen } = props;
 
+    const handleExport = useCallback(async () => {
+        console.log('export');
+    }, []);
+
     const handleToggleNav = useCallback(() => {
         setIsNavOpen(!isNavOpen);
     }, [isNavOpen, setIsNavOpen]);
@@ -28,7 +32,10 @@ export const AppHeader = (props: Props): JSX.Element => {
             </div>
 
             <div className="header-toolbar">
-                <button className="toggle-nav-button button">
+                <button
+                    className="toggle-nav-button button"
+                    onClick={handleExport}
+                >
                     Export
                 </button>
             </div>

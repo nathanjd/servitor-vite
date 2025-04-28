@@ -62,6 +62,11 @@ https://anydice.com/
 
 - https://phuoc.ng/collection/mirror-a-text-area/add-autocomplete-to-your-text-area/
 - https://github.com/ianstormtaylor/slate for autocomplete and WYSIWYG?
+- https://muffinman.io/blog/native-dual-range-input/
+
+## Reading
+
+- https://www.thedarkfortress.co.uk/tech_reports/2_dice_rolls.php
 
 ## Similar Apps
 
@@ -70,4 +75,5 @@ https://anydice.com/
 - https://warptracker.com
 - https://game-datacards.eu/viewer/chaos-space-marines
 - https://armylists.rmz.gs/
+- https://warorgan.com/
 
