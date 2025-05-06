@@ -39,10 +39,6 @@ export const ArmyEditor = (props: Props): JSX.Element => {
         setLastId(id);
     }
 
-    const handleAddSuggestion = useCallback((suggestion: string) => {
-        setText(text + '\n' + suggestion);
-    }, [text, setText]);
-
     const handleDeleteArmy = useCallback(() => {
         const shouldDelete = confirm(`Delete army? ${id}`);
         if (shouldDelete) {
@@ -69,6 +65,12 @@ export const ArmyEditor = (props: Props): JSX.Element => {
             }
         }, 200), [handleSaveArmy, id],
     );
+
+    const handleAddSuggestion = useCallback((suggestion: string) => {
+        const newText = text + '\n' + suggestion;
+        setText(newText);
+        handleParseArmyText(newText);
+    }, [handleParseArmyText, text, setText]);
 
     // const findCurrentUnitName = (
     //     armyText: string,
