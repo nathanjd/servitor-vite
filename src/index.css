@@ -93,4 +93,8 @@ button:focus-visible {
     border-color: var(--dark-button-border-color);
     color: var(--dark-button-font-color);
   }
+  textarea {
+    background-color: var(--dark-input-background-color);
+    color: var(--dark-input-font-color);
+  }
 }
