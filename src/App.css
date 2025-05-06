@@ -2,22 +2,9 @@ html, body {
     height: 100%;
 }
 
-body {
-    background-color: Canvas;
-    color: CanvasText;
-}
-
 .link {
     cursor: pointer;
-    color: LinkText;
 }
-
-/* @media (prefers-color-scheme: dark) {
-    .link {
-        color: LinkText;
-    }
-} */
-
 
 #root {
     display: flex;
@@ -77,7 +64,13 @@ body {
 
 .armies-header {
     padding: 0.8rem;
-    border-bottom: 1px solid GrayText;
+    border-bottom: 1px solid var(---dark-font-color);
+}
+
+@media (prefers-color-scheme: dark) {
+    .armies-header {
+        border-color: var(---dark-font-color);
+    }
 }
 
 .armies-nav-list {
@@ -89,21 +82,21 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0.4rem 0.8rem;
-    border-bottom: 1px solid GrayText;
+    border-bottom: 1px solid var(---dark-font-color);
 }
 
 .armies-nav-item.active {
-    background-color: Highlight;
-    color: HighlightText;
+    background-color: var(--dark-highlight-background-color);
+    color: var(--dark-highlight-text-color);
 }
 
 .armies-nav-item.active > .armies-nav-item-clickable {
-    color: HighlightText;
+    color: var(--dark-highlight-text-color)
 }
 
 .armies-nav-item-clickable {
     cursor: pointer;
-    color: ButtonText;
+    color: var(--dark-font-color);
 }
 
 /* .armies-nav-item-clickable:focus {
@@ -131,7 +124,7 @@ body {
 }
 
 .armies-footer {
-    border-top: 1px solid GrayText;
+    border-top: 1px solid var(---dark-font-color);
     padding: 0.8rem;
 }
 
@@ -173,8 +166,8 @@ body {
   height: 100%;
   flex: 1;
   margin: 0;
-  background-color: Field;
-  color: FieldText;
+  background-color: var(--dark-input-backgrounf-color);
+  color: var(--dark-input-font-color);
 }
 
 .unit-search {
@@ -191,7 +184,7 @@ body {
 }
 
 .army-id {
-    color: GrayText;
+    color: var(---dark-font-color);
 }
 
 .delete-army-button {
