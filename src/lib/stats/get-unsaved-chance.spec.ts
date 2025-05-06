@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getUnsavedChance } from './mean-weapon-roll';
+import { getUnsavedChance } from '../profiles/model-profile';
 
 describe('getUnsavedChance(weapons, targetModel)', () => {
     const round = (num: number): number => Math.round(num * 1000) / 1000;

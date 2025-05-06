@@ -29,84 +29,86 @@ export interface IntermediateAttackResult {
  * Returns the mean result of single attack roll for the passed weapon against
  * the target model.
  */
-export const meanAttackRoll = (context: AttackContext): AttackResult => {
-    // Process all modifiers successively.
-    const effectiveContext = context.modifiers.reduce(
-        (modifiedContext, modifier) => modifier(modifiedContext, context),
+// export const meanAttackRoll = (context: AttackContext): AttackResult => {
+//     return {};
 
-        // Clone context so that mutations don't affect the original context.
-        cloneContext(context),
-    );
+//     // Process all modifiers successively.
+//     const effectiveContext = context.modifiers.reduce(
+//         (modifiedContext, modifier) => modifier(modifiedContext, context),
 
-    const {
-        armorPenetration,
+//         // Clone context so that mutations don't affect the original context.
+//         cloneContext(context),
+//     );
 
-        // attacks,
-        damage,
-        hitSkill,
-        strength,
-    } = effectiveContext.weapon;
-    const {
-        armorSave,
-        invulnerableSave,
-        toughness,
-        wounds,
-    } = effectiveContext.targetModel;
+//     const {
+//         armorPenetration,
 
-    const hitChance = getHitChance(hitSkill);
+//         // attacks,
+//         damage,
+//         hitSkill,
+//         strength,
+//     } = effectiveContext.weapon;
+//     const {
+//         armorSave,
+//         invulnerableSave,
+//         toughness,
+//         wounds,
+//     } = effectiveContext.targetModel;
 
-    // TODO: Modify crit chance with context.
-    const criticalHitChance = 1 / 6;
-    const noncriticalHitChance = criticalHitChance - hitChance;
+//     const hitChance = getHitChance(hitSkill);
 
-    // non-critical hit
-    const effectiveArmorSave = armorSave + armorPenetration;
-    const save = Math.min(effectiveArmorSave, invulnerableSave);
-    const meanWounds = noncriticalHitChance *
-        getWoundChance(strength, toughness);
-    const meanUnsavedWounds = meanWounds * getUnsavedChance(save);
+//     // TODO: Modify crit chance with context.
+//     const criticalHitChance = 1 / 6;
+//     const noncriticalHitChance = criticalHitChance - hitChance;
 
-    // critical hit
-    const criticalHitContext = context.criticalHitModifiers.reduce(
-        (modifiedContext, modifier) => modifier(modifiedContext, context),
+//     // non-critical hit
+//     const effectiveArmorSave = armorSave + armorPenetration;
+//     const save = Math.min(effectiveArmorSave, invulnerableSave);
+//     const meanWounds = noncriticalHitChance *
+//         getWoundChance(strength, toughness);
+//     const meanUnsavedWounds = meanWounds * getUnsavedChance(save);
 
-        // Clone context so that mutations don't affect the original context.
-        cloneContext(context),
-    );
+//     // critical hit
+//     const criticalHitContext = context.criticalHitModifiers.reduce(
+//         (modifiedContext, modifier) => modifier(modifiedContext, context),
 
-    const criticalEffectiveArmorSave =
-        criticalHitContext.targetModel.armorSave +
-        criticalHitContext.weapon.armorPenetration;
-    const criticalSave = Math.min(effectiveArmorSave, invulnerableSave);
-    const meanCriticalWounds = 0;
+//         // Clone context so that mutations don't affect the original context.
+//         cloneContext(context),
+//     );
 
-    // critical wound
-    const criticalWoundContext = context.criticalWoundModifiers.reduce(
-        (modifiedContext, modifier) => modifier(modifiedContext, context),
+//     const criticalEffectiveArmorSave =
+//         criticalHitContext.targetModel.armorSave +
+//         criticalHitContext.weapon.armorPenetration;
+//     const criticalSave = Math.min(effectiveArmorSave, invulnerableSave);
+//     const meanCriticalWounds = 0;
 
-        // Clone context so that mutations don't affect the original context.
-        cloneContext(context),
-    );
+//     // critical wound
+//     const criticalWoundContext = context.criticalWoundModifiers.reduce(
+//         (modifiedContext, modifier) => modifier(modifiedContext, context),
+
+//         // Clone context so that mutations don't affect the original context.
+//         cloneContext(context),
+//     );
 
 
-    // Weakly ensure damage from a single attack does not spill over to
-    // another model.
-    // TODO: Account for consecutive hits. Ex: A 2 damage weapon against
-    // 3 wound models would only have effective damage 1 on every other
-    // unsaved wound.
-    // TODO: Account for feel no pain. Damage higher than the model's max
-    // wounds is still useful against feel no pain.
-    const effectiveDamage =
-        Math.min(averageForDiceExpression(damage), wounds);
+//     // Weakly ensure damage from a single attack does not spill over to
+//     // another model.
+//     // TODO: Account for consecutive hits. Ex: A 2 damage weapon against
+//     // 3 wound models would only have effective damage 1 on every other
+//     // unsaved wound.
+//     // TODO: Account for feel no pain. Damage higher than the model's max
+//     // wounds is still useful against feel no pain.
+//     const effectiveDamage =
+//         Math.min(averageForDiceExpression(damage), wounds);
 
-    const meanDamage = meanUnsavedWounds * effectiveDamage;
-    return {
-        hits         : meanHits,
-        wounds       : meanWounds,
-        unsavedWounds: meanUnsavedWounds,
-        damage       : meanDamage,
-    };
-};
+//     const meanDamage = meanUnsavedWounds * effectiveDamage;
+//     return {
+//         hits         : meanHits,
+//         wounds       : meanWounds,
+//         unsavedWounds: meanUnsavedWounds,
+//         damage       : meanDamage,
+//     };
+// };
 
 /**
  * Returns the mean result of an attack roll for the passed weapon if fired at

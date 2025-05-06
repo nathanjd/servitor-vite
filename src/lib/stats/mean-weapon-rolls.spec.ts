@@ -1,11 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-    AttackModifierFunction,
-    ModelProfile,
-    WeaponProfile,
-    WeaponRollResult,
-} from './mean-weapon-roll.ts';
+import { AttackModifierFunction } from './context/attack-context.ts';
+import { WeaponProfile } from '../profiles/weapon-profile.ts';
+import { ModelProfile } from '../profiles/model-profile.ts';
+import { WeaponRollResult } from './mean-weapon-roll.ts';
 
 import { meanWeaponRolls } from './mean-weapon-rolls.ts';
 

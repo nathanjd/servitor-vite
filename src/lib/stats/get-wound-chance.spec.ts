@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getWoundChance } from './mean-weapon-roll';
+import { getWoundChance } from '../profiles/weapon-profile';
 
 describe('getWoundChance(weapons, targetModel)', () => {
     const round = (num: number): number => Math.round(num * 1000) / 1000;

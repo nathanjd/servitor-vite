@@ -1,11 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-    AttackModifierFunction,
-    meanWeaponRoll,
-    ModelProfile,
-    WeaponProfile,
-} from './mean-weapon-roll.ts';
+import { AttackModifierFunction } from './context/attack-context.ts';
+import { ModelProfile } from '../profiles/model-profile.ts';
+import { WeaponProfile } from '../profiles/weapon-profile.ts';
+
+import { meanWeaponRoll } from './mean-weapon-roll.ts';
 
 import {
     guardsmen,
@@ -46,7 +45,13 @@ describe('meanWeaponRoll(weapons, targetModel)', () => {
         targetModel: ModelProfile,
         modifiers: AttackModifierFunction[],
     ) =>
-        round(meanWeaponRoll({ weapon, targetModel, modifiers }).damage);
+        round(meanWeaponRoll({
+            weapon,
+            targetModel,
+            modifiers,
+            criticalHitModifiers  : [],
+            criticalWoundModifiers: [],
+        }).damage);
 
     it('should return the correct damage for weapons with no effective modifiers', () => {
         expect(roundedDamage(laspistol, guardsmen, [])).to.equal(0.167);

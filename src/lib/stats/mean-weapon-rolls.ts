@@ -1,10 +1,8 @@
-import {
-    AttackModifierFunction,
-    meanWeaponRoll,
-    ModelProfile,
-    WeaponProfile,
-    WeaponRollResult,
-} from './mean-weapon-roll';
+import { AttackModifierFunction } from './context/attack-context.ts';
+import { WeaponProfile } from '../profiles/weapon-profile.ts';
+import { ModelProfile } from '../profiles/model-profile.ts';
+import { WeaponRollResult } from './mean-weapon-roll.ts';
+import { meanWeaponRoll } from './mean-weapon-roll';
 
 /**
  * Returns the mean result of an attack roll for all passed weapons if fired at
@@ -18,7 +16,13 @@ export const meanWeaponRolls = (
 ): WeaponRollResult => {
     // Assume all weapons can attack.
     const rollPerWeapon = weapons
-        .map((weapon) => meanWeaponRoll({ weapon, targetModel, modifiers }));
+        .map((weapon) => meanWeaponRoll({
+            weapon,
+            targetModel,
+            modifiers,
+            criticalHitModifiers  : [],
+            criticalWoundModifiers: [],
+        }));
 
     const meanHits = rollPerWeapon
         .reduce((sum, roll) => sum + roll.hits, 0);
