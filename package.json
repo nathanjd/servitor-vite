@@ -7,9 +7,12 @@
     "coverage": "vitest run --coverage",
     "dev": "vite",
     "build": "tsc && vite build",
+    "deploy": "yarn build && yarn upload && yarn invalidate-cache",
+    "invalidate-cache": "aws cloudfront create-invalidation --distribution-id E3EICN0K00SFIW --paths '/*'",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "upload": "aws s3 cp dist/ s3://servitor-pwa.com --recursive"
   },
   "dependencies": {
     "imurmurhash": "^0.1.4",

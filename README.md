@@ -30,6 +30,33 @@ export default {
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
 
+## Setup
+
+Install dependencies:
+
+```sh
+yarn install
+```
+
+Install AWS CLI:
+
+```sh
+brew update
+brew install awscli
+```
+
+## Local Dev
+
+```sh
+yarn dev
+```
+
+## Deploy
+
+```sh
+yarn deploy
+```
+
 ## Refactored Dependencies
 
 - https://github.com/pmndrs/zustand
