@@ -166,7 +166,7 @@ html, body {
   height: 100%;
   flex: 1;
   margin: 0;
-  background-color: var(--dark-input-backgrounf-color);
+  background-color: var(--dark-input-background-color);
   color: var(--dark-input-font-color);
 }
 
