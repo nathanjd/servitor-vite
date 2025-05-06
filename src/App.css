@@ -7,18 +7,6 @@ body {
     color: CanvasText;
 }
 
-/* @media (prefers-color-scheme: dark) {
-    html {
-
-    }
-} */
-
-.button {
-    background-color: ButtonFace;
-    border-color: ButtonBorder;
-    color: ButtonText;
-}
-
 .link {
     cursor: pointer;
     color: LinkText;
