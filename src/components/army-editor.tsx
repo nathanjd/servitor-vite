@@ -44,7 +44,10 @@ export const ArmyEditor = (props: Props): JSX.Element => {
     }, [text, setText]);
 
     const handleDeleteArmy = useCallback(() => {
-        onDeleteArmy(id);
+        const shouldDelete = confirm(`Delete army? ${id}`);
+        if (shouldDelete) {
+            onDeleteArmy(id);
+        }
     }, [id, onDeleteArmy]);
 
     // Saving armies is much more expensive than parsing them so use a longer
