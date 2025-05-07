@@ -67,6 +67,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+textarea, input[type="search"] {
+  /* Prevent zoom on selection on iOS */
+  font-size: 16px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: var(--light-font-color);

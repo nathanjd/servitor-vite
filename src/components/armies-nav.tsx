@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Army } from '../lib/parse/parse-army-text';
 
 import { ArmiesNavItem } from './armies-nav-item';
@@ -22,6 +23,13 @@ export const ArmiesNav = (props: Props): JSX.Element => {
         onSelectArmy,
         orderedIds,
     } = props;
+
+    const handleResetArmies = useCallback(() => {
+        const shouldReset = confirm('Reset armies to default?');
+        if (shouldReset) {
+            onResetArmies();
+        }
+    }, [onResetArmies]);
 
     const items = orderedIds.map((id) =>
         <ArmiesNavItem
@@ -50,7 +58,7 @@ export const ArmiesNav = (props: Props): JSX.Element => {
             </nav>
 
             <div className="armies-footer">
-                <button className="button" onClick={onResetArmies}>
+                <button className="button" onClick={handleResetArmies}>
                     Reset Armies
                 </button>
             </div>

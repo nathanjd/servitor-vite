@@ -13,6 +13,8 @@ import { ArmiesNav } from './components/armies-nav';
 import { parseArmyText } from './lib/parse/parse-army-text';
 import { PointsValues } from './lib/suggest/suggest-unit';
 
+const permissionNameWrite: PermissionName = 'clipboard-write' as PermissionName;
+
 const App = (): JSX.Element => {
     const armyService = useArmyService(defaultArmyService);
     const {
@@ -54,6 +56,24 @@ const App = (): JSX.Element => {
         }
     }, [deleteArmy, handleCreateArmy, setEditingArmyId]);
 
+    const handleExport = useCallback(() => {
+        const writeText = () =>
+            navigator.clipboard.writeText(JSON.stringify(armyStore))
+                .then(() => console.log('clipboard write succeeded'))
+                .catch((err) => console.error('clipboard write failed', err));
+
+        navigator.permissions.query({ name: permissionNameWrite })
+            .then((result) => {
+                if (result.state === 'granted' || result.state === 'prompt') {
+                    writeText();
+                }
+            })
+            .catch((err) => {
+                console.error('clipboard write failed, trying again.', err);
+                writeText();
+            });
+    }, [armyStore]);
+
     const handleSelectArmy = useCallback((armyId: string) => {
         setEditingArmyId(armyId);
     }, [setEditingArmyId]);
@@ -61,6 +81,8 @@ const App = (): JSX.Element => {
     const handleResetArmyStore = useCallback(() => {
         const savedArmyStore = resetArmyStoreToDefault();
         setEditingArmyId(savedArmyStore.orderedIds[0]);
+
+        // TODO: Reset army editor value when default-raw-army-id-1 is selected.
     }, [resetArmyStoreToDefault, setEditingArmyId]);
 
     return (
@@ -68,6 +90,7 @@ const App = (): JSX.Element => {
             <ArmyServiceContext.Provider value={armyService}>
                 <AppHeader
                     isNavOpen={isArmiesNavOpen}
+                    onExport={handleExport}
                     setIsNavOpen={setIsArmiesNavOpen}
                 />
 

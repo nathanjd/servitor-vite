@@ -3,14 +3,15 @@ import { useCallback } from 'react';
 interface Props {
     isNavOpen   : boolean;
     setIsNavOpen: (newIsNavOpen: boolean) => void;
+    onExport    : () => void;
 }
 
 export const AppHeader = (props: Props): JSX.Element => {
-    const { isNavOpen, setIsNavOpen } = props;
+    const { isNavOpen, onExport, setIsNavOpen } = props;
 
     const handleExport = useCallback(async () => {
-        console.log('export');
-    }, []);
+        onExport();
+    }, [onExport]);
 
     const handleToggleNav = useCallback(() => {
         setIsNavOpen(!isNavOpen);
