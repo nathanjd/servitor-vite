@@ -24,7 +24,9 @@ export const ArmiesNavItem = (props: Props): JSX.Element => {
                 onClick={handleSelectArmy}
                 tabIndex={0}
             >
-                <h3 className="armies-nav-item-name">{name}</h3>
+                <h3 className="armies-nav-item-name">
+                    {name || 'Untitled Army'}
+                </h3>
                 <h4 className="armies-nav-item-points">{points} Points</h4>
             </a>
         </li>
