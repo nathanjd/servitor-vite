@@ -7,7 +7,6 @@ interface Props {
     activeId     : string;
     byId         : { [id: string]: Army };
     isOpen       : boolean;
-    onCreateArmy : () => void;
     onResetArmies: () => void;
     onSelectArmy : (id: string) => void;
     orderedIds   : string[];
@@ -18,7 +17,6 @@ export const ArmiesNav = (props: Props): JSX.Element => {
         activeId,
         byId,
         isOpen,
-        onCreateArmy,
         onResetArmies,
         onSelectArmy,
         orderedIds,
@@ -44,14 +42,7 @@ export const ArmiesNav = (props: Props): JSX.Element => {
 
     return (
         <div className={`armies-listing${isOpen ? ' open' : ''}`}>
-            <div className="armies-header">
-                <button
-                    className="create-new-armies-button button"
-                    onClick={onCreateArmy}
-                >
-                    New Army
-                </button>
-            </div>
+            {/* <div className="armies-header"></div> */}
 
             <nav className="armies-nav">
                 <ol className="armies-nav-list">{items}</ol>

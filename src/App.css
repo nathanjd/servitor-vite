@@ -2,6 +2,20 @@ html, body {
     height: 100%;
 }
 
+button.icon-button {
+    padding: 0.4rem;
+}
+
+button.icon-button > svg {
+    /* Prevent extra space for descenders as we are showing an icon, not text */
+    display: block;
+}
+
+.button-spacer {
+    display: inline-block;
+    width: 0.8rem;
+}
+
 .link {
     cursor: pointer;
 }
@@ -18,6 +32,12 @@ html, body {
     display: flex;
     justify-content: space-between;
     padding: 0.8rem;
+}
+
+.header-nav {
+    box-sizing: border-box;
+    /* 16em - 0.8rem padding-left */
+    width: 15.2rem;
 }
 
 .header-title {
@@ -54,6 +74,7 @@ html, body {
 
 .create-new-armies-button {
     float: right;
+    margin-left: 0.8rem;
 }
 
 .armies-nav {
@@ -124,6 +145,7 @@ html, body {
 }
 
 .armies-footer {
+    display: none;
     border-top: 1px solid var(---dark-font-color);
     padding: 0.8rem;
 }
@@ -177,7 +199,14 @@ html, body {
     flex-grow: 2;
 }
 
+.add-suggestion-button {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
 .army-footer {
+    /* Hide this while it only contains debug information. */
+    display: none;
     padding-top: 0.8rem;
 }
 

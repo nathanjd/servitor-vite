@@ -1,13 +1,32 @@
 import { useCallback } from 'react';
 
+import { Export, FilePlus, Sidebar, Trash } from '@phosphor-icons/react';
+
 interface Props {
+    activeId    : string;
     isNavOpen   : boolean;
-    setIsNavOpen: (newIsNavOpen: boolean) => void;
+    onCreateArmy: () => void;
+    onDeleteArmy: (id: string) => void;
     onExport    : () => void;
+    setIsNavOpen: (newIsNavOpen: boolean) => void;
 }
 
 export const AppHeader = (props: Props): JSX.Element => {
-    const { isNavOpen, onExport, setIsNavOpen } = props;
+    const {
+        activeId,
+        isNavOpen,
+        onCreateArmy,
+        onDeleteArmy,
+        onExport,
+        setIsNavOpen,
+    } = props;
+
+    const handleDeleteArmy = useCallback(() => {
+        const shouldDelete = confirm(`Delete army? ${activeId}`);
+        if (shouldDelete) {
+            onDeleteArmy(activeId);
+        }
+    }, [activeId, onDeleteArmy]);
 
     const handleExport = useCallback(async () => {
         onExport();
@@ -21,10 +40,27 @@ export const AppHeader = (props: Props): JSX.Element => {
         <div className="app-header">
             <div className="header-nav">
                 <button
-                    className="toggle-nav-button button"
+                    aria-label={isNavOpen ? 'Close Nav' : 'Open Nav'}
+                    className="toggle-nav-button button icon-button"
                     onClick={handleToggleNav}
                 >
-                    {isNavOpen ? 'Close Nav' : 'Open Nav'}
+                    <Sidebar />
+                </button>
+                <div className="button-spacer" />
+                <button
+                    aria-label="Create New Army"
+                    className="create-new-armies-button button icon-button"
+                    onClick={onCreateArmy}
+                >
+                    <FilePlus />
+                </button>
+                <div className="button-spacer" />
+                <button
+                    aria-label="Delete current army"
+                    className="delete-army-button butto icon-button"
+                    onClick={handleDeleteArmy}
+                >
+                    <Trash />
                 </button>
             </div>
 
@@ -34,10 +70,11 @@ export const AppHeader = (props: Props): JSX.Element => {
 
             <div className="header-toolbar">
                 <button
-                    className="toggle-nav-button button"
+                    aria-label="Export all armies"
+                    className="toggle-nav-button button icon-button"
                     onClick={handleExport}
                 >
-                    Export
+                    <Export />
                 </button>
             </div>
         </div>

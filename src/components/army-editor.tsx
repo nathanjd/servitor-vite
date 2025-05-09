@@ -16,12 +16,11 @@ import { UnitSearch } from './unit-search';
 
 interface Props {
     id                 : string;
-    onDeleteArmy       : (id: string) => void;
     orderedPointsValues: PointsValues[];
 }
 
 export const ArmyEditor = (props: Props): JSX.Element => {
-    const { id, onDeleteArmy, orderedPointsValues } = props;
+    const { id, orderedPointsValues } = props;
     const [savedArmy, saveArmy] = useArmy(id);
     const [name, setName] = useState(savedArmy.name);
     const [points, setPoints] = useState(savedArmy.points);
@@ -38,13 +37,6 @@ export const ArmyEditor = (props: Props): JSX.Element => {
         setText(savedArmy.text);
         setLastId(id);
     }
-
-    const handleDeleteArmy = useCallback(() => {
-        const shouldDelete = confirm(`Delete army? ${id}`);
-        if (shouldDelete) {
-            onDeleteArmy(id);
-        }
-    }, [id, onDeleteArmy]);
 
     // Saving armies is much more expensive than parsing them so use a longer
     // debounce for saving.
@@ -156,12 +148,6 @@ export const ArmyEditor = (props: Props): JSX.Element => {
                 </div> */}
                 <div className="army-footer">
                     <span className="army-id">{id}</span>
-                    <button
-                        className="delete-army-button button"
-                        onClick={handleDeleteArmy}
-                    >
-                        Delete Army
-                    </button>
                 </div>
             </div>
         </div>

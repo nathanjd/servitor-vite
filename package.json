@@ -15,6 +15,7 @@
     "upload": "aws s3 cp dist/ s3://servitor-pwa.com --recursive"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.7",
     "imurmurhash": "^0.1.4",
     "json-stable-stringify": "^1.1.1",
     "lodash-es": "^4.17.21",

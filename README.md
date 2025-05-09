@@ -62,6 +62,7 @@ yarn deploy
 - https://github.com/pmndrs/zustand
 - https://github.com/tanstack/query
 - https://github.com/vitejs/vite
+- https://github.com/phosphor-icons/react
 
 ## DNS Routing Debug
 

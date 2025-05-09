@@ -7,6 +7,7 @@ import {
 import { debounce } from 'lodash-es';
 import { PointsValues, suggestUnits } from '../lib/suggest/suggest-unit';
 import { favoriteUnits } from '../config/favorite-units';
+import { Plus } from '@phosphor-icons/react';
 
 interface Props {
     orderedPointsValues: PointsValues[];
@@ -72,10 +73,11 @@ export const UnitSearch = (props: Props): JSX.Element => {
             </datalist>
 
             <button
-                className="toggle-nav-button button"
+                aria-label="Add suggested unit"
+                className="add-suggestion-button button icon-button"
                 onClick={handleAddSuggestion}
             >
-                Add
+                <Plus />
             </button>
         </div>
     );

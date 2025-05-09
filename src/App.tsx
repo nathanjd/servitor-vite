@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { IconContext } from '@phosphor-icons/react';
 
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
@@ -69,7 +70,9 @@ const App = (): JSX.Element => {
                 }
             })
             .catch((err) => {
-                console.error('clipboard write failed, trying again.', err);
+                // Non-blink browsers do not support the clipboard-write query
+                // but allow for writing to the clipboard without it.
+                console.error('clipboard permission query errored', err);
                 writeText();
             });
     }, [armyStore]);
@@ -87,31 +90,34 @@ const App = (): JSX.Element => {
 
     return (
         <>
-            <ArmyServiceContext.Provider value={armyService}>
-                <AppHeader
-                    isNavOpen={isArmiesNavOpen}
-                    onExport={handleExport}
-                    setIsNavOpen={setIsArmiesNavOpen}
-                />
-
-                <div className="app-body">
-                    <ArmiesNav
+            <IconContext.Provider value={{ size: 32 }}>
+                <ArmyServiceContext.Provider value={armyService}>
+                    <AppHeader
                         activeId={editingArmyId}
-                        byId={armyStore.byId}
-                        isOpen={isArmiesNavOpen}
+                        isNavOpen={isArmiesNavOpen}
                         onCreateArmy={handleCreateArmy}
-                        onResetArmies={handleResetArmyStore}
-                        onSelectArmy={handleSelectArmy}
-                        orderedIds={armyStore.orderedIds}
+                        onDeleteArmy={handleDeleteArmy}
+                        onExport={handleExport}
+                        setIsNavOpen={setIsArmiesNavOpen}
                     />
 
-                    <ArmyEditor
-                        id={editingArmyId}
-                        onDeleteArmy={handleDeleteArmy}
-                        orderedPointsValues={pointsValues}
-                    />
-                </div>
-            </ArmyServiceContext.Provider>
+                    <div className="app-body">
+                        <ArmiesNav
+                            activeId={editingArmyId}
+                            byId={armyStore.byId}
+                            isOpen={isArmiesNavOpen}
+                            onResetArmies={handleResetArmyStore}
+                            onSelectArmy={handleSelectArmy}
+                            orderedIds={armyStore.orderedIds}
+                        />
+
+                        <ArmyEditor
+                            id={editingArmyId}
+                            orderedPointsValues={pointsValues}
+                        />
+                    </div>
+                </ArmyServiceContext.Provider>
+            </IconContext.Provider>
         </>
     );
 };
