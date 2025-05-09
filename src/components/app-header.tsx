@@ -46,7 +46,6 @@ export const AppHeader = (props: Props): JSX.Element => {
                 >
                     <Sidebar />
                 </button>
-                <div className="button-spacer" />
                 <button
                     aria-label="Create New Army"
                     className="create-new-armies-button button icon-button"
@@ -54,7 +53,6 @@ export const AppHeader = (props: Props): JSX.Element => {
                 >
                     <FilePlus />
                 </button>
-                <div className="button-spacer" />
                 <button
                     aria-label="Delete current army"
                     className="delete-army-button butto icon-button"
