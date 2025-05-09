@@ -1,19 +1,21 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { Export, FilePlus, Sidebar, Trash } from '@phosphor-icons/react';
 
 interface Props {
-    activeId    : string;
-    isNavOpen   : boolean;
-    onCreateArmy: () => void;
-    onDeleteArmy: (id: string) => void;
-    onExport    : () => void;
-    setIsNavOpen: (newIsNavOpen: boolean) => void;
+    activeId       : string;
+    isArmiesNavOpen: boolean;
+    isNavOpen      : boolean;
+    onCreateArmy   : () => void;
+    onDeleteArmy   : (id: string) => void;
+    onExport       : () => void;
+    setIsNavOpen   : (newIsNavOpen: boolean) => void;
 }
 
 export const AppHeader = (props: Props): JSX.Element => {
     const {
         activeId,
+        isArmiesNavOpen,
         isNavOpen,
         onCreateArmy,
         onDeleteArmy,
@@ -36,29 +38,43 @@ export const AppHeader = (props: Props): JSX.Element => {
         setIsNavOpen(!isNavOpen);
     }, [isNavOpen, setIsNavOpen]);
 
+    const headerClass = useMemo(
+        () => `app-header ${isArmiesNavOpen ? 'armies-nav-open' : ''}`, [isArmiesNavOpen],
+    );
+
     return (
-        <div className="app-header">
+        <div className={headerClass}>
             <div className="header-nav">
-                <button
-                    aria-label={isNavOpen ? 'Close Nav' : 'Open Nav'}
-                    className="toggle-nav-button button icon-button"
-                    onClick={handleToggleNav}
-                >
-                    <Sidebar />
-                </button>
+                <div className="header-nav-left">
+                    <button
+                        aria-label={isNavOpen ? 'Close Nav' : 'Open Nav'}
+                        className="toggle-nav-button button icon-button"
+                        onClick={handleToggleNav}
+                    >
+                        <Sidebar />
+                    </button>
+                </div>
+                <div className="header-nav-separator" />
+                <div className="header-nav-right">
+                    <button
+                        aria-label="Delete current army"
+                        className="delete-army-button butto icon-button"
+                        onClick={handleDeleteArmy}
+                    >
+                        <Trash />
+                    </button>
+                </div>
+            </div>
+
+            <div className="header-divider" />
+
+            <div className="header-toolbar-left">
                 <button
                     aria-label="Create New Army"
                     className="create-new-armies-button button icon-button"
                     onClick={onCreateArmy}
                 >
                     <FilePlus />
-                </button>
-                <button
-                    aria-label="Delete current army"
-                    className="delete-army-button butto icon-button"
-                    onClick={handleDeleteArmy}
-                >
-                    <Trash />
                 </button>
             </div>
 

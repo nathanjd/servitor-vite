@@ -94,6 +94,7 @@ const App = (): JSX.Element => {
                 <ArmyServiceContext.Provider value={armyService}>
                     <AppHeader
                         activeId={editingArmyId}
+                        isArmiesNavOpen={isArmiesNavOpen}
                         isNavOpen={isArmiesNavOpen}
                         onCreateArmy={handleCreateArmy}
                         onDeleteArmy={handleDeleteArmy}

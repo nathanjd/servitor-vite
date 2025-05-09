@@ -35,19 +35,40 @@ button.icon-button > svg {
 }
 
 .header-nav {
+    display: flex;
     box-sizing: border-box;
+}
+
+.app-header.armies-nav-open .header-nav {
     /* 16em - 0.8rem padding-left */
     width: 15.2rem;
 }
 
-.header-title {
-    display:flex;
-    flex-direction:column;
-    justify-content:space-around;
+/* .header-nav-left {} */
+
+.header-nav-separator {
+    width: 0.8rem;
 }
 
-.header-toolbar {
-    display:flex;
+.app-header.armies-nav-open .header-nav-separator {
+    flex-grow: 1;
+}
+
+.header-nav-right {
+    justify-content: flex-end;
+}
+
+.header-divider {
+    width: 2rem;
+}
+
+/* .header-toolbar-left {} */
+
+.header-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1;
 }
 
 .app-title {
@@ -55,6 +76,11 @@ button.icon-button > svg {
     margin: 0;
     flex: 1;
     text-align: center;
+    align-content: center;
+}
+
+.header-toolbar {
+    display: flex;
 }
 
 .app-body {
@@ -74,7 +100,6 @@ button.icon-button > svg {
 
 .create-new-armies-button {
     float: right;
-    margin-left: 0.8rem;
 }
 
 .armies-nav {
