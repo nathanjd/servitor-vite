@@ -41,7 +41,7 @@ export const UnitSearch = (props: Props): JSX.Element => {
             // Always include favorite units in searchable datalist.
             suggestions.push(...favoriteUnits);
             setSuggestions(suggestions);
-        }, 50), [orderedPointsValues],
+        }, 300), [orderedPointsValues],
     );
 
     const handleTextChange = useCallback(
