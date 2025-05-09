@@ -187,10 +187,11 @@ button.icon-button > svg {
 }
 
 .army-input {
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    margin: 0;
 }
 
 .unit-search {
