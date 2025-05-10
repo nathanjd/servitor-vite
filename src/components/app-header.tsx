@@ -48,6 +48,7 @@ export const AppHeader = (props: Props): JSX.Element => {
                 <div className="header-nav-left">
                     <button
                         aria-label={isNavOpen ? 'Close Nav' : 'Open Nav'}
+                        title={isNavOpen ? 'Close Nav' : 'Open Nav'}
                         className="toggle-nav-button button icon-button"
                         onClick={handleToggleNav}
                     >
@@ -58,6 +59,7 @@ export const AppHeader = (props: Props): JSX.Element => {
                 <div className="header-nav-right">
                     <button
                         aria-label="Delete current army"
+                        title="Delete current army"
                         className="delete-army-button butto icon-button"
                         onClick={handleDeleteArmy}
                     >
@@ -71,6 +73,7 @@ export const AppHeader = (props: Props): JSX.Element => {
             <div className="header-toolbar-left">
                 <button
                     aria-label="Create New Army"
+                    title="Create New Army"
                     className="create-new-armies-button button icon-button"
                     onClick={onCreateArmy}
                 >
@@ -85,6 +88,7 @@ export const AppHeader = (props: Props): JSX.Element => {
             <div className="header-toolbar">
                 <button
                     aria-label="Export all armies"
+                    title="Export all armies"
                     className="toggle-nav-button button icon-button"
                     onClick={handleExport}
                 >

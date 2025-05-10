@@ -74,6 +74,7 @@ export const UnitSearch = (props: Props): JSX.Element => {
 
             <button
                 aria-label="Add suggested unit"
+                title="Add suggested unit"
                 className="add-suggestion-button button icon-button"
                 onClick={handleAddSuggestion}
             >
