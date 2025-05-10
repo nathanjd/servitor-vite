@@ -37,6 +37,7 @@ button.icon-button > svg {
 .header-nav {
     display: flex;
     box-sizing: border-box;
+    padding-right: 0.8rem;
 }
 
 .app-header.armies-nav-open .header-nav {
@@ -59,7 +60,8 @@ button.icon-button > svg {
 }
 
 .header-divider {
-    width: 2rem;
+    width: 0.8rem;
+    border-left: 1px solid var(--dark-divider-color);
 }
 
 /* .header-toolbar-left {} */
@@ -183,7 +185,7 @@ button.icon-button > svg {
 }
 
 .army-card {
-  padding: 0.8rem 2rem;
+  padding: 0.8rem;
   display: flex;
   flex-direction: column;
   height: 100%;
