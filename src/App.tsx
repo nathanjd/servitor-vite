@@ -12,7 +12,7 @@ import { ArmyEditor } from './components/army-editor';
 import { ArmyServiceContext } from './contexts/army-service-context';
 import { ArmiesNav } from './components/armies-nav';
 import { parseArmyText } from './lib/parse/parse-army-text';
-import { PointsValues } from './lib/suggest/suggest-unit';
+import { PointsValues } from './lib/points/points';
 
 const permissionNameWrite: PermissionName = 'clipboard-write' as PermissionName;
 

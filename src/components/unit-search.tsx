@@ -5,7 +5,8 @@ import {
     useState,
 } from 'react';
 import { debounce } from 'lodash-es';
-import { PointsValues, suggestUnits } from '../lib/suggest/suggest-unit';
+import { PointsValues } from '../lib/points/points';
+import { suggestUnits } from '../lib/suggest/suggest-unit';
 import { favoriteUnits } from '../config/favorite-units';
 import { Plus } from '@phosphor-icons/react';
 
@@ -69,7 +70,9 @@ export const UnitSearch = (props: Props): JSX.Element => {
             />
 
             <datalist id="search-unit-datalist">
-                {suggestions.map(suggestion => <option value={suggestion} />)}
+                {suggestions.map(suggestion =>
+                    <option key={suggestion} value={suggestion} />,
+                )}
             </datalist>
 
             <button

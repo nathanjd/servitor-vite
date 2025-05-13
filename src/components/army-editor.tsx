@@ -1,17 +1,19 @@
 import {
     ChangeEvent,
     useCallback,
+    useEffect,
     useMemo,
+    useRef,
     useState,
 } from 'react';
 import { debounce } from 'lodash-es';
 import { useArmy } from '../hooks/use-army';
 import { Army, parseArmyText } from '../lib/parse/parse-army-text';
-import {
-    PointsValues,
 
-    // suggestUnit
-} from '../lib/suggest/suggest-unit';
+import { PointsValues } from '../lib/points/points';
+
+// import { suggestUnit } from '../lib/suggest/suggest-unit';
+// import { FactionSelector } from './faction-selector';
 import { UnitSearch } from './unit-search';
 
 interface Props {
@@ -26,8 +28,21 @@ export const ArmyEditor = (props: Props): JSX.Element => {
     const [points, setPoints] = useState(savedArmy.points);
     const [text, setText] = useState(savedArmy.text);
 
-    // const [suggestion, setSuggestion] = useState('');
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+
+    const [selectionStart, setSelectionStart] = useState(0);
+    const [selectionEnd, setSelectionEnd] = useState(0);
+
+    // TODO: Start tracking selection to show contextual information.
+    // const handleSelect = () => {
+    //     if (textareaRef.current) {
+    //         setSelectionStart(textareaRef.current.selectionStart);
+    //         setSelectionEnd(textareaRef.current.selectionEnd);
+    //     }
+    // };
+
+    // const [suggestion, setSuggestion] = useState('');
 
     // Make sure we change the textarea value when changing armies.
     const [lastId, setLastId] = useState(id);
@@ -58,10 +73,23 @@ export const ArmyEditor = (props: Props): JSX.Element => {
         }, 200), [handleSaveArmy, id],
     );
 
+    // Focus and update the selection when requested.
+    useEffect(() => {
+        if (textareaRef.current) {
+            textareaRef.current.focus();
+            textareaRef.current.setSelectionRange(selectionStart, selectionEnd);
+        }
+    }, [selectionStart, selectionEnd]);
+
     const handleAddSuggestion = useCallback((suggestion: string) => {
         const newText = text + '\n' + suggestion;
         setText(newText);
         handleParseArmyText(newText);
+
+        // Select newly added unit in textarea.
+        setSelectionStart(text.length);
+        setSelectionEnd(newText.length);
+
     }, [handleParseArmyText, text, setText]);
 
     // const findCurrentUnitName = (
@@ -129,6 +157,11 @@ export const ArmyEditor = (props: Props): JSX.Element => {
         <div className='army-editor'>
             <div className="army-card">
                 <div className="army-header">
+                    {/* <div className="faction-selector-wrapper">
+                        <FactionSelector
+                            factions={['CSM', 'Daemons', 'Chaos Knights']}
+                        />
+                    </div> */}
                     <h2 className="army-name">
                         {name}
                     </h2>
@@ -137,6 +170,7 @@ export const ArmyEditor = (props: Props): JSX.Element => {
                 <textarea
                     className="army-input"
                     onChange={handleTextChange}
+                    ref={textareaRef}
                     value={text}
                 />
                 <UnitSearch

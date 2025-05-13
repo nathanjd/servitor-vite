@@ -87,8 +87,8 @@ export const AppHeader = (props: Props): JSX.Element => {
 
             <div className="header-toolbar">
                 <button
-                    aria-label="Export all armies"
-                    title="Export all armies"
+                    aria-label="Export all armies to clipboard"
+                    title="Export all armies to clipboard"
                     className="toggle-nav-button button icon-button"
                     onClick={handleExport}
                 >

@@ -1,70 +1,11 @@
-import { memoize } from 'lodash-es';
 import { parseCountFromName } from '../parse/parse-count-from-name';
 import { removeCountFromName } from '../parse/remove-count-from-name';
 
-interface PointsByModelCount {
-    [key: string]: number;
-}
-
-interface UnitPoints {
-    [key: string]: PointsByModelCount;
-}
-
-interface EnhancementPoints {
-    [key: string]: number;
-}
-
-interface FactionPoints {
-    units       : UnitPoints;
-    enhancements: EnhancementPoints;
-}
-
-export interface PointsValues {
-    [key: string]: FactionPoints;
-}
-
-const combineFactionPoints = (
-    orderedPointsValues: PointsValues[],
-    factionName: string,
-): FactionPoints => {
-    return orderedPointsValues.reduce<FactionPoints>(
-        (combined, pointsValues) => {
-            const factionPoints = pointsValues[factionName];
-            if (!factionPoints) {
-                return combined;
-            }
-
-            Object.keys(factionPoints.units).forEach(unitName => {
-            // Points from earlier in the orderedPointsValues array take
-            // precedence.
-                if (!combined.units[unitName]) {
-                    combined.units[unitName] = factionPoints.units[unitName];
-                }
-            });
-
-            Object.keys(factionPoints.enhancements).forEach(unitName => {
-            // Points from earlier in the orderedPointsValues array take
-            // precedence.
-                if (!combined.enhancements[unitName]) {
-                    combined.enhancements[unitName] =
-                            factionPoints.enhancements[unitName];
-                }
-            });
-
-            return combined;
-        },
-        { enhancements: {}, units: {} },
-    );
-};
-
-const combineFactionKeyForCache = (
-    orderedPointsValues: PointsValues[],
-    factionName: string,
-) => {
-    return orderedPointsValues + '_' + factionName;
-};
-const combineFactionPointsMemoized = memoize(
-    combineFactionPoints, combineFactionKeyForCache);
+import {
+    combineFactionPointsMemoized,
+    FactionPoints,
+    PointsValues,
+} from '../points/points';
 
 const formatUnitSuggestion = (
     unitName: string,
