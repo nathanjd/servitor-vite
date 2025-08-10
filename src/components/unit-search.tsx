@@ -5,13 +5,13 @@ import {
     useState,
 } from 'react';
 import { debounce } from 'lodash-es';
-import { PointsValues } from '../lib/points/points';
+import { PointSource } from '../lib/points/points';
 import { suggestUnits } from '../lib/suggest/suggest-unit';
 import { favoriteUnits } from '../config/favorite-units';
 import { Plus } from '@phosphor-icons/react';
 
 interface Props {
-    orderedPointsValues: PointsValues[];
+    orderedPointsValues: PointSource[];
     onAddSuggestion    : (suggestion: string) => void;
 }
 

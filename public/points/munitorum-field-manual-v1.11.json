@@ -1,215 +1,219 @@
 {
-    "Heretic Astartes": {
-        "enhancements": {
-            "Chaos Cult": {
-                "Amulet of Tainted Vigour": 20,
-                "Cultist’s Brand": 20,
-                "Incendiary Goad": 15,
-                "Warped Foresight": 10
+    "id": "munitorum-field-manual-v2.9",
+    "published": "2025-07-08",
+    "pointsByFaction": {
+        "Heretic Astartes": {
+            "enhancements": {
+                "Chaos Cult": {
+                    "Amulet of Tainted Vigour": 20,
+                    "Cultist’s Brand": 20,
+                    "Incendiary Goad": 15,
+                    "Warped Foresight": 10
+                },
+                "Deceptors": {
+                    "Cursed Fang": 10,
+                    "Falsehood": 10,
+                    "Shroud of Obfuscation": 15,
+                    "Soul Link": 5
+                },
+                "Dread Talons": {
+                    "Eater of Dread": 15,
+                    "Night’s Shroud": 20,
+                    "Warp-fuelled Thrusters": 20,
+                    "Willbreaker": 10
+                },
+                "Fellhammer Siege-host": {
+                    "Bastion Plate": 10,
+                    "Iron Artifice": 10,
+                    "Ironbound Enmity": 15,
+                    "Warp Tracer": 20
+                },
+                "Pactbound Zealots": {
+                    "Eye of Tzeench": 15,
+                    "Intoxicating Elixir": 15,
+                    "Orbs of Unlife": 15,
+                    "Talisman of Burning Blood": 15
+                },
+                "Renegade Raiders": {
+                    "Despot’s Claim": 15,
+                    "Dread Reaver": 15,
+                    "Mark of the Hound": 25,
+                    "Tyrant’s Lash": 20
+                },
+                "Soulforged Warpack": {
+                    "Forge’s Blessing": 20,
+                    "Invigorated Mechatendrils": 15,
+                    "Tempting Addendum": 25,
+                    "Soul Harvester": 15
+                },
+                "Veterans of the Long War": {
+                    "Eager for Vengeance": 20,
+                    "Eye of Abaddon": 15,
+                    "Mark of Legend": 10,
+                    "Warmaster’s Gift": 15
+                }
             },
-            "Deceptors": {
-                "Cursed Fang": 10,
-                "Falsehood": 10,
-                "Shroud of Obfuscation": 15,
-                "Soul Link": 5
-            },
-            "Dread Talons": {
-                "Eater of Dread": 15,
-                "Night’s Shroud": 20,
-                "Warp-fuelled Thrusters": 20,
-                "Willbreaker": 10
-            },
-            "Fellhammer Siege-host": {
-                "Bastion Plate": 10,
-                "Iron Artifice": 10,
-                "Ironbound Enmity": 15,
-                "Warp Tracer": 20
-            },
-            "Pactbound Zealots": {
-                "Eye of Tzeench": 15,
-                "Intoxicating Elixir": 15,
-                "Orbs of Unlife": 15,
-                "Talisman of Burning Blood": 15
-            },
-            "Renegade Raiders": {
-                "Despot’s Claim": 15,
-                "Dread Reaver": 15,
-                "Mark of the Hound": 25,
-                "Tyrant’s Lash": 20
-            },
-            "Soulforged Warpack": {
-                "Forge’s Blessing": 20,
-                "Invigorated Mechatendrils": 15,
-                "Tempting Addendum": 25,
-                "Soul Harvester": 15
-            },
-            "Veterans of the Long War": {
-                "Eager for Vengeance": 20,
-                "Eye of Abaddon": 15,
-                "Mark of Legend": 10,
-                "Warmaster’s Gift": 15
-            }
-        },
-        "units": {
-            "Abaddon the Despoiler": {
-                "1": 295
-            },
-            "Accursed Cultists": {
-                "8": 90,
-                "16": 180
-            },
-            "Chaos Bikers": {
-                "3": 70,
-                "6": 140
-            },
-            "Chaos Land Raider": {
-                "1": 240
-            },
-            "Chaos Lord": {
-                "1": 90
-            },
-            "Chaos Lord in Terminator Armour": {
-                "1": 95
-            },
-            "Chaos Lord with Jump Pack": {
-                "1": 90
-            },
-            "Chaos Predator Annihilator": {
-                "1": 140
-            },
-            "Chaos Predator Destructor": {
-                "1": 140
-            },
-            "Chaos Rhino": {
-                "1": 75
-            },
-            "Chaos Spawn": {
-                "2": 70
-            },
-            "Chaos Terminator Squad": {
-                "5": 185,
-                "10": 370
-            },
-            "Chaos Vindicator": {
-                "1": 185
-            },
-            "Chosen": {
-                "5": 125,
-                "10": 250
-            },
-            "Cultist Firebrand": {
-                "1": 45
-            },
-            "Cultist Mob": {
-                "10": 50,
-                "20": 100
-            },
-            "Cypher": {
-                "1": 90
-            },
-            "Dark Apostle": {
-                "3": 75
-            },
-            "Dark Commune": {
-                "5": 65
-            },
-            "Defiler": {
-                "1": 190
-            },
-            "Fabius Bile": {
-                "2": 85
-            },
-            "Fellgor Beastmen": {
-                "10": 85
-            },
-            "Forgefiend": {
-                "1": 190
-            },
-            "Haarken Worldclaimer": {
-                "1": 90
-            },
-            "Havocs": {
-                "1": 135
-            },
-            "Helbrute": {
-                "1": 130
-            },
-            "Heldrake": {
-                "1": 205
-            },
-            "Heretic Astartes Daemon Prince": {
-                "1": 165
-            },
-            "Heretic Astartes Daemon Prince with Wings": {
-                "1": 180
-            },
-            "Huron Blackheart": {
-                "1": 80
-            },
-            "Khorne Lord of Skulls": {
-                "1": 450
-            },
-            "Legionaries": {
-                "5": 90,
-                "10": 180
-            },
-            "Lord Discordant on Helstalker": {
-                "1": 190
-            },
-            "Lucius the Eternal": {
-                "1": 95
-            },
-            "Master of Executions": {
-                "1": 80
-            },
-            "Master of Possession": {
-                "1": 70
-            },
-            "Maulerfiend": {
-                "1": 130
-            },
-            "Noctilith Crown": {
-                "1": 125
-            },
-            "Noise Marines": {
-                "5": 85,
-                "10": 170
-            },
-            "Obliterators": {
-                "2": 170
-            },
-            "Possessed": {
-                "5": 125,
-                "10": 250
-            },
-            "Raptors": {
-                "5": 90,
-                "10": 180
-            },
-            "Sorcerer": {
-                "1": 60
-            },
-            "Sorcerer in Terminator Armour": {
-                "1": 90
-            },
-            "Traitor Enforcer": {
-                "2": 65
-            },
-            "Traitor Guardsmen Squad": {
-                "10": 70
-            },
-            "Vashtorr the Arkifane": {
-                "1": 190
-            },
-            "Venomcrawler": {
-                "1": 120
-            },
-            "Warp Talons": {
-                "5": 135,
-                "10": 270
-            },
-            "Warpsmith": {
-                "1": 70
+            "units": {
+                "Abaddon the Despoiler": {
+                    "1": 295
+                },
+                "Accursed Cultists": {
+                    "8": 90,
+                    "16": 180
+                },
+                "Chaos Bikers": {
+                    "3": 70,
+                    "6": 140
+                },
+                "Chaos Land Raider": {
+                    "1": 240
+                },
+                "Chaos Lord": {
+                    "1": 90
+                },
+                "Chaos Lord in Terminator Armour": {
+                    "1": 95
+                },
+                "Chaos Lord with Jump Pack": {
+                    "1": 90
+                },
+                "Chaos Predator Annihilator": {
+                    "1": 140
+                },
+                "Chaos Predator Destructor": {
+                    "1": 140
+                },
+                "Chaos Rhino": {
+                    "1": 75
+                },
+                "Chaos Spawn": {
+                    "2": 70
+                },
+                "Chaos Terminator Squad": {
+                    "5": 185,
+                    "10": 370
+                },
+                "Chaos Vindicator": {
+                    "1": 185
+                },
+                "Chosen": {
+                    "5": 125,
+                    "10": 250
+                },
+                "Cultist Firebrand": {
+                    "1": 45
+                },
+                "Cultist Mob": {
+                    "10": 50,
+                    "20": 100
+                },
+                "Cypher": {
+                    "1": 90
+                },
+                "Dark Apostle": {
+                    "3": 75
+                },
+                "Dark Commune": {
+                    "5": 65
+                },
+                "Defiler": {
+                    "1": 190
+                },
+                "Fabius Bile": {
+                    "2": 85
+                },
+                "Fellgor Beastmen": {
+                    "10": 85
+                },
+                "Forgefiend": {
+                    "1": 190
+                },
+                "Haarken Worldclaimer": {
+                    "1": 90
+                },
+                "Havocs": {
+                    "1": 135
+                },
+                "Helbrute": {
+                    "1": 130
+                },
+                "Heldrake": {
+                    "1": 205
+                },
+                "Heretic Astartes Daemon Prince": {
+                    "1": 165
+                },
+                "Heretic Astartes Daemon Prince with Wings": {
+                    "1": 180
+                },
+                "Huron Blackheart": {
+                    "1": 80
+                },
+                "Khorne Lord of Skulls": {
+                    "1": 450
+                },
+                "Legionaries": {
+                    "5": 90,
+                    "10": 180
+                },
+                "Lord Discordant on Helstalker": {
+                    "1": 190
+                },
+                "Lucius the Eternal": {
+                    "1": 95
+                },
+                "Master of Executions": {
+                    "1": 80
+                },
+                "Master of Possession": {
+                    "1": 70
+                },
+                "Maulerfiend": {
+                    "1": 130
+                },
+                "Noctilith Crown": {
+                    "1": 125
+                },
+                "Noise Marines": {
+                    "5": 85,
+                    "10": 170
+                },
+                "Obliterators": {
+                    "2": 170
+                },
+                "Possessed": {
+                    "5": 125,
+                    "10": 250
+                },
+                "Raptors": {
+                    "5": 90,
+                    "10": 180
+                },
+                "Sorcerer": {
+                    "1": 60
+                },
+                "Sorcerer in Terminator Armour": {
+                    "1": 90
+                },
+                "Traitor Enforcer": {
+                    "2": 65
+                },
+                "Traitor Guardsmen Squad": {
+                    "10": 70
+                },
+                "Vashtorr the Arkifane": {
+                    "1": 190
+                },
+                "Venomcrawler": {
+                    "1": 120
+                },
+                "Warp Talons": {
+                    "5": 135,
+                    "10": 270
+                },
+                "Warpsmith": {
+                    "1": 70
+                }
             }
         }
     }

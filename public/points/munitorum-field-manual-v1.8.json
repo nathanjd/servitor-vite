@@ -1,4 +1,7 @@
 {
+    "id": "munitorum-field-manual-v2.9",
+    "published": "2025-07-08",
+    "pointsByFaction": {
     "Heretic Astartes": {
         "enhancements": {
             "Eye of Tzeench": 40,
@@ -168,4 +171,5 @@
             }
         }
     }
+}
 }

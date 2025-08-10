@@ -2,38 +2,239 @@
     "id": "munitorum-field-manual-v2.9",
     "published": "2025-07-08",
     "pointsByFaction": {
+        "Chaos Daemons": {
+            "enhancements": {},
+            "units": {
+                "Beasts of Nurgle": {
+                    "1": 65,
+                    "2": 130
+                },
+                "Be'lakor": {
+                    "1": 375
+                },
+                "Blood Crushers": {
+                    "3": 110,
+                    "6": 220
+                },
+                "Bloodletters": {
+                    "10": 110
+                },
+                "Bloodmaster": {
+                    "1": 65
+                },
+                "Bloodthirster": {
+                    "1": 305
+                },
+                "Blue Horrors": {
+                    "10": 125
+                },
+                "Burning Chariot": {
+                    "1": 115
+                },
+                "Changecaster": {
+                    "1": 60
+                },
+                "Contorted Epitomy": {
+                    "1": 100
+                },
+                "Daemon Prince of Chaos": {
+                    "1": 190
+                },
+                "Daemon Prince of Chaos with Wings": {
+                    "1": 180
+                },
+                "Daemonettes": {
+                    "10": 120
+                },
+                "Epidemius": {
+                    "1": 80
+                },
+                "Exalted Flamer": {
+                    "1": 65
+                },
+                "Fateskimmer": {
+                    "1": 95
+                },
+                "Feculent Gnarlmaw": {
+                    "1": 100
+                },
+                "Fiends": {
+                    "3": 110,
+                    "6": 220
+                },
+                "Flamers": {
+                    "3": 65,
+                    "6": 130
+                },
+                "Flesh Hounds": {
+                    "5": 75,
+                    "10": 150
+                },
+                "Fluxmaster": {
+                    "1": 60
+                },
+                "Great Unclean One": {
+                    "1": 250
+                },
+                "Hellflayers": {
+                    "1": 80,
+                    "2": 160
+                },
+                "Horticulous Slimux": {
+                    "1": 120
+                },
+                "Infernal Enrapturess": {
+                    "1": 60
+                },
+                "Kairos Fateweaver": {
+                    "1": 270
+                },
+                "Karnak": {
+                    "1": 75
+                },
+                "Keeper of Secrets": {
+                    "1": 290
+                },
+                "Lord of Change": {
+                    "1": 260
+                },
+                "Nurglings": {
+                    "3": 40,
+                    "6": 70
+                },
+                "Pink Horrors": {
+                    "10": 140
+                },
+                "Plague Drones": {
+                    "3": 110,
+                    "6": 220
+                },
+                "Plaguebearers": {
+                    "10": 110
+                },
+                "Poxbringer": {
+                    "1": 55
+                },
+                "Rendmaster on Blood Throne": {
+                    "1": 165
+                },
+                "Rotigus": {
+                    "1": 250
+                },
+                "Screamers": {
+                    "3": 80,
+                    "6": 160
+                },
+                "Seekers": {
+                    "5": 80,
+                    "10": 160
+                },
+                "Shalaxi Helbane": {
+                    "1": 380
+                },
+                "Skarbrand": {
+                    "1": 305
+                },
+                "Skull Altar": {
+                    "1": 105
+                },
+                "Skull Canon": {
+                    "1": 95
+                },
+                "Skullmaster": {
+                    "1": 100
+                },
+                "Skulltaker": {
+                    "1": 85
+                },
+                "Sloppity Bilepiper": {
+                    "1": 55
+                },
+                "Soul Grinder": {
+                    "1": 180
+                },
+                "Spoilpox Scrivener": {
+                    "1": 60
+                },
+                "Syll'esske": {
+                    "1": 120
+                },
+                "The Blue Scribes": {
+                    "1": 75
+                },
+                "The Changeling": {
+                    "1": 90
+                },
+                "The Masque of Slaanesh": {
+                    "1": 95
+                },
+                "Tormentbringer": {
+                    "1": 140
+                },
+                "Tranceweaver": {
+                    "1": 60
+                }
+            }
+        },
         "Chaos Knights": {
             "enhancements": {},
             "units": {
+                "Chaos Acastus Knight Asterius": {
+                    "1": 765
+                },
+                "Chaos Acastus Knight Porphyrion": {
+                    "1": 700
+                },
+                "Chaos Cerastus Knight Acheron": {
+                    "1": 355
+                },
+                "Chaos Cerastus Knight Atrapos": {
+                    "1": 355
+                },
+                "Chaos Cerastus Knight Castigator": {
+                    "1": 355
+                },
+                "Chaos Cerastus Knight Lancer": {
+                    "1": 355
+                },
+                "Chaos Cerastus Knight Magaera": {
+                    "1": 345
+                },
+                "Chaos Cerastus Knight Styrix": {
+                    "1": 345
+                },
                 "Knight Abominant": {
-                    "1": 365
+                    "1": 325
                 },
                 "Knight Desecrator": {
-                    "1": 410
+                    "1": 335
                 },
                 "Knight Despoiler": {
-                    "1": 415
+                    "1": 335
                 },
                 "Knight Rampager": {
-                    "1": 380
+                    "1": 335
                 },
                 "Knight Tyrant": {
-                    "1": 510
+                    "1": 395
                 },
                 "War Dog Brigand": {
-                    "1": 165
-                },
-                "War Dog Executioner": {
                     "1": 140
                 },
+                "War Dog Executioner": {
+                    "1": 130
+                },
                 "War Dog Huntsman": {
-                    "1": 145
+                    "1": 140
                 },
                 "War Dog Karnivore": {
                     "1": 140
                 },
+                "War Dog Moirax": {
+                    "1": 150
+                },
                 "War Dog Stalker": {
-                    "1": 145
+                    "1": 140
                 }
             }
         },
@@ -110,10 +311,10 @@
                     "1": 95
                 },
                 "Chaos Lord with Jump Pack": {
-                    "1": 90
+                    "1": 80
                 },
                 "Chaos Predator Annihilator": {
-                    "1": 130
+                    "1": 135
                 },
                 "Chaos Predator Destructor": {
                     "1": 140
@@ -146,7 +347,7 @@
                     "1": 90
                 },
                 "Dark Apostle": {
-                    "3": 75
+                    "3": 65
                 },
                 "Dark Commune": {
                     "5": 80
@@ -161,7 +362,7 @@
                     "10": 85
                 },
                 "Forgefiend": {
-                    "1": 190
+                    "1": 180
                 },
                 "Haarken Worldclaimer": {
                     "1": 90
@@ -189,10 +390,10 @@
                 },
                 "Legionaries": {
                     "5": 90,
-                    "10": 170
+                    "10":170
                 },
                 "Lord Discordant on Helstalker": {
-                    "1": 175
+                    "1": 160
                 },
                 "Lucius the Eternal": {
                     "1": 95
@@ -201,7 +402,7 @@
                     "1": 80
                 },
                 "Master of Possession": {
-                    "1": 70
+                    "1": 60
                 },
                 "Maulerfiend": {
                     "1": 130
@@ -231,7 +432,7 @@
                     "1": 80
                 },
                 "Traitor Enforcer": {
-                    "2": 65
+                    "2": 55
                 },
                 "Traitor Guardsmen Squad": {
                     "10": 70

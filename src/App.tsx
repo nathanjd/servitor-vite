@@ -1,18 +1,21 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { IconContext } from '@phosphor-icons/react';
 
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 import './App.css';
 import { armyService as defaultArmyService } from './lib/army-service';
+import { pointService as defaultPointService } from './lib/point-service';
 import { useArmyService } from './hooks/use-army-service';
+import { usePointService } from './hooks/use-point-service';
 import { useEditingArmyId } from './hooks/use-editing-army-id';
+import { parseArmyText } from './lib/parse/parse-army-text';
+
+// Components
 import { AppHeader } from './components/app-header';
+import { ArmiesNav } from './components/armies-nav';
 import { ArmyEditor } from './components/army-editor';
 import { ArmyServiceContext } from './contexts/army-service-context';
-import { ArmiesNav } from './components/armies-nav';
-import { parseArmyText } from './lib/parse/parse-army-text';
-import { PointsValues } from './lib/points/points';
 
 const permissionNameWrite: PermissionName = 'clipboard-write' as PermissionName;
 
@@ -24,23 +27,17 @@ const App = (): JSX.Element => {
         resetArmyStoreToDefault,
         saveArmy,
     } = armyService;
+    const pointService = usePointService(defaultPointService);
+    const {
+        pointStore,
+        fetchPointSources,
+
+        // resetPointStoreToDefault,
+        savePointSources,
+    } = pointService;
     const [editingArmyId, setEditingArmyId] = useEditingArmyId();
     const [isArmiesNavOpen, setIsArmiesNavOpen] = useState(true);
-    const [pointsValues, setPointsValues] = useState<PointsValues[]>([]);
-
-    // Fetch points and unit name autocomplete values.
-    useEffect(() => {
-        const urlsToFetch = [
-            '/points/munitorum-field-manual-v1.13.json',
-            '/points/legends-field-manual-1.0.json',
-        ];
-        const fetchAndDecode = async (url: string) => {
-            const response = await fetch(url);
-            return await response.json();
-        };
-        const requests = urlsToFetch.map(url => fetchAndDecode(url));
-        Promise.all(requests).then(json => setPointsValues(json));
-    }, []);
+    const orderedPointSources = useMemo(() => pointStore.orderedIds.map(id => pointStore.byId[id]), [pointStore]);
 
     const handleCreateArmy = useCallback(() => {
         const army = parseArmyText('New Army', crypto.randomUUID());
@@ -88,6 +85,35 @@ const App = (): JSX.Element => {
         // TODO: Reset army editor value when default-raw-army-id-1 is selected.
     }, [resetArmyStoreToDefault, setEditingArmyId]);
 
+    // Fetch points and unit name autocomplete values.
+    useEffect(() => {
+        (async () => {
+            // TODO: Fetch only the sources that we don't already have. We can't
+            // do this yet as I modify the point sources during development. But
+            // eventually, this should be okay to do as source files SHOULD
+            // never change once generated. Though I could only reasonably
+            // guaruntee this for files I hosted myself. I have no control over
+            // other users' point source files.
+
+            // Fetch sources from remote.
+            //
+            // TODO: Should we clear the sources not in this list in case of a
+            // new version of the MFM? We can't really do this yet as we're
+            // fetching by URL and we don't know their ID until the fetch comes
+            // back.
+            const pointsSources = await fetchPointSources([
+                '/points/munitorum-field-manual-v2.9.json',
+                '/points/legends-field-manual-1.0.json',
+            ]);
+
+            // Save sources.
+            //
+            // TODO: Only do so if the ID doesn't already exist in local storage
+            // OR it does exist in local storage but the checksum differs.
+            await savePointSources(pointsSources);
+        })();
+    }, [fetchPointSources, savePointSources]);
+
     return (
         <>
             <IconContext.Provider value={{ size: 32 }}>
@@ -114,7 +140,7 @@ const App = (): JSX.Element => {
 
                         <ArmyEditor
                             id={editingArmyId}
-                            orderedPointsValues={pointsValues}
+                            orderedPointSources={orderedPointSources}
                         />
                     </div>
                 </ArmyServiceContext.Provider>

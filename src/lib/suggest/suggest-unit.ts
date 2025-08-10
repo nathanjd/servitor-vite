@@ -4,10 +4,10 @@ import { removeCountFromName } from '../parse/remove-count-from-name';
 import {
     combineFactionPointsMemoized,
     FactionPoints,
-    PointsValues,
+    PointSource,
 } from '../points/points';
 
-const formatUnitSuggestion = (
+export const formatUnitSuggestionFromFactionPoints = (
     unitName: string,
     modelCount: number,
     combinedFactionPoints: FactionPoints,
@@ -15,45 +15,25 @@ const formatUnitSuggestion = (
     const pointsByModelCount = combinedFactionPoints.units[unitName];
     const modelCountKey = pointsByModelCount[modelCount.toString()] ?
         modelCount.toString() : Object.keys(pointsByModelCount)[0];
-
     const points = pointsByModelCount[modelCountKey];
+    const modelCountFromFaction = parseInt(modelCountKey, 10);
 
-    const countPrefix = parseInt(modelCountKey, 10) > 1 ?
-        `${modelCountKey} ` : '';
-    const suggestedText = `${countPrefix}${unitName} - ${points}`;
-    return suggestedText;
+    return formatUnitSuggestion(unitName, modelCountFromFaction, points);
 };
 
-// const formatUnitSuggestionMemoized = memoize(formatUnitSuggestion, (
-//     unitName: string,
-//     modelCount: number,
-//     combinedFactionPoints: FactionPoints,
-// ) => {
-//     return [unitName, modelCount, combinedFactionPoints];
-// });
-
-export const suggestUnit = (
-    text: string,
-    factionName: string,
-    orderedPointsValues: PointsValues[],
-): string => {
-    if (orderedPointsValues.length === 0 ) {
-        return '';
-    }
-
-    const unitNames = suggestUnits(text, factionName, orderedPointsValues);
-
-    if (!unitNames.length) {
-        return '';
-    }
-
-    return unitNames[0];
+export const formatUnitSuggestion = (
+    unitName: string,
+    modelCount: number,
+    points: number,
+) => {
+    const countPrefix = modelCount > 1 ? `${modelCount} ` : '';
+    return `${countPrefix}${unitName} - ${points}`;
 };
 
 export const suggestUnits = (
     text: string,
     factionName: string,
-    orderedPointsValues: PointsValues[],
+    orderedPointsValues: PointSource[],
 ): string[] => {
     if (orderedPointsValues.length === 0 ) {
         return [];
@@ -72,6 +52,7 @@ export const suggestUnits = (
     );
     const normalizedModelCount = parseCountFromName(normalizedText);
 
-    return suggestedUnitNames.map(unitName => formatUnitSuggestion(
-        unitName, normalizedModelCount, combinedFactionPoints));
+    return suggestedUnitNames.map(unitName =>
+        formatUnitSuggestionFromFactionPoints(
+            unitName, normalizedModelCount, combinedFactionPoints));
 };

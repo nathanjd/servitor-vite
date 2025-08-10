@@ -17,24 +17,37 @@ export interface FactionPoints {
     enhancements: EnhancementPoints;
 }
 
-export interface PointsValues {
+export interface PointsByFaction {
     [key: string]: FactionPoints;
 }
 
+export interface PointSource {
+    id             : string;
+    published      : string;
+    pointsByFaction: PointsByFaction;
+}
 
-const combineFactionPoints = (
-    orderedPointsValues: PointsValues[],
+export const getDefaultFactionPoints = (): FactionPoints => {
+    return {
+        units       : {},
+        enhancements: {},
+    };
+};
+
+// Takes an ordered array of points sorces and a faction name
+export const combineFactionPoints = (
+    orderedPointSources: PointSource[],
     factionName: string,
 ): FactionPoints => {
-    return orderedPointsValues.reduce<FactionPoints>(
-        (combined, pointsValues) => {
-            const factionPoints = pointsValues[factionName];
+    return orderedPointSources.reduce<FactionPoints>(
+        (combined, source) => {
+            const factionPoints = source.pointsByFaction[factionName];
             if (!factionPoints) {
                 return combined;
             }
 
             Object.keys(factionPoints.units).forEach(unitName => {
-            // Points from earlier in the orderedPointsValues array take
+            // Points from earlier in the orderedPointSources array take
             // precedence.
                 if (!combined.units[unitName]) {
                     combined.units[unitName] = factionPoints.units[unitName];
@@ -42,7 +55,7 @@ const combineFactionPoints = (
             });
 
             Object.keys(factionPoints.enhancements).forEach(unitName => {
-            // Points from earlier in the orderedPointsValues array take
+            // Points from earlier in the orderedPointSources array take
             // precedence.
                 if (!combined.enhancements[unitName]) {
                     combined.enhancements[unitName] =
@@ -52,15 +65,15 @@ const combineFactionPoints = (
 
             return combined;
         },
-        { enhancements: {}, units: {} },
+        getDefaultFactionPoints(),
     );
 };
 
 const combineFactionKeyForCache = (
-    orderedPointsValues: PointsValues[],
+    orderedPointSources: PointSource[],
     factionName: string,
 ) => {
-    return orderedPointsValues + '_' + factionName;
+    return orderedPointSources + '_' + factionName;
 };
 
 export const combineFactionPointsMemoized = memoize(

@@ -104,4 +104,5 @@ https://anydice.com/
 - https://game-datacards.eu/viewer/chaos-space-marines
 - https://armylists.rmz.gs/
 - https://warorgan.com/
+- https://armydrop.com/
 

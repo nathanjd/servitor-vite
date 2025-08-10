@@ -10,26 +10,25 @@ import { debounce } from 'lodash-es';
 import { useArmy } from '../hooks/use-army';
 import { Army, parseArmyText } from '../lib/parse/parse-army-text';
 
-import { PointsValues } from '../lib/points/points';
+import { PointSource } from '../lib/points/points';
 
 // import { suggestUnit } from '../lib/suggest/suggest-unit';
 // import { FactionSelector } from './faction-selector';
-import { UnitSearch } from './unit-search';
+import { UnitSearchStatic } from './unit-search-static';
 
 interface Props {
     id                 : string;
-    orderedPointsValues: PointsValues[];
+    orderedPointSources: PointSource[];
 }
 
 export const ArmyEditor = (props: Props): JSX.Element => {
-    const { id, orderedPointsValues } = props;
+    const { id, orderedPointSources } = props;
     const [savedArmy, saveArmy] = useArmy(id);
     const [name, setName] = useState(savedArmy.name);
     const [points, setPoints] = useState(savedArmy.points);
     const [text, setText] = useState(savedArmy.text);
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-
 
     const [selectionStart, setSelectionStart] = useState(0);
     const [selectionEnd, setSelectionEnd] = useState(0);
@@ -73,7 +72,9 @@ export const ArmyEditor = (props: Props): JSX.Element => {
         }, 200), [handleSaveArmy, id],
     );
 
-    // Focus and update the selection when requested.
+    // Focus and update the selection when requested. This won't work in iOS as
+    // we need to focus and selection can only be controlled during handling
+    // of the touch event.
     useEffect(() => {
         if (textareaRef.current) {
             textareaRef.current.focus();
@@ -86,9 +87,16 @@ export const ArmyEditor = (props: Props): JSX.Element => {
         setText(newText);
         handleParseArmyText(newText);
 
-        // Select newly added unit in textarea.
+        // Select newly added unit in textarea,
         setSelectionStart(text.length);
         setSelectionEnd(newText.length);
+
+        // HACK: For focus to work in iOS, we need to focus while the click
+        // event is being processed. This allows us to set the selection later
+        // in an effecct.
+        // if (textareaRef.current) {
+        //     textareaRef.current.focus();
+        // }
 
     }, [handleParseArmyText, text, setText]);
 
@@ -124,16 +132,16 @@ export const ArmyEditor = (props: Props): JSX.Element => {
 
     // const handleGenerateSuggestion  = useMemo(() =>
     //     debounce((armyText: string, selectionStart: number) => {
-    //         if (!orderedPointsValues) {
+    //         if (!orderedPointSources) {
     //             return;
     //         }
 
     //         const text = findCurrentUnitName(armyText, selectionStart);
     //         const factionName = 'Heretic Astartes';
     //         const suggestion = suggestUnit(
-    //             text, factionName, orderedPointsValues);
+    //             text, factionName, orderedPointSources);
     //         setSuggestion(suggestion);
-    //     }, 50), [orderedPointsValues],
+    //     }, 50), [orderedPointSources],
     // );
 
     const handleTextChange = useCallback(
@@ -173,8 +181,13 @@ export const ArmyEditor = (props: Props): JSX.Element => {
                     ref={textareaRef}
                     value={text}
                 />
-                <UnitSearch
-                    orderedPointsValues={orderedPointsValues}
+                <UnitSearchStatic
+                    factionNames={[
+                        'Heretic Astartes',
+                        'Chaos Daemons',
+                        'Chaos Knights',
+                    ]}
+                    orderedPointSources={orderedPointSources}
                     onAddSuggestion={handleAddSuggestion}
                 />
                 {/* <div className="army-editor-autocomplete">
