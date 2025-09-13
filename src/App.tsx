@@ -102,7 +102,7 @@ const App = (): JSX.Element => {
             // fetching by URL and we don't know their ID until the fetch comes
             // back.
             const pointsSources = await fetchPointSources([
-                '/points/munitorum-field-manual-v2.9.json',
+                '/points/munitorum-field-manual-v3.3.json',
                 '/points/legends-field-manual-1.0.json',
             ]);
 

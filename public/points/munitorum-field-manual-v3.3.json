@@ -59,8 +59,8 @@
                     "1": 100
                 },
                 "Fiends": {
-                    "3": 110,
-                    "6": 220
+                    "3": 95,
+                    "6": 190
                 },
                 "Flamers": {
                     "3": 65,
@@ -93,7 +93,7 @@
                     "1": 75
                 },
                 "Keeper of Secrets": {
-                    "1": 290
+                    "1": 270
                 },
                 "Lord of Change": {
                     "1": 260
@@ -186,37 +186,40 @@
                     "1": 700
                 },
                 "Chaos Cerastus Knight Acheron": {
-                    "1": 355
+                    "1": 385
                 },
                 "Chaos Cerastus Knight Atrapos": {
-                    "1": 355
+                    "1": 395
                 },
                 "Chaos Cerastus Knight Castigator": {
-                    "1": 355
+                    "1": 385
                 },
                 "Chaos Cerastus Knight Lancer": {
-                    "1": 355
+                    "1": 385
                 },
                 "Chaos Cerastus Knight Magaera": {
-                    "1": 345
+                    "1": 375
                 },
                 "Chaos Cerastus Knight Styrix": {
-                    "1": 345
+                    "1": 375
                 },
                 "Knight Abominant": {
-                    "1": 325
+                    "1": 355
                 },
                 "Knight Desecrator": {
-                    "1": 335
+                    "1": 365
                 },
                 "Knight Despoiler": {
-                    "1": 335
+                    "1": 375
                 },
                 "Knight Rampager": {
-                    "1": 335
+                    "1": 365
+                },
+                "Knight Ruinator": {
+                    "1": 375
                 },
                 "Knight Tyrant": {
-                    "1": 395
+                    "1": 410
                 },
                 "War Dog Brigand": {
                     "1": 140
@@ -228,7 +231,7 @@
                     "1": 140
                 },
                 "War Dog Karnivore": {
-                    "1": 140
+                    "1": 150
                 },
                 "War Dog Moirax": {
                     "1": 150
@@ -291,7 +294,7 @@
             },
             "units": {
                 "Abaddon the Despoiler": {
-                    "1": 280
+                    "1": 270
                 },
                 "Accursed Cultists": {
                     "8": 90,
@@ -302,7 +305,7 @@
                     "6": 140
                 },
                 "Chaos Land Raider": {
-                    "1": 240
+                    "1": 220
                 },
                 "Chaos Lord": {
                     "1": 90
@@ -350,7 +353,7 @@
                     "3": 65
                 },
                 "Dark Commune": {
-                    "5": 80
+                    "5": 90
                 },
                 "Defiler": {
                     "1": 190
@@ -440,7 +443,7 @@
                     "1": 175
                 },
                 "Venomcrawler": {
-                    "1": 120
+                    "1": 110
                 },
                 "Warp Talons": {
                     "5": 125,
